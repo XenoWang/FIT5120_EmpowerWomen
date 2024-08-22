@@ -1,0 +1,108 @@
+/* Reset default margin and padding for body and html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll on the body */
+}
+
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar styling */
+.navbar {
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
+    background-color: #ffe6e6; /* Default background color */
+    z-index: 999; /* Ensure the navbar is above other content */
+    position: sticky; /* Stick the navbar to the top */
+    top: 0; /* Stick to the top */
+    width: 100%; /* Full width */
+}
+
+/* Navbar color on scroll */
+.navbar-scrolled {
+    background-color: rgba(255, 230, 230, 0.8) !important; /* Light pink with 80% opacity */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+}
+
+/* Container for scrolling sections */
+.scroll-container {
+    scroll-snap-type: y mandatory;
+    height: calc(100vh - 56px); /* Adjust height to account for navbar height */
+    overflow-y: scroll;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-right: 8px; /* Adjust space for custom scrollbar */
+}
+
+/* Each scrollable section */
+.scroll-section {
+    scroll-snap-align: start;
+    height: 100vh; /* Full viewport height */
+    position: relative;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* Background container styling */
+.background-container {
+    position: relative;
+    width: 100vw; /* Ensure full viewport width */
+    height: 100%;
+    background-color: darkgray; /* Dark grey background color */
+    overflow: hidden;
+    box-sizing: border-box; /* Include padding and border in element’s total width and height */
+}
+
+/* Background image styling */
+.background-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.professionalmums.net/wp-content/uploads/2020/09/img-20180108-5a53475c96097-720x405.jpg'); /* Update with your image path */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjust opacity for the image */
+    z-index: 1;
+}
+
+/* Title styling */
+.centered-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color */
+    text-align: center;
+    font-size: 3rem; /* Adjust font size as needed */
+    font-weight: bold;
+    z-index: 2; /* Ensure title is above the background image */
+}
+
+/* Custom scrollbar styling for WebKit browsers */
+.scroll-container::-webkit-scrollbar {
+    width: 8px; /* Thinner scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: transparent; /* No background for the track */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: darkgray; /* Dark grey scrollbar thumb */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Ensure the navbar does not get extra margin on small screens */
+@media (max-width: 992px) {
+    .navbar-nav {
+        flex-direction: column;
+        text-align: center;
+    }
+}
