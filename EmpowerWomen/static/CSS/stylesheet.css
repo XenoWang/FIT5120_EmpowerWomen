@@ -14,7 +14,7 @@ html {
 /* Navbar styling */
 .navbar {
     transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
-    background-color: whitesmoke; /* Default background color */
+    background-color: white; /* Default background color */
     z-index: 999; /* Ensure the navbar is above other content */
     position: sticky; /* Stick the navbar to the top */
     top: 0; /* Stick to the top */
@@ -23,7 +23,7 @@ html {
 
 /* Navbar color on scroll */
 .navbar-scrolled {
-    background-color: rgba(245, 245, 245, 0.8) !important; /* With 80% opacity */
+    background-color: rgba(255, 255, 255, 0.8) !important; /* With 80% opacity */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
 }
 
