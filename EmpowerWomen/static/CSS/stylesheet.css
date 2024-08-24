@@ -132,9 +132,6 @@ html {
     border-radius: 10px; /* Rounded corners */
 }
 
-#SkillsPage, #TrendsPage {
-    margin-left: 20%;
-}
 
 /* Ensure the navbar does not get extra margin on small screens */
 @media (max-width: 992px) {
