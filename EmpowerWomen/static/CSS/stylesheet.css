@@ -11,6 +11,13 @@ h1{
     font-family: 'Federo', sans-serif;
 }
 
+h2{
+    margin-top: 30px;
+    font-size: 35px;
+    font-family: 'Neuton', sans-serif;
+}
+
+
 p1{
     font-size: 25px;
     font-family: 'Federo', sans-serif;
@@ -100,34 +107,34 @@ html {
 }
 
 
-/* Title styling */
-.centered-title {
+/* Combined styling */
+.centered-title, .centered-text, .centered-button {
     position: absolute;
     width: 100%;
-    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white; /* Text color */
     text-align: center;
     font-family: 'Neuton', sans-serif;
-    font-size: 3rem; /* Adjust font size as needed */
     font-weight: bold;
-    z-index: 2; /* Ensure title is above the background image */
+    z-index: 2; /* Ensure content is above the background image */
 }
 
-/* Title styling */
+/* Title specific styling */
+.centered-title {
+    font-size: 3rem; /* Adjust font size as needed */
+    top: 40%; /* Position from the top */
+}
+
+/* Text specific styling */
 .centered-text {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white; /* Text color */
-    text-align: center;
-    font-family: 'Neuton', sans-serif;
     font-size: 1.5rem; /* Adjust font size as needed */
-    font-weight: bold;
-    z-index: 2; /* Ensure title is above the background image */
+    top: 50%; /* Position from the top */
+}
+
+/* Text specific styling */
+.centered-button {
+    top: 60%; /* Position from the top */
 }
 
 /* Custom scrollbar styling for WebKit browsers */
@@ -157,10 +164,16 @@ html {
     .centered-text {
         top: 55%;
     }
+    .centered-button {
+        top: 65%;
+    }
 }
 
 @media (max-width: 510px) {
     .centered-text {
         top: 60%;
+    }
+    .centered-button {
+        top: 75%;
     }
 }
