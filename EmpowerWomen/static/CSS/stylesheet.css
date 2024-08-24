@@ -80,6 +80,7 @@ html {
     transform: translate(-50%, -50%);
     color: white; /* Text color */
     text-align: center;
+    font-family: 'Neuton', sans-serif;
     font-size: 3rem; /* Adjust font size as needed */
     font-weight: bold;
     z-index: 2; /* Ensure title is above the background image */
