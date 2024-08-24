@@ -2,7 +2,7 @@ from flask import Flask
 # from plugins import init_app
 #import init_app from plugins
 
-from EmpowerWomen.blueprint import home, skills,trends
+from blueprint import home, skills,trends
 
 app = Flask(__name__)
 
