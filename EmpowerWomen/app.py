@@ -6,6 +6,7 @@ from plugins import init_app
 from plugins import db
 from blueprint import home, skills,trends
 from config import Config
+from sqlalchemy import text
 
 app = Flask(__name__)
 
@@ -42,5 +43,34 @@ def get_anzsco1_data():
 
 
 
+
+def check_table_data(table_name):
+    try:
+        records = db.session.execute(text(f'SELECT * FROM {table_name} LIMIT 5')).fetchall()
+
+        if records:
+            print(f"Table {table_name} is connected successfully. Here are some records:")
+            for record in records:
+                print(record)
+        else:
+            print(f"Table {table_name} is connected successfully, but no records found.")
+    except Exception as e:
+        print(f"Failed to query table {table_name}: {str(e)}")
+
+
+def test_db_connection():
+    try:
+        with app.app_context():
+            print("Testing database connection and table data...")
+            check_table_data('ANZSCO1')
+            check_table_data('ANZSCO4')
+            check_table_data('SPECIALIST')
+            check_table_data('CORE_COMPETENCY')
+            check_table_data('OCCUPATION_CORE_COMPETENCY')
+    except Exception as e:
+        print(f"Database connection failed: {str(e)}")
+
+
 if __name__ == '__main__':
+    test_db_connection()
     app.run(debug=True)
