@@ -81,11 +81,11 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://www.professionalmums.net/wp-content/uploads/2020/09/img-20180108-5a53475c96097-720x405.jpg'); /* Update with your image path */
+    background-image: url("/static/Image/WomanKidComputer.jpg"); /* Update the path */ /* Update with your image path */
     background-size: cover;
     background-position: center;
     opacity: 0.5; /* Adjust opacity for the image */
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Title styling */
@@ -100,7 +100,7 @@ html {
     font-family: 'Neuton', sans-serif;
     font-size: 3rem; /* Adjust font size as needed */
     font-weight: bold;
-    z-index: 2; /* Ensure title is above the background image */
+    z-index: 3; /* Ensure title is above the background image */
 }
 
 /* Title styling */
