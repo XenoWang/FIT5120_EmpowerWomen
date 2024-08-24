@@ -1,13 +1,18 @@
-from flask import Flask
-# from plugins import init_app
-#import init_app from plugins
+from flask import Flask, jsonify
 
+from EmpowerWomen.model import ANZSCO1
+from plugins import init_app
+#import init_app from plugins
+from plugins import db
 from blueprint import home, skills,trends
+from config import Config
 
 app = Flask(__name__)
 
-#
-# init_app(app)
+#load config
+app.config.from_object(Config)
+
+init_app(app)
 # initialize app and other plugins
 
 #database connect url
@@ -21,7 +26,21 @@ app.register_blueprint(skills)
 app.register_blueprint(trends)
 
 
+@app.route('/anzsco1', methods=['GET'])
+def get_anzsco1_data():
+    try:
+        records = ANZSCO1.query.all()
+        result = []
+        for record in records:
+            result.append({
+                'ANZSCO1_CODE': record.ANZSCO1_CODE,
+                'SECTION': record.SECTION
+            })
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

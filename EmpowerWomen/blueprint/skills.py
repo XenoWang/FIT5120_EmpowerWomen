@@ -1,7 +1,9 @@
 from flask import Blueprint,render_template
-from wordcloud import WordCloud
 import io
 import base64
+
+from EmpowerWomen.model import ANZSCO1
+
 skills=Blueprint('skills',__name__)
 
 @skills.route('/skills')
