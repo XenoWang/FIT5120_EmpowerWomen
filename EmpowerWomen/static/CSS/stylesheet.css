@@ -64,7 +64,7 @@ html {
 
 
 /* Background container styling */
-.background-container {
+.background-container, .background-container1, .background-container2 {
     position: relative;
     width: 100vw; /* Ensure full viewport width */
     height: 100%;
@@ -74,19 +74,31 @@ html {
 }
 
 /* Background image styling */
-.background-container::before {
+.background-container::before, .background-container1::before, .background-container2::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/static/Image/WomanKidComputer.jpg"); /* Update the path */ /* Update with your image path */
     background-size: cover;
     background-position: center;
     opacity: 0.5; /* Adjust opacity for the image */
-    z-index: 2;
+    z-index: 1;
 }
+
+.background-container::before{
+    background-image: url("/static/Image/WomanKidComputer.jpg");
+}
+
+.background-container1::before {
+    background-image: url("/static/Image/ChartPad.jpg");
+}
+
+.background-container2::before {
+    background-image: url("/static/Image/ChartComputer.jpg");
+}
+
 
 /* Title styling */
 .centered-title {
@@ -100,7 +112,7 @@ html {
     font-family: 'Neuton', sans-serif;
     font-size: 3rem; /* Adjust font size as needed */
     font-weight: bold;
-    z-index: 3; /* Ensure title is above the background image */
+    z-index: 2; /* Ensure title is above the background image */
 }
 
 /* Title styling */
