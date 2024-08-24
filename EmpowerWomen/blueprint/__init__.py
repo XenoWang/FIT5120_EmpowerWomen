@@ -1,6 +1,6 @@
 from flask import blueprints
 
-from .skillset import skills
+from .skills import skills
 from .trends import trends
 from .home import home
 
