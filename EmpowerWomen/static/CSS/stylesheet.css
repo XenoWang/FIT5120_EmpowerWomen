@@ -6,6 +6,16 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scroll on the body */
 }
 
+h1{
+    font-size: 3.2vw;
+    font-family: 'Federo', sans-serif;
+}
+
+p1{
+    font-size: 1.3vw;
+    font-family: 'Federo', sans-serif;
+}
+
 /* Ensure smooth scrolling */
 html {
     scroll-behavior: smooth;
@@ -46,6 +56,12 @@ html {
     position: relative;
     overflow: hidden; /* Prevent content overflow */
 }
+
+.scroll-section + .scroll-section .container {
+    margin-top: 30px; /* Adjust the value as needed */
+    width: 80%;
+}
+
 
 /* Background container styling */
 .background-container {
@@ -114,6 +130,10 @@ html {
 .scroll-container::-webkit-scrollbar-thumb {
     background-color: darkgray; /* Dark grey scrollbar thumb */
     border-radius: 10px; /* Rounded corners */
+}
+
+#SkillsPage, #TrendsPage {
+    margin-left: 20%;
 }
 
 /* Ensure the navbar does not get extra margin on small screens */
