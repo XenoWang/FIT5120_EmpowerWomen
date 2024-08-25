@@ -1,5 +1,4 @@
 class Config:
-    SECRET_KEY = 'cxk-666'
 
     # 数据库配置
     DB_USER = 'TP01Master'
@@ -9,8 +8,8 @@ class Config:
     DB_NAME = 'TP01'
 
     # 构建SQLAlchemy的数据库URI
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DB_URI = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    SQLALCHEMY_DATABASE_URI = DB_URI
 
 class DevelopmentConfig(Config):
     DEBUG = True

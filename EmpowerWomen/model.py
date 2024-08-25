@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+from plugins import db
 
 class ANZSCO1(db.Model):
     __tablename__ = 'ANZSCO1'
@@ -40,6 +40,10 @@ class OccupationCoreCompetency(db.Model):
     ANCHOR_VALUE = db.Column(db.Text, nullable=True)
     YEAR = db.Column(db.Integer, primary_key=True)
 
-    # Relationships to ANZSCO4 and CoreCompetency
+    # Relationships to ANZSCO4 and CoreCompetency with explicit foreign_keys
     anzsco4 = db.relationship('ANZSCO4', backref=db.backref('occupation_core_competencies', lazy=True))
-    core_competency = db.relationship('CoreCompetency', backref=db.backref('occupation_core_competencies', lazy=True))
+    core_competency = db.relationship(
+        'CoreCompetency',
+        backref=db.backref('occupation_core_competencies', lazy=True),
+        foreign_keys=[CORE_COMPETENCY]  # 指定明确的外键列
+    )
