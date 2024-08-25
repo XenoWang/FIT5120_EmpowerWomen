@@ -1,29 +1,39 @@
-from flask import Flask, jsonify
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-# import init_app from plugins
+__author1__ = "Linhao Wang"
+__email1__ = "lwan0191@student.monash.edu"
+__author2__ = "Yuxiang Zou"
+__email2__ = "yzou0027@student.monash.edu"
+__author3__ = "Joshua Yu Xuan Soo"
+__email3__ = "jsoo0027@student.monash.edu"
+
+#< ------------------------------ 80 Char Limit ------------------------------ >
+
+# Imports
+
+# Import init_app from plugins
+from flask import Flask, jsonify
 from EmpowerWomen.plugins import db
 from EmpowerWomen.blueprint import home, skills, trends, tests
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
+
+# Load Flask App
 app = Flask(__name__)
 
-# load config
+# Load Config
 app.config.from_object(Config)
-
 db.init_app(app)
-
 migrate = Migrate(app,db)
 
-# initialize app and other plugins
-
-
-# register all blueprints
+# Initialize app and other plugins
+# Register all blueprints
 app.register_blueprint(home)
 app.register_blueprint(skills)
 app.register_blueprint(trends)
 app.register_blueprint(tests)
-
 
 def check_table_data(table_name):
     try:
@@ -38,7 +48,6 @@ def check_table_data(table_name):
     except Exception as e:
         print(f"Failed to query table {table_name}: {str(e)}")
 
-
 def test_db_connection():
     try:
         with app.app_context():
@@ -51,7 +60,7 @@ def test_db_connection():
     except Exception as e:
         print(f"Database connection failed: {str(e)}")
 
-
+# Main Function
 if __name__ == '__main__':
     test_db_connection()
-    app.run(debug=True)
+    app.run(debug=True) # Do not set Debug to True in Production

@@ -1,13 +1,31 @@
-from flask_sqlalchemy import SQLAlchemy
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+__author1__ = "Linhao Wang"
+__email1__ = "lwan0191@student.monash.edu"
+__author2__ = "Yuxiang Zou"
+__email2__ = "yzou0027@student.monash.edu"
+__author3__ = "Joshua Yu Xuan Soo"
+__email3__ = "jsoo0027@student.monash.edu"
+
+#< ------------------------------ 80 Char Limit ------------------------------ >
+
+# Imports
+from flask_sqlalchemy import SQLAlchemy
 from EmpowerWomen.plugins import db
 
 class ANZSCO1(db.Model):
+    """
+    Class for the ANSZC01 Table
+    """
     __tablename__ = 'ANZSCO1'
     ANZSCO1_CODE = db.Column(db.Integer, primary_key=True)
     SECTION = db.Column(db.String(255), nullable=False)
 
 class ANZSCO4(db.Model):
+    """
+    Class for the ANSZC04 Table
+    """
     __tablename__ = 'ANZSCO4'
     ANZSCO4_CODE = db.Column(db.Integer, primary_key=True)
     ANZSCO1_CODE = db.Column(db.Integer, db.ForeignKey('ANZSCO1.ANZSCO1_CODE'), nullable=False)
@@ -17,6 +35,9 @@ class ANZSCO4(db.Model):
     anzsco1 = db.relationship('ANZSCO1', backref=db.backref('anzsco4s', lazy=True))
 
 class Specialist(db.Model):
+    """
+    Class for the SPECIALIST Table
+    """
     __tablename__ = 'SPECIALIST'
     ANZSCO4_CODE = db.Column(db.Integer, db.ForeignKey('ANZSCO4.ANZSCO4_CODE'), primary_key=True)
     SPECIALIST_SKILL = db.Column(db.String(255), primary_key=True)
@@ -26,6 +47,9 @@ class Specialist(db.Model):
     anzsco4 = db.relationship('ANZSCO4', backref=db.backref('specialists', lazy=True))
 
 class CoreCompetency(db.Model):
+    """
+    Class for the CORE_COMPETENCY Table
+    """
     __tablename__ = 'CORE_COMPETENCY'
     CORE_COMPETENCY = db.Column(db.String(255), primary_key=True)
     CORE_COMPETENCY_DESC = db.Column(db.Text, nullable=True)
@@ -33,6 +57,9 @@ class CoreCompetency(db.Model):
     PROFICIENCY_LEVEL = db.Column(db.String(20), nullable=True)
 
 class OccupationCoreCompetency(db.Model):
+    """
+    Class for the OCCUPATION_CORE_COMPETENCY Table
+    """
     __tablename__ = 'OCCUPATION_CORE_COMPETENCY'
     ANZSCO4_CODE = db.Column(db.Integer, db.ForeignKey('ANZSCO4.ANZSCO4_CODE'), primary_key=True)
     CORE_COMPETENCY = db.Column(db.String(255), db.ForeignKey('CORE_COMPETENCY.CORE_COMPETENCY'), primary_key=True)
@@ -45,5 +72,5 @@ class OccupationCoreCompetency(db.Model):
     core_competency = db.relationship(
         'CoreCompetency',
         backref=db.backref('occupation_core_competencies', lazy=True),
-        foreign_keys=[CORE_COMPETENCY]  # 指定明确的外键列
+        foreign_keys=[CORE_COMPETENCY]  # Specify explicit foreign key columns
     )
