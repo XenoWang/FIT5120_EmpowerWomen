@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 
-from EmpowerWomen.model import ANZSCO1
+from model import ANZSCO1
 from plugins import init_app
 #import init_app from plugins
 from plugins import db
