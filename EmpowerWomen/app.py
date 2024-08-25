@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
 
 # import init_app from plugins
-from plugins import db
-from blueprint import home, skills, trends, tests
-from config import Config
+from EmpowerWomen.plugins import db
+from EmpowerWomen.blueprint import home, skills, trends, tests
+from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
 app = Flask(__name__)

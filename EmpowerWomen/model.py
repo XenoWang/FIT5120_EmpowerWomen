@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-from plugins import db
+from EmpowerWomen.plugins import db
 
 class ANZSCO1(db.Model):
     __tablename__ = 'ANZSCO1'
