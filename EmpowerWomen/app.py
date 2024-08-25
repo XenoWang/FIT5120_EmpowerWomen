@@ -36,7 +36,7 @@ app.register_blueprint(trends)
 app.register_blueprint(tests)
 
 # Declare variables
-valid_tables = ['ANZSC01', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']
+valid_tables = ['ANZSCO1', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']
 
 def check_table_data(table_name):
     if table_name in valid_tables:
