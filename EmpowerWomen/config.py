@@ -10,11 +10,14 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+# Imports
+import os
+
 class Config:
     # Database Credentials
-    DB_USER = 'TP01Master'
-    DB_PASSWORD = 'Pass!TP01'
-    DB_HOST = 'fit5120harmonyseekers.cz2s4m6aa5w7.ap-southeast-2.rds.amazonaws.com'
+    DB_USER = os.getenv('HarmonyDB_Username')
+    DB_PASSWORD = os.getenv('HarmonyDB_Password')
+    DB_HOST = os.getenv('HarmonyDB_Endpoint')
     DB_PORT = '3306'
     DB_NAME = 'TP01'
 
