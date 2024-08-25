@@ -35,18 +35,24 @@ app.register_blueprint(skills)
 app.register_blueprint(trends)
 app.register_blueprint(tests)
 
-def check_table_data(table_name):
-    try:
-        records = db.session.execute(text(f'SELECT * FROM {table_name} LIMIT 5')).fetchall()
+# Declare variables
+valid_tables = ['ANZSC01', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']
 
-        if records:
-            print(f"Table {table_name} is connected successfully. Here are some records:")
-            for record in records:
-                print(record)
-        else:
-            print(f"Table {table_name} is connected successfully, but no records found.")
-    except Exception as e:
-        print(f"Failed to query table {table_name}: {str(e)}")
+def check_table_data(table_name):
+    if table_name in valid_tables:
+        try:
+            records = db.session.execute(text(f'SELECT * FROM {table_name} LIMIT 5')).fetchall()
+
+            if records:
+                print(f"Table {table_name} is connected successfully. Here are some records:")
+                for record in records:
+                    print(record)
+            else:
+                print(f"Table {table_name} is connected successfully, but no records found.")
+        except Exception as e:
+            print(f"Failed to query table {table_name}: {str(e)}")
+    else:
+        print(f"{table_name} is not Allowed")
 
 def test_db_connection():
     try:
