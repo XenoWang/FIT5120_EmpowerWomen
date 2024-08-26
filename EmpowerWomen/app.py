@@ -10,8 +10,6 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
-# Imports
-
 # Import init_app from plugins
 from flask import Flask, jsonify
 from EmpowerWomen.plugins import db
@@ -69,4 +67,4 @@ def test_db_connection():
 # Main Function
 if __name__ == '__main__':
     test_db_connection()
-    app.run(debug=True) # Do not set Debug to True in Production
+    app.run(host='0.0.0.0') # Do not set Debug to True in Production
