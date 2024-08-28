@@ -165,12 +165,16 @@ html {
     background-color: #555; /* Darker thumb on hover */
 }
 
-/* Footer styling */
 .footer {
     background-color: #333; /* Dark background color */
     color: white; /* White text color */
     padding: 10px 0; /* Padding for top and bottom */
     width: 100%; /* Full width */
+    position: relative; /* Fix to viewport */
+    bottom: 0; /* Align to the bottom of the page */
+    left: 0; /* Align to the left edge */
+    z-index: 1000; /* Ensure it appears above other content */
+
 }
 
 .footer .footer-logo {
@@ -179,8 +183,14 @@ html {
     color: #6998f7;
 }
 
+.content {
+    flex: 1;
+    padding-bottom: 60px; /* Ensure footer does not overlap content */
+}
+
 .footer .list-unstyled {
     padding-left: 0; /* Remove default padding */
+    list-style: none; /* Remove bullet points */
 }
 
 .footer a {
@@ -190,6 +200,16 @@ html {
 
 .footer a:hover {
     text-decoration: underline; /* Underline on hover */
+}
+#copyright_button
+{
+    position: fixed; /* 固定位置 */
+    right: 0; /* 靠右对齐 */
+    bottom: 0; /* 靠底对齐 */
+    background-color: #333; /* 背景颜色 */
+    color: white; /* 文字颜色 */
+    padding: 10px; /* 内边距 */
+    z-index: 1000; /* 确保在其他
 }
 
 /* Ensure the navbar does not get extra margin on small screens */
