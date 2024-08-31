@@ -93,21 +93,51 @@ body {
     margin-bottom: 40px;
 }
 
-/* Cards Layout*/
+/* Container for the barriers */
+/* Container for the barriers */
 .barriers-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 每行固定显示两个卡片 */
     gap: 20px;
     padding: 20px;
 }
 
+/* Individual barrier cards */
 .barrier {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    min-height: 250px; /* 设置卡片的最小高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 让卡片内容垂直居中 */
 }
+
+/* Adjusting the height to handle overflow text */
+.barrier p {
+    overflow: hidden; /* 隐藏超出的文字 */
+    text-overflow: ellipsis; /* 添加省略号 */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* 限制行数 */
+    -webkit-box-orient: vertical;
+}
+
+/* Media query to ensure two columns for larger screens */
+@media (min-width: 576px) and (max-width: 992px) {
+    .barriers-container {
+        grid-template-columns: repeat(2, 1fr); /* 适配中等屏幕 */
+    }
+}
+
+/* Media query to display one column on smaller screens */
+@media (max-width: 576px) {
+    .barriers-container {
+        grid-template-columns: 1fr; /* 适配小屏幕，只显示一列 */
+    }
+}
+
 
 /* Learn More Pages Description Layout */
 .services-section {
