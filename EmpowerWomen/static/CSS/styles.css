@@ -61,11 +61,10 @@ h2{
 }
 
 /* Top container layout */
-.container_background {
+.container_background, .container_background_1{
     width: 100vw;
     padding: 180px 20px;
     text-align: left;
-    background-image: url("/static/Image/WomanKidComputer.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -73,7 +72,13 @@ h2{
     overflow: hidden;
     font-family: 'noto-sans-gujarati', sans-serif;
 }
-
+.container_background{
+    background-image: url("/static/Image/WomanKidComputer.jpg");
+}
+.container_background_1{
+    height: 70vh;
+    background-image: url("/static/Image/SkillsPage.jpg");
+}
 .home-title {
     font-size: 60px;
     font-weight: 650;
