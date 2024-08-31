@@ -1,4 +1,8 @@
 /*Overall Layout for Context*/
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
@@ -167,6 +171,34 @@ body {
     border-radius: 10px;
     margin-bottom: 10px;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+    padding: 15px 25px; /* Increase padding for a more oval shape */
+    font-size: 18px;
+    border-radius: 25px; /* Rounded rectangle shape */
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000; /* Ensure the button stays on top of other elements */
+    display: none; /* Hidden by default */
+}
+
+.back-to-top:hover {
+    opacity: 1;
+    transform: translateY(-5px); /* Add a subtle lift on hover */
+}
+
+.back-to-top:active {
+    transform: translateY(0px); /* Return to original position on click */
+}
+
 
 /* Media query for screens larger than 576px and up to 992px */
 @media (min-width: 576px) and (max-width: 992px) {

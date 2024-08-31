@@ -1,7 +1,15 @@
-/*
-    Filename: script.js
-    Description: Adds a navbar class to the navbar when the page is scrolled down more than 50 pixels
-    Author: Linhao Wang, Yuxiang Zou, Joshua Yu Xuan Soo
-    Email: lwan0191@student.monash.edu, yzou0027@student.monash.edu, jsoo0027@student.monash.edu
-    Date: 25/08/2024
-*/
+// 显示/隐藏“Back to Top”按钮
+window.onscroll = function() {
+    const backToTop = document.getElementById("backToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+};
+
+// 点击“Back to Top”按钮后平滑滚动到顶部
+document.getElementById("backToTop").addEventListener("click", function(event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
