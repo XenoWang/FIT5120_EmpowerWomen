@@ -64,7 +64,7 @@ body {
     height: 100%;
     background-image: url("/static/Image/WomanKidComputer.jpg");
     opacity: 0.6; /* Set the opacity of the background image */
-    z-index: 1; /* Place the pseudo-element behind the content */
+    z-index: 2; /* Place the pseudo-element behind the content */
     background-size: cover; /* Ensure the background image covers the entire pseudo-element */
     background-position: center; /* Center the background image */
 }
@@ -74,12 +74,13 @@ body {
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: white;
 }
 
 .home-subtext {
     font-size: 24px;
     margin-bottom: 40px;
-    color: #555;
+    color: white;
 }
 
 /* Description layout */
@@ -92,6 +93,7 @@ body {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #6998f7;
 }
 
 .description-text {
