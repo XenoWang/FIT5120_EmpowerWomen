@@ -50,7 +50,7 @@ body {
     padding: 50px 20px;
     text-align: center;
     background-image: url("/static/Image/WomanKidComputer.jpg");
-    opacity: 0.7; /* Set the opacity of the background image */
+    opacity: 1.0; /* Set the opacity of the background image */
     background-size: cover; /* Ensure the background image covers the entire pseudo-element */
     background-position: center; /* Center the background image */
     position: relative; /* Make sure the pseudo-element is positioned relative to this container */
@@ -61,16 +61,18 @@ body {
 /* Top container layout */
 .home-title {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 900; /* 加粗字体 */
     margin-bottom: 20px;
-    color: black;
+    color: #F8F8FF;
 }
 
 .home-subtext {
     font-size: 24px;
+    font-weight: 700; /* 加粗字体 */
     margin-bottom: 40px;
-    color: black;
+    color: #F5F5F5;
 }
+
 
 /* Description layout */
 .description_container {
