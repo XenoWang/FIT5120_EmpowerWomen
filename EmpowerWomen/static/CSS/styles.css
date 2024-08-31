@@ -98,7 +98,6 @@ body {
 }
 
 /* Container for the barriers */
-/* Container for the barriers */
 .barriers-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 每行显示两个卡片 */
@@ -138,7 +137,7 @@ body {
 }
 
 .card-back {
-    background-color: #f7f7f7;
+    background-color: #f3f3f3;
     transform: rotateY(180deg); /* 背面翻转180度 */
 }
 
