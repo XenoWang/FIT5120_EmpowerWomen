@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/neuton-2" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/federo" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/noto-sans-gujarati" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
     <script src="{{ url_for('static', filename='Js/script.js') }}"></script>
 </head>
@@ -38,11 +39,13 @@
     </div>
 </nav>
 
+
 <!-- Main Content -->
-<div class="container">
+<div class="container-fluid">
     {% block content %}
     {% endblock %}
 </div>
+
 
 <a href="#" class="back-to-top" id="backToTop">
     &#128512; &nbsp;Back to Top

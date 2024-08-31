@@ -4,30 +4,32 @@ html {
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
 /* Navigation Bar Context */
 .navbar {
-    background-color: #f7f7f7; /* Light gray in color */
+    background-color: #f7f7f7;
     padding: 10px 20px;
 }
 
 .navbar-brand {
     font-size: 30px;
     font-family: 'Yellowtail', cursive;
-    color: #6998f7; /* Blue in color */
+    color: #6998f7;
     transition: color 0.3s ease;
 }
 
-/* Nav Bar Hover Effect*/
 .navbar-brand:hover {
     color: #557bdc;
 }
 
 .navbar-nav .nav-item {
-    margin-left: 15px; /* Margin between each nav bar item */
+    margin-left: 15px;
 }
 
 .navbar-nav .nav-link {
@@ -45,49 +47,50 @@ body {
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2869,152,247, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* 自定义按钮图标颜色 */
-}
-
-/* Default Container Layout */
-.container_background {
-    width: 100vw; /* Occupies the full viewport width */
-    padding: 50px 20px;
-    text-align: center;
-    background-image: url("/static/Image/WomanKidComputer.jpg");
-    opacity: 1.0; /* Set the opacity of the background image */
-    background-size: cover; /* Ensure the background image covers the entire pseudo-element */
-    background-position: center; /* Center the background image */
-    position: relative; /* Make sure the pseudo-element is positioned relative to this container */
-    margin-left: calc(-50vw + 50%); /* Ensure background covers the full page width */
-    overflow: hidden; /* Prevent pseudo-element from overflowing the container */
-    font-family: 'Neuton', sans-serif;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2869,152,247, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* Top container layout */
+.container_background {
+    width: 100vw;
+    padding: 180px 20px;
+    text-align: left;
+    background-image: url("/static/Image/WomanKidComputer.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    font-family: 'noto-sans-gujarati', sans-serif;
+}
+
 .home-title {
-    font-size: 36px;
-    font-weight: 900; /* 加粗字体 */
+    font-size: 60px;
+    font-weight: 650;
     margin-bottom: 20px;
+    margin-left: 70px;
     color: #F8F8FF;
 }
 
 .home-subtext {
-    font-size: 24px;
-    font-weight: 700; /* 加粗字体 */
+    font-size: 25px;
     margin-bottom: 40px;
+    margin-left: 70px;
     color: #F5F5F5;
 }
 
-
 /* Description layout */
 .description_container {
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    font-family: 'Federo', sans-serif;
+    font-family: 'Noto Sans Gujarati UI', sans-serif;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .description-title {
-    font-size: 30px;
+    font-size: 55px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #6998f7;
@@ -96,71 +99,66 @@ body {
 .description-text {
     font-size: 24px;
     color: #666;
-    max-width: 800px;
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 /* Container for the barriers */
 .barriers-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行显示两个卡片 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
 }
 
 .barrier {
-    perspective: 1000px; /* 设置3D效果的视角 */
+    perspective: 1000px;
 }
 
-/* 卡片样式 */
-/* 卡片样式 */
 .card {
     width: 100%;
-    height: 200px; /* 固定卡片高度 */
+    height: 200px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s ease, box-shadow 0.6s ease; /* Smooth transition for transform and shadow */
-    border-radius: 20px; /* Increased border-radius for smoother corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer, more spread-out shadow */
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* 隐藏背面 */
+    backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 20px; /* Match the border-radius of the card */
+    border-radius: 20px;
 }
 
 .card-front {
     background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Same shadow for consistency */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-back {
     background-color: #f3f3f3;
-    transform: rotateY(180deg); /* 背面翻转180度 */
+    transform: rotateY(180deg);
 }
 
-/* Hover效果：翻转卡片 */
 .barrier:hover .card {
     transform: rotateY(180deg);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-
-
 
 /* Learn More Pages Description Layout */
 .services-section {
     padding: 60px 20px;
     text-align: center;
     background-color: #ffffff;
+    font-size: 18px;
 }
 
 .services-container {
@@ -177,66 +175,51 @@ body {
     margin-bottom: 10px;
 }
 
+.service-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.service-description {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Back to Top Button */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: #fff;
-    padding: 15px 25px; /* Increase padding for a more oval shape */
+    padding: 15px 25px;
     font-size: 18px;
-    border-radius: 25px; /* Rounded rectangle shape */
+    border-radius: 25px;
     text-align: center;
     text-decoration: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     opacity: 0.7;
     transition: opacity 0.3s, transform 0.3s;
-    z-index: 1000; /* Ensure the button stays on top of other elements */
-    display: none; /* Hidden by default */
+    z-index: 1000;
+    display: none;
 }
 
 .back-to-top:hover {
     opacity: 1;
-    transform: translateY(-5px); /* Add a subtle lift on hover */
+    transform: translateY(-5px);
 }
 
 .back-to-top:active {
-    transform: translateY(0px); /* Return to original position on click */
-}
-
-
-/* Media query for screens larger than 576px and up to 992px */
-@media (min-width: 576px) and (max-width: 992px) {
-    .navbar-brand {
-        font-size: 20px; /* Adjust brand font size to fit smaller screens */
-    }
-    .navbar-nav .nav-link {
-        font-size: 14px; /* Adjust navigation link font size */
-    }
-    .home-title {
-        font-size: 24px;
-    }
-    .home-subtext {
-        font-size: 16px;
-    }
-    .description-title {
-        font-size: 24px;
-    }
-    .description-text {
-        font-size: 14px;
-    }
-    .barriers-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
-    }
+    transform: translateY(0px);
 }
 
 /* Media query for screens 576px and smaller */
 @media (max-width: 576px) {
     .navbar-nav .nav-item {
-        margin-left: 0; /* Remove spacing between nav items on mobile */
+        margin-left: 0;
     }
     .navbar-nav {
-        text-align: center; /* Center align nav links on mobile */
+        text-align: center;
     }
     .home-title {
         font-size: 24px;
@@ -251,6 +234,6 @@ body {
         font-size: 14px;
     }
     .barriers-container {
-        grid-template-columns: 1fr; /* One column for small screens */
+        grid-template-columns: 1fr;
     }
 }
