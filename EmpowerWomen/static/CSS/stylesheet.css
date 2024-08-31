@@ -16,19 +16,19 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scroll on the body */
 }
 
-h1{
+h1 {
     font-size: 50px;
     font-family: 'Federo', sans-serif;
 }
 
-h2{
+h2 {
     margin-top: 30px;
     font-size: 35px;
     font-family: 'Neuton', sans-serif;
 }
 
 
-p1{
+p1 {
     font-size: 25px;
     font-family: 'Federo', sans-serif;
 }
@@ -46,6 +46,7 @@ html {
     position: sticky; /* Stick the navbar to the top */
     top: 0; /* Stick to the top */
     width: 100%; /* Full width */
+
 }
 
 /* Navbar color on scroll */
@@ -104,7 +105,7 @@ html {
     z-index: 1;
 }
 
-.background-container::before{
+.background-container::before {
     background-image: url("/static/Image/WomanKidComputer.jpg");
 }
 
@@ -174,6 +175,7 @@ html {
     bottom: 0; /* Align to the bottom of the page */
     left: 0; /* Align to the left edge */
     z-index: 1000; /* Ensure it appears above other content */
+    max-height: 40%;
 
 }
 
@@ -201,15 +203,16 @@ html {
 .footer a:hover {
     text-decoration: underline; /* Underline on hover */
 }
-#copyright_button
-{
+
+#copyright_button {
     position: fixed; /* 固定位置 */
     right: 0; /* 靠右对齐 */
     bottom: 0; /* 靠底对齐 */
     background-color: #333; /* 背景颜色 */
     color: white; /* 文字颜色 */
     padding: 10px; /* 内边距 */
-    z-index: 1000; /* 确保在其他
+    z-index: 1000;
+    /* 确保在其他*/
 }
 
 /* Ensure the navbar does not get extra margin on small screens */
@@ -224,6 +227,7 @@ html {
     .centered-text {
         top: 55%;
     }
+
     .centered-button {
         top: 65%;
     }
@@ -233,6 +237,7 @@ html {
     .centered-text {
         top: 60%;
     }
+
     .centered-button {
         top: 75%;
     }
