@@ -11,6 +11,10 @@ body {
     overflow-x: hidden;
 }
 
+h2{
+    font-size: 50px;
+}
+
 /* Navigation Bar Context */
 .navbar {
     background-color: #f7f7f7;
@@ -158,7 +162,6 @@ body {
     padding: 60px 20px;
     text-align: center;
     background-color: #ffffff;
-    font-size: 18px;
 }
 
 .services-container {
@@ -176,12 +179,12 @@ body {
 }
 
 .service-title {
-    font-size: 22px;
+    font-size: 42px;
     font-weight: bold;
 }
 
 .service-description {
-    font-size: 18px;
+    font-size: 28px;
     color: #333;
 }
 
@@ -218,21 +221,27 @@ body {
     .navbar-nav .nav-item {
         margin-left: 0;
     }
+
     .navbar-nav {
         text-align: center;
     }
+
     .home-title {
         font-size: 24px;
     }
+
     .home-subtext {
         font-size: 16px;
     }
+
     .description-title {
         font-size: 24px;
     }
+
     .description-text {
         font-size: 14px;
     }
+
     .barriers-container {
         grid-template-columns: 1fr;
     }
