@@ -56,6 +56,7 @@ body {
     position: relative; /* Make sure the pseudo-element is positioned relative to this container */
     margin-left: calc(-50vw + 50%); /* Ensure background covers the full page width */
     overflow: hidden; /* Prevent pseudo-element from overflowing the container */
+    font-family: 'Neuton', sans-serif;
 }
 
 /* Top container layout */
@@ -78,6 +79,7 @@ body {
 .description_container {
     padding: 20px;
     text-align: center;
+    font-family: 'Federo', sans-serif;
 }
 
 .description-title {
