@@ -124,21 +124,6 @@ body {
     -webkit-box-orient: vertical;
 }
 
-/* Media query to ensure two columns for larger screens */
-@media (min-width: 576px) and (max-width: 992px) {
-    .barriers-container {
-        grid-template-columns: repeat(2, 1fr); /* 适配中等屏幕 */
-    }
-}
-
-/* Media query to display one column on smaller screens */
-@media (max-width: 576px) {
-    .barriers-container {
-        grid-template-columns: 1fr; /* 适配小屏幕，只显示一列 */
-    }
-}
-
-
 /* Learn More Pages Description Layout */
 .services-section {
     padding: 60px 20px;
@@ -160,17 +145,14 @@ body {
     margin-bottom: 10px;
 }
 
-/* Responsive design */
-@media (max-width: 992px) {
+/* Media query for screens larger than 576px and up to 992px */
+@media (min-width: 576px) and (max-width: 992px) {
     .navbar-brand {
-        font-size: 20px; /* 调整品牌字体大小以适应小屏幕 */
+        font-size: 20px; /* Adjust brand font size to fit smaller screens */
     }
     .navbar-nav .nav-link {
-        font-size: 14px; /* 调整导航链接字体大小 */
+        font-size: 14px; /* Adjust navigation link font size */
     }
-}
-
-@media (max-width: 768px) {
     .home-title {
         font-size: 24px;
     }
@@ -183,13 +165,32 @@ body {
     .description-text {
         font-size: 14px;
     }
+    .barriers-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
 }
 
+/* Media query for screens 576px and smaller */
 @media (max-width: 576px) {
     .navbar-nav .nav-item {
-        margin-left: 0; /* 移动设备上移除导航项间距 */
+        margin-left: 0; /* Remove spacing between nav items on mobile */
     }
     .navbar-nav {
-        text-align: center; /* 移动设备上导航链接居中 */
+        text-align: center; /* Center align nav links on mobile */
+    }
+    .home-title {
+        font-size: 24px;
+    }
+    .home-subtext {
+        font-size: 16px;
+    }
+    .description-title {
+        font-size: 24px;
+    }
+    .description-text {
+        font-size: 14px;
+    }
+    .barriers-container {
+        grid-template-columns: 1fr; /* One column for small screens */
     }
 }
