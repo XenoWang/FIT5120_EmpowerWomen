@@ -114,12 +114,15 @@ body {
 }
 
 /* 卡片样式 */
+/* 卡片样式 */
 .card {
     width: 100%;
     height: 200px; /* 固定卡片高度 */
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform 0.6s ease, box-shadow 0.6s ease; /* Smooth transition for transform and shadow */
+    border-radius: 20px; /* Increased border-radius for smoother corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer, more spread-out shadow */
 }
 
 .card-front, .card-back {
@@ -132,12 +135,12 @@ body {
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 10px; /* 可选，增加圆角 */
+    border-radius: 20px; /* Match the border-radius of the card */
 }
 
 .card-front {
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Same shadow for consistency */
 }
 
 .card-back {
@@ -148,7 +151,9 @@ body {
 /* Hover效果：翻转卡片 */
 .barrier:hover .card {
     transform: rotateY(180deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
 }
+
 
 
 /* Learn More Pages Description Layout */
