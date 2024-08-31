@@ -1,0 +1,157 @@
+body {
+    overflow-x: hidden;
+}
+
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background-color: #f7f7f7; /* 设置导航栏背景色 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    padding: 10px 20px; /* 内边距调整 */
+}
+
+.navbar-brand {
+    font-size: 30px; /* 品牌字体大小 */
+    font-family: 'Yellowtail', cursive; /* 使用指定的字体 */
+    color: #6998f7; /* 品牌文字颜色 */
+    transition: color 0.3s ease; /* 颜色渐变效果 */
+}
+
+.navbar-brand:hover {
+    color: #557bdc; /* 悬停时品牌颜色变化 */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 15px; /* 导航项间距 */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* 链接文字颜色 */
+    font-size: 22px; /* 链接文字大小 */
+    transition: color 0.3s ease; /* 颜色渐变效果 */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #6998f7; /* 悬停时链接颜色变化 */
+}
+
+.navbar-toggler {
+    border-color: #6998f7; /* 按钮边框颜色 */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2869,152,247, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* 自定义按钮图标颜色 */
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 20px; /* 调整品牌字体大小以适应小屏幕 */
+    }
+    .navbar-nav .nav-link {
+        font-size: 14px; /* 调整导航链接字体大小 */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-item {
+        margin-left: 0; /* 移动设备上移除导航项间距 */
+    }
+    .navbar-nav {
+        text-align: center; /* 移动设备上导航链接居中 */
+    }
+}
+
+.container_background {
+    width: 100vw; /* 占据整个视窗宽度 */
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+    margin-left: calc(-50vw + 50%); /* 确保背景覆盖整个页面宽度 */
+}
+
+
+.home-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.home-subtext {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.description_container {
+    padding: 20px;
+    text-align: center;
+}
+
+.description-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.description-text {
+    font-size: 24px;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.barriers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.barrier {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.services-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.service img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 24px;
+    }
+    .home-subtext {
+        font-size: 16px;
+    }
+    .description-title {
+        font-size: 24px;
+    }
+    .description-text {
+        font-size: 14px;
+    }
+}
