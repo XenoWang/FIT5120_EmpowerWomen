@@ -99,32 +99,52 @@ body {
 /* Container for the barriers */
 .barriers-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行固定显示两个卡片 */
+    grid-template-columns: repeat(2, 1fr); /* 每行显示两个卡片 */
     gap: 20px;
     padding: 20px;
 }
 
-/* Individual barrier cards */
 .barrier {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    min-height: 250px; /* 设置卡片的最小高度 */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 让卡片内容垂直居中 */
+    perspective: 1000px; /* 设置3D效果的视角 */
 }
 
-/* Adjusting the height to handle overflow text */
-.barrier p {
-    overflow: hidden; /* 隐藏超出的文字 */
-    text-overflow: ellipsis; /* 添加省略号 */
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* 限制行数 */
-    -webkit-box-orient: vertical;
+/* 卡片样式 */
+.card {
+    width: 100%;
+    height: 200px; /* 固定卡片高度 */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 隐藏背面 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px; /* 可选，增加圆角 */
+}
+
+.card-front {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-back {
+    background-color: #f7f7f7;
+    transform: rotateY(180deg); /* 背面翻转180度 */
+}
+
+/* Hover效果：翻转卡片 */
+.barrier:hover .card {
+    transform: rotateY(180deg);
+}
+
 
 /* Learn More Pages Description Layout */
 .services-section {
