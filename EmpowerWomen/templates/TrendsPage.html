@@ -12,49 +12,57 @@
         returning workplace,and discover the career opportunities that best suits you
     </div>
     <div class="centered-button">
-        <a href="#Charts" class="btn btn-primary mt-3">Get Ready To Start</a>
+        <a href="#Graphs" class="btn btn-primary mt-3">Get Ready To Start</a>
     </div>
 </div>
 
 <div class="description_container">
     <div class="description-text">
-       <p><span style="color: #4385FF;">A</span> direct data <span style="color: #4385FF;">visualization method</span> for your skills and roles, providing you with comprehensive <span style="color: #4385FF;">skills and role information</span> support, so that you can accurately match core skills.</p>
+        <p><span style="color: #4385FF;">A</span> direct data <span style="color: #4385FF;">visualization method</span>
+            for your skills and roles, providing you with comprehensive <span style="color: #4385FF;">skills and role information</span>
+            support, so that you can accurately match core skills.</p>
     </div>
 </div>
 
 <!--user barriers container card format-->
-<div class="row">
-    <div class="container">
-        <div class="card">
-            <div class="card-front">
-                <img src="{% static 'Image/Trends1.jpg' %}" alt="SkillsInsight"
-                     style="width: 50px; height: auto; margin-bottom: 10px;">
-                <h3 style="margin-top: 5px;">Skills and Roles Insights</h3>
+<div class="container" style="margin-bottom: 70px">
+    <div class="row">
+        <div class="col">
+            <div class="barrier">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/static/Image/Trends1.jpg" alt="Trends" class="img-fluid">
+                        <h3 style="margin-top: 5px;">Skills and Roles Insights</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Filter data by selecting different industries and occupations to view the performance of core
+                            capabilities in a specific field, thereby gaining more targeted insights.</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-back">
-                <p>Filter data by selecting different industries and occupations to view the performance of core capabilities in a specific field, thereby gaining more targeted insights.</p>
+        </div>
+        <div class="col">
+            <div class="barrier">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/static/Image/Trends2.jpg" alt="Trends" class="img-fluid">
+                        <h3 style="margin-top: 5px;">Performance Trends of Core Competencies</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>This chart allows you to see which core competencies have been stable over the past few
+                            years,
+                            and which ones are improving or declining.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="barrier">
-        <div class="card">
-            <div class="card-front">
-                <img src="{% static 'Image/Trends1.jpg' %}" alt="JobPerformance"
-                     style="width: 50px; height: auto; margin-bottom: 10px;">
-                <h3 style="margin-top: 5px;">Performance Trends of Core Competencies</h3>
-            </div>
-            <div class="card-back">
-                <p>This chart allows you to see which core competencies have been stable over the past few years, and which ones are improving or declining.</p>
-            </div>
-        </div>
-    </div>
-</div>
+</div>>
 
-
-<div class="container">
+<div class="container" id="Graphs">
     <!-- Insert the iframe skill trend -->
     <iframe src="http://ec2-13-236-153-22.ap-southeast-2.compute.amazonaws.com:3838/epic2" width="100%"
-                    height="600px" style="border:none;"></iframe>
+            height="600px" style="border:none;"></iframe>
 </div>
 
 {% endblock %}
