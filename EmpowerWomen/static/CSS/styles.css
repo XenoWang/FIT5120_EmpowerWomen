@@ -25,25 +25,42 @@ h2 {
 .centered-button {
     display: flex;
     justify-content: center;
-    align-items: center; /* 如果需要垂直居中，可以添加这行 */
+    align-items: center;
+    width: 100%; /* 确保按钮容器占满宽度 */
+    padding: 10px 0;
+    z-index: 10;
 }
 
 .centered-button .btn {
-    font-size: 1.2rem; /* 可以根据需要调整按钮的字体大小 */
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 1.2rem; /* 确保在较小屏幕上字体大小适中 */
 }
+
+@media (max-width: 768px) {
+    .centered-button .btn {
+        max-width: 80%; /* 在较小屏幕上调整按钮最大宽度 */
+        font-size: 1rem; /* 调整字体大小以适应小屏幕 */
+    }
+}
+
 /*skill page text css*/
 .section-title {
     font-size: 4rem; /* 调整标题的字体大小 */
     font-weight: bold; /* 如果需要，可以加粗 */
     margin-top: 150px;
-    margin-bottom: 20px; /* 增加标题下方的间距 */
+    margin-left: 80px;
+    margin-bottom: 30px; /* 增加标题下方的间距 */
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
 .section-text {
     font-size: 1.5rem; /* 调整段落文本的字体大小 */
-    line-height: 1.6; /* 调整行高以提高可读性 */
+    line-height: 1.8; /* 调整行高以提高可读性 */
     margin-bottom: 20px; /* 增加段落下方的间距 */
+    margin-left: 80px;
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
@@ -95,7 +112,7 @@ h2 {
     background-position: center;
     position: relative;
     margin-left: calc(-50vw + 50%);
-    overflow: hidden;
+    overflow: visible;
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
@@ -104,7 +121,7 @@ h2 {
 }
 
 .container_background_1 {
-    height: 72vh;
+    height: 75vh;
     background-image: url("/static/Image/SkillsPage.jpg");
 }
 
