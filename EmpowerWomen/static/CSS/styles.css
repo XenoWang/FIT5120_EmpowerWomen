@@ -130,7 +130,7 @@ h3 {
 }
 .container_background_2 {
     height: 75vh;
-    background-image: url("/static/Image/SkillsPage.jpg");
+    background-image: url("/static/Image/TrendsPage.jpg");
 }
 
 .home-title {
@@ -193,6 +193,7 @@ h3 {
     transition: transform 0.6s ease, box-shadow 0.6s ease;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
 }
 
 .card-front, .card-back {
