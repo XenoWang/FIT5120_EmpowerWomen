@@ -11,6 +11,11 @@ body {
     overflow-x: hidden;
 }
 
+.container-custom {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
 /*learn button*/
 .btn {
     font-size: 20px; /* 增大字体 */
@@ -43,7 +48,7 @@ h3 {
     font-size: 1.2rem; /* 确保在较小屏幕上字体大小适中 */
 }
 
-@media (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 768px) {
     .centered-button .btn {
         max-width: 80%; /* 在较小屏幕上调整按钮最大宽度 */
         font-size: 1rem; /* 调整字体大小以适应小屏幕 */
@@ -134,7 +139,7 @@ h3 {
 }
 
 .home-title {
-    font-size: 60px;
+    font-size: 45px;
     font-weight: 650;
     margin-bottom: 20px;
     margin-left: 70px;
@@ -142,8 +147,8 @@ h3 {
 }
 
 .home-subtext {
-    font-size: 25px;
-    margin-bottom: 40px;
+    font-size: 20px;
+    margin-bottom: 10px;
     margin-left: 70px;
     color: #F5F5F5;
 }
