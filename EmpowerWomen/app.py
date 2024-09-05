@@ -13,7 +13,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 # Import init_app from plugins
 from flask import Flask, jsonify
 from EmpowerWomen.plugins import db
-from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms
+from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms,resumerefinement,skillass,skillmatching
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
@@ -33,7 +33,10 @@ app.register_blueprint(skills)
 app.register_blueprint(trends)
 app.register_blueprint(tests)
 app.register_blueprint(terms)
+app.register_blueprint(skillass)
 app.register_blueprint(privacy)
+app.register_blueprint(resumerefinement)
+app.register_blueprint(skillmatching)
 
 # Declare variables
 valid_tables = ['ANZSCO1', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']

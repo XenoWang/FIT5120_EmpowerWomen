@@ -18,6 +18,9 @@ from .home import home
 from .tests import tests
 from .privacy import privacy
 from .terms import terms
+from .resumerefinement import resumerefinement
+from .skillmatching import skillmatching
+from .skillass import skillass
 
 def register_blueprints(app):
     app.register_blueprint(skills)
@@ -26,3 +29,6 @@ def register_blueprints(app):
     app.register_blueprint(tests)
     app.register_blueprint(privacy)
     app.register_blueprint(terms)
+    app.register_blueprint(resumerefinement)
+    app.register_blueprint(skillass)
+    app.register_blueprint(skillmatching)
