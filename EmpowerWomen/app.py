@@ -13,7 +13,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 # Import init_app from plugins
 from flask import Flask, jsonify
 from EmpowerWomen.plugins import db
-from EmpowerWomen.blueprint import home, skills, trends, tests, privacy
+from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
@@ -32,7 +32,7 @@ app.register_blueprint(home)
 app.register_blueprint(skills)
 app.register_blueprint(trends)
 app.register_blueprint(tests)
-
+app.register_blueprint(terms)
 app.register_blueprint(privacy)
 
 # Declare variables

@@ -297,6 +297,7 @@ h3 {
 .container_privacy {
     margin-top: 40px;
     margin-bottom: 80px;
+    font-family: 'noto-sans-gujarati', sans-serif;
 }
 
 /* Media query for screens 576px and smaller */

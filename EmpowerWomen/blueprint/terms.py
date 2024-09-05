@@ -15,9 +15,8 @@ from flask import Blueprint,render_template
 import io
 import base64
 
-privacy=Blueprint('privacy',__name__)
+terms=Blueprint('terms',__name__)
 
-@privacy.route('/privacy')
-def privacy_page():
-    return render_template("PrivacyStatement.html")
-
+@terms.route('/terms')
+def terms_page():
+    return render_template("TermsPage.html")

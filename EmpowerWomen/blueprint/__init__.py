@@ -17,6 +17,7 @@ from .trends import trends
 from .home import home
 from .tests import tests
 from .privacy import privacy
+from .terms import terms
 
 def register_blueprints(app):
     app.register_blueprint(skills)
@@ -24,3 +25,4 @@ def register_blueprints(app):
     app.register_blueprint(home)
     app.register_blueprint(tests)
     app.register_blueprint(privacy)
+    app.register_blueprint(terms)
