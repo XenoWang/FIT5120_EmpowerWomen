@@ -11,11 +11,13 @@ body {
     overflow-x: hidden;
 }
 
+/*Overall Layout Container for Base*/
 .container-custom {
     margin-left: 5%;
     margin-right: 5%;
     width: 90%;
 }
+
 /*learn button*/
 .btn {
     font-size: 20px; /* 增大字体 */
@@ -30,6 +32,7 @@ h2 {
 h3 {
     font-size: 2vw;
 }
+
 /*skills page button*/
 .centered-button {
     display: flex;
@@ -113,7 +116,7 @@ h3 {
 }
 
 /* Top container layout */
-.container_background, .container_background_1,.container_background_2 {
+.container_background, .container_background_1, .container_background_2 {
     width: 100vw;
     padding: 180px 20px;
     text-align: left;
@@ -133,6 +136,7 @@ h3 {
     height: 75vh;
     background-image: url("/static/Image/SkillsPage.jpg");
 }
+
 .container_background_2 {
     height: 75vh;
     background-image: url("/static/Image/TrendsPage.jpg");
@@ -287,6 +291,12 @@ h3 {
 
 .back-to-top:active {
     transform: translateY(0px);
+}
+
+/*Privacy Statement Container*/
+.container_privacy {
+    margin-top: 40px;
+    margin-bottom: 80px;
 }
 
 /* Media query for screens 576px and smaller */

@@ -16,9 +16,11 @@ from .skills import skills
 from .trends import trends
 from .home import home
 from .tests import tests
+from .privacy import privacy
 
 def register_blueprints(app):
     app.register_blueprint(skills)
     app.register_blueprint(trends)
     app.register_blueprint(home)
     app.register_blueprint(tests)
+    app.register_blueprint(privacy)
