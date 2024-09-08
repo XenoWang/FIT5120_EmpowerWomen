@@ -4,21 +4,31 @@
 
 {% block content %}
 
-<div>
-    <h1>Competency Quiz</h1>
+<div class="quiz-container">
+    <h4>Competency Quiz</h4>
     <form action="/quizresult" method="POST">
         {% for competency in quiz_data %}
-        <h3>{{ competency.competency_name }} - {{ competency.description }}</h3>
-        {% for question in competency.questions %}
-        <p>{{ question.question }}</p>
-        {% for option in question.options %}
-        <input type="radio" name="{{ question.question_index }}" value="{{ option }}"> {{ option }}<br>
+        <div class="competency-section">
+            <h6>{{ competency.competency_name }} - {{ competency.description }}</h6>
+            <div class="questions-container">
+                {% for question in competency.questions %}
+                <div class="question-block">
+                    <p class="question">{{ question.question }}</p>
+                    <div class="options-container">
+                        {% for option in question.options %}
+                        <label class="option-label">
+                            <input type="radio" name="{{ question.question_index }}" value="{{ option }}">
+                            {{ option }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
-        {% endfor %}
-        {% endfor %}
-        <button type="submit">Submit Quiz</button>
+        <button type="submit" class="submit-btn">Submit Quiz</button>
     </form>
 </div>
-
 
 {% endblock %}
