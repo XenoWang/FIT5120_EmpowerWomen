@@ -14,10 +14,13 @@ __email3__ = "jsoo0027@student.monash.edu"
 from flask import Blueprint,render_template
 import io
 import base64
+import json
+
 
 skillass=Blueprint('skillass',__name__)
 
 @skillass.route('/skillass')
 def skillass_page():
     return render_template("SkillAssessmentPage.html")
+
 

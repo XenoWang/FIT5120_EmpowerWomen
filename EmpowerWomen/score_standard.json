@@ -1,0 +1,422 @@
+{
+    "Digital engagement": [
+        {
+            "Score": 1,
+            "Anchor Value": "Name and identify the purpose of familiar digital devices (e.g. mobile phone, computer, tablet)"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Send a short and simple reply to an email communication using a digital device"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Enter information into a database"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Recognise different ways to connect to the internet (e.g. Bluetooth, Wi-Fi, hotspot)"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Build and maintain an effective online profile for career management"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Use software on a portable device to document a building inspection by recording measurements, checking compliance and uploading photos"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Write software for keeping track of items in an inventory"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Use Enterprise Resource Planning software to monitor transactional data from multiple sources including accounting, procurement and human resources and visualise this data for a company's strategic plan"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Set up a new computer system for a large multinational company"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Develop new ways of guaranteeing the trustworthiness of transactions on decentralised, cloud based, distributed transactional systems"
+        }
+    ],
+    "Initiative and innovation": [
+        {
+            "Score": 1,
+            "Anchor Value": "Ask for help when unsure what to do next"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Support the adoption of new ideas that improve a work process"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "See how a window display is promoting sales and decide to create a similar display at the back of the store to sell another product"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Continuously and systematically look for ways to improve your performance at work"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Confer with co-workers to coordinate work activities"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Find a more efficient way to produce end of month reports"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Coordinate sales campaigns"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Negotiate a price and sales terms then prepare a contract for a house"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Collaborate with people from a range of backgrounds to prepare and deliver an original piece of work"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Start a company that develops new technology"
+        }
+    ],
+    "Learning": [
+        {
+            "Score": 1,
+            "Anchor Value": "Take a different route to work when a road is closed"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Notice that a new flavour of ice-cream has been introduced and sell it to customers"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Think about the implications of a newspaper article for job opportunities"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Learn how to operate new machinery safely and efficiently"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Learn a new filing system that groups documents by type, security classification, subject and date"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Determine the impact of new menu changes on a restaurant's purchasing requirements"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Effectively apply change management techniques while managing a diverse team"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Develop and implement a new business strategy based on changing market conditions"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Identify the implications of a new scientific theory for product design"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Apply synthetic organic chemistry principles to design and synthesise functional liquid crystals for molecular electronics"
+        }
+    ],
+    "Numeracy": [
+        {
+            "Score": 1,
+            "Anchor Value": "Identify the numerical position of items on a shelf from left to right"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Check the weight and length of a product against a job ticket"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Count the amount of change to be given to a customer"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Use a blood pressure machine and accurately record the results"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Create charts and graphs to accurately convey the results of a customer satisfaction survey"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Calculate the square footage of a new home under construction based on plans using scales and ratios"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Write a detailed report based on a comprehensive statistical analysis of the causes of workplace accidents"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Prepare a report that summarises a business's current financial position and forecasts future earnings and income"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Develop a mathematical model to simulate and resolve an engineering problem"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Write a thesis on asymptotic properties of zero-sets of polynomials in differential equations"
+        }
+    ],
+    "Oral communication": [
+        {
+            "Score": 1,
+            "Anchor Value": "Follow simple instructions like \"wash your hands\""
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Provide a simple explanation to a supervisor about a work hazard"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Cancel a newspaper delivery by phone"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Give clear, sequenced instructions on how to use a hand-held drill"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Answer a customer's questions about which product would work best for them"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Give instructions to a lost driver"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Participate in a work meeting and ask appropriate follow up questions"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Explain a complex procedure or process to a client, taking into account linguistic needs and cultural sensitivities."
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Explain advanced principles of genetics to a first-year university student"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Provide meaningful, culturally appropriate support to someone in distress."
+        }
+    ],
+    "Planning and organising": [
+        {
+            "Score": 1,
+            "Anchor Value": "Organise flash cards by colour"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Attend work on time with appropriate clothing, tools and other resources as required"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Organise a simple and repetitive work schedule"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Schedule time for updating a manager on the progress of work"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Use an organisational file sharing and storage system"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Plan and organise your own activities as requirements change"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Write a research report that presents recommendations after developing a project methodology, planning the research and developing a timeline"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Develop a program of multiple live musical performances, special events and sports carnivals throughout the year at a sports club venue and coordinate volunteers, staff and contractors to deliver the events"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Prioritise and plan multiple complex tasks several months ahead"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Develop a dynamic plan for a complex, multi-faceted project, with timelines that include regularly reviewing priorities, interdependencies and performance during implementation, proactively identifying and managing project risks"
+        }
+    ],
+    "Problem solving": [
+        {
+            "Score": 1,
+            "Anchor Value": "Respond to a red screen alert and turn a machine off"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Approach a supervisor for advice before restarting a machine"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Lay out tools to complete a job"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Break a complex problem into manageable parts and follow a plan of action"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Find evidence to support a history essay in a rare document"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Redesign a floor layout to take advantage of new manufacturing techniques"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Evaluate a construction project and recommend changes to comply with external standards and regulations"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Examine records and data to investigate and prosecute corporate criminals"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Develop and implement a plan to provide emergency relief for a major metropolitan area"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Write a thesis on solar hydrogen generation from rust using 3­D nanostructured photoelectrodes"
+        }
+    ],
+    "Reading": [
+        {
+            "Score": 1,
+            "Anchor Value": "Recognise simple labels on commonly used product items"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Locate the time and place of a meeting on a weekly timetable"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Read step-by-step instructions for completing a form"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Read directions on how to operate a piece of machinery safely"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Read and interpret instructions and technical drawings in an equipment instruction manual"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Read a memo from management describing new personnel policies"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Read a book on leading and managing change in a diverse and evolving workplace."
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Read and analyse information comparing the impact of downturns in the global economy on the cost of producing and selling beef"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Read a scientific journal article describing surgical procedures"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Identify the key concepts and arguments from a range of highly academic sources in a specialised, new field of knowledge and synthesise information in order to progress research"
+        }
+    ],
+    "Teamwork": [
+        {
+            "Score": 1,
+            "Anchor Value": "Respond to a group instruction"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Put forward ideas in a meeting when asked to do so"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Accept and act on guidance from a mentor"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Cultivate a small informal network of people who may be able to advise on a project from a diverse range of perspectives."
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Recognise and avoid inappropriate behaviours, such as use of discriminatory language, that undermine effective group interaction"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Initiate team problem solving sessions"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Share knowledge, experience, information and resources with others as an integral part of work relationships"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Engage with clients from a range of backgrounds and identify options to help them meet their needs"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Work with a range of subject matter experts, with diverse perspectives, to achieve a challenging goal."
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Perform an unscripted, live improvisation show with other actors"
+        }
+    ],
+    "Writing": [
+        {
+            "Score": 1,
+            "Anchor Value": "Write name and address on a membership form, copying another document"
+        },
+        {
+            "Score": 2,
+            "Anchor Value": "Write everyday workplace specific vocabulary and abbreviations (e.g. product names)"
+        },
+        {
+            "Score": 3,
+            "Anchor Value": "Take a telephone message"
+        },
+        {
+            "Score": 4,
+            "Anchor Value": "Write a job history as part of a job application"
+        },
+        {
+            "Score": 5,
+            "Anchor Value": "Prepare a standard operating procedures document"
+        },
+        {
+            "Score": 6,
+            "Anchor Value": "Write a memo to staff outlining new directives"
+        },
+        {
+            "Score": 7,
+            "Anchor Value": "Write a detailed literature review"
+        },
+        {
+            "Score": 8,
+            "Anchor Value": "Write a legally binding contract for services provided by one business to another"
+        },
+        {
+            "Score": 9,
+            "Anchor Value": "Write a novel for publication"
+        },
+        {
+            "Score": 10,
+            "Anchor Value": "Write a thesis on metaphor, syntax and grammar in nineteenth century novels"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}SkillAssessmentPage - EmpowerWomen{% endblock %}
+
+{% block content %}
+
+<div>
+    <h1>Competency Quiz</h1>
+    <form action="/quizresult" method="POST">
+        {% for competency in quiz_data %}
+        <h3>{{ competency.competency_name }} - {{ competency.description }}</h3>
+        {% for question in competency.questions %}
+        <p>{{ question.question }}</p>
+        {% for option in question.options %}
+        <input type="radio" name="{{ question.question_index }}" value="{{ option }}"> {{ option }}<br>
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        <button type="submit">Submit Quiz</button>
+    </form>
+</div>
+
+
+{% endblock %}

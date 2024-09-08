@@ -8,21 +8,37 @@ __email2__ = "yzou0027@student.monash.edu"
 __author3__ = "Joshua Yu Xuan Soo"
 __email3__ = "jsoo0027@student.monash.edu"
 
+
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
 # Import init_app from plugins
 from flask import Flask, jsonify
+from flask_session import Session
+
 from EmpowerWomen.plugins import db
-from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms,resumerefinement,skillass,skillmatching
+from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms,resumerefinement,skillass,skillmatching,quiz
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
-
+import google.generativeai as genai
 # Load Flask App
 app = Flask(__name__)
 
 # Load Config
 app.config.from_object(Config)
+
+
+# Configure the session to use filesystem (or Redis for production)
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_FILE_DIR'] = './flask_session/'  # Where session files are stored
+app.config['SESSION_FILE_THRESHOLD'] = 5
+
+# Initialize session management
+Session(app)
+# Configure Gemini API key
+genai.configure(api_key='AIzaSyAjlxhkIHcK1BcDhyFied9EDMz9iuaKrFY')
+
 db.init_app(app)
 migrate = Migrate(app,db)
 
@@ -37,6 +53,8 @@ app.register_blueprint(skillass)
 app.register_blueprint(privacy)
 app.register_blueprint(resumerefinement)
 app.register_blueprint(skillmatching)
+
+app.register_blueprint(quiz)
 
 # Declare variables
 valid_tables = ['ANZSCO1', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']

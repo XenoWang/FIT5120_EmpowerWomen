@@ -5,12 +5,12 @@
 {% block content %}
 
 <div class="container_background_3">
-    <div class="home-title">Skill Assessment </div>
+    <div class="home-title">Skill Assessment</div>
     <div class="home-subtext">
-        Find out about careers that might be right for you by taking one of our assessments
+        Find out about careers that might be right for you by taking one of our assessments.
     </div>
     <div class="centered-button">
-        <a href="#Charts" class="btn btn-primary mt-3">Get Ready To Start</a>
+        <a href="#quiz-section" class="btn btn-primary mt-3">Get Ready To Start</a>
     </div>
 </div>
 
@@ -18,16 +18,30 @@
 <div class="row mt-5">
     <div class="col-md-6">
         <h2 class="section-title">Online<br>Assessment</h2>
-        <p class="section-text">Skills online assessments provide a personalized evaluation of your current capabilities
-        giving you a clear understanding of whether your skill are aligned with industry standards.
-        By taking our assessments,you will gain a deeper understanding of your proficiency in key areas.
-        </p>
+        <p class="section-text">Skills online assessments provide a personalized evaluation of your current capabilities,
+        giving you a clear understanding of whether your skills are aligned with industry standards.
+        By taking our assessments, you will gain a deeper understanding of your proficiency in key areas.</p>
     </div>
     <div class="col-md-6">
         <img src="/static/Image/skillass2.png" alt="Skillass2" class="img-fluid">
     </div>
 </div>
 
-
+<!-- Quiz Section -->
+<div id="quiz-section" class="container mt-5">
+    <h1>Competency Quiz</h1>
+    <form action="/submit" method="POST">
+        {% for competency in quiz_data %}
+        <h3>{{ competency.competency_name }} - {{ competency.description }}</h3>
+        {% for question in competency.questions %}
+            <p>{{ question.question }}</p>
+            {% for option in question.options %}
+                <input type="radio" name="{{ question.question_index }}" value="{{ option }}"> {{ option }}<br>
+            {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        <button type="submit" class="btn btn-success mt-3">Submit Quiz</button>
+    </form>
+</div>
 
 {% endblock %}

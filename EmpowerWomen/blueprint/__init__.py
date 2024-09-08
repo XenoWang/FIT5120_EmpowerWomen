@@ -21,6 +21,8 @@ from .terms import terms
 from .resumerefinement import resumerefinement
 from .skillmatching import skillmatching
 from .skillass import skillass
+from .quiz import quiz
+
 
 def register_blueprints(app):
     app.register_blueprint(skills)
@@ -32,3 +34,4 @@ def register_blueprints(app):
     app.register_blueprint(resumerefinement)
     app.register_blueprint(skillass)
     app.register_blueprint(skillmatching)
+    app.register_blueprint(quiz)
