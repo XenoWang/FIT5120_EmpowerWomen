@@ -5,15 +5,15 @@
 {% block content %}
 
 <div class="results-section">
-    <h1 class="title">Quiz Results</h1>
+    <h1 class="title" style="margin-bottom: 30px">Quiz Results</h1>
 
     <div class="chart-wrapper">
         {% for competency, result in results.items() %}
         <div class="bar-container">
             <span class="competency-name">{{ competency }}</span>
             <div class="bar">
-                <div class="bar-fill" style="width: {{ result.score }}%;"></div>
-                <span class="score-label">{{ result.score }}</span>
+                <div class="bar-fill" style="width: calc({{ result.score }} * 20%);"></div>
+                <span class="score-label">{{ result.score }}/5</span>
             </div>
             <span class="proficiency-level">{{ result.proficiency }}</span>
         </div>
@@ -21,8 +21,8 @@
     </div>
 </div>
 
-<div class="container">
-    <a href="/skillass" class="btn btn-primary mt-3 fancy-button">Back To Assessment Page</a>
+<div class="container-center">
+    <a href="/skillass" class="btn btn-primary mt-3 custom-button">Back To Assessment Page</a>
 </div>
 
 {% endblock %}

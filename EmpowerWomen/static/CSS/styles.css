@@ -145,36 +145,36 @@ h6 {
 .chart-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 .bar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .competency-name {
-    width: 20%;
+    width: 25%;
     font-weight: bold;
 }
 
 .bar {
     position: relative;
-    width: 60%;
-    height: 25px;
+    width: 35%; /* Adjusted width for cleaner layout */
+    height: 20px;
     background-color: #e0e0e0;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 .bar-fill {
     height: 100%;
     background: linear-gradient(90deg, #00c6ff, #0072ff);
-    animation: grow-bar 2s ease;
-    border-radius: 5px;
+    animation: grow-bar 1.5s ease;
+    border-radius: 10px;
 }
 
 @keyframes grow-bar {
@@ -189,17 +189,40 @@ h6 {
 .score-label {
     position: absolute;
     right: 5px;
-    top: 2px;
+    top: 1px;
     font-weight: bold;
     color: white;
+    font-size: 12px;
 }
 
 .proficiency-level {
     width: 15%;
     text-align: right;
     font-style: italic;
+    font-size: 14px;
 }
 
+.container-center {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    align-items: center; /* Vertically centers the button if necessary */
+    margin-top: 20px; /* Add spacing above the button */
+    margin-bottom: 40px;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #007bff; /* You can customize this */
+    color: white;
+    text-decoration: none;
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Button color on hover */
+}
 
 /*resume refinement page button*/
 .custom-pink-button {
