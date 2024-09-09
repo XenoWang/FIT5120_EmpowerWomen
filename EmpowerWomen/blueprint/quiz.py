@@ -44,6 +44,7 @@ def submit_quiz():
     user_answers = request.form.to_dict()
     try:
         results = grade_quiz(quiz_data, user_answers)
+        session['quiz_results']= results
     except Exception as e:
         return f"Error grading quiz: {e}"
 

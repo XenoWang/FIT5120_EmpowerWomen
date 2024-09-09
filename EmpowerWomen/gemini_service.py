@@ -38,7 +38,6 @@ Score each competency from 1 to 10 based on the user's overall answers.
  Format the response as a JSON with the following schema:
     {
       "competency_name": "Competency Name",
-      "description": "Description",
       "questions": [
         {
           "question": "Question text",
@@ -70,7 +69,6 @@ def prepare_prompt_for_gemini(quiz_data, user_answers):
 
     for competency in quiz_data:
         prompt += f"Competency: {competency['competency_name']}\n"
-        prompt += f"Description: {competency['description']}\n"
         for question in competency['questions']:
             question_key = question['question_index']  # Unique identifier for each question
             user_answer = user_answers.get(question_key)
