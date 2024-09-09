@@ -83,6 +83,35 @@
         </p1>
     </div>
 </div>
+<div>
+    <body>
+    <h1>Generate Your Resume</h1>
+    <form action="/resumeresult" method="POST">
+        <label for="experience">Years of Experience:</label>
+        <input type="text" id="experience" name="experience"><br><br>
+
+        <label for="hobbies">Hobbies (comma separated):</label>
+        <input type="text" id="hobbies" name="hobbies"><br><br>
+
+        <label for="personality">Personality Traits (comma separated):</label>
+        <input type="text" id="personality" name="personality"><br><br>
+
+        <label for="industry">Industry (comma separated):</label>
+        <input type="text" id="industry" name="industry"><br><br>
+
+        <label for="position">Position (comma separated):</label>
+        <input type="text" id="position" name="position"><br><br>
+
+        <label for="diploma">Diploma/Qualification:</label>
+        <input type="text" id="diploma" name="diploma"><br><br>
+
+        <label for="skills">Skills (comma separated):</label>
+        <input type="text" id="skills" name="skills"><br><br>
+
+        <input type="submit" value="Generate Resume">
+    </form>
+    </body>
+</div>
 
 
 {% endblock %}

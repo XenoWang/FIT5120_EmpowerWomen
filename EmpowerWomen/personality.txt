@@ -1,0 +1,20 @@
+Adaptable: Quickly adjusts to new environments and challenges.
+Ambitious: Driven to achieve goals and strive for success.
+Confident: Demonstrates self-assurance in actions and decisions.
+Creative: Thinks outside the box to develop innovative solutions.
+Dependable: Reliable and trustworthy, always following through on commitments.
+Diligent: Pays close attention to detail and works hard to complete tasks.
+Empathetic: Understands and shares the feelings of others, showing compassion.
+Enthusiastic: Shows eagerness and energy in every task undertaken.
+Flexible: Able to shift priorities and approaches as needed.
+Honest: Values transparency and truthfulness in all interactions.
+Initiative: Takes action and leads without waiting for direction.
+Open-minded: Receptive to new ideas, perspectives, and experiences.
+Organized: Manages time and resources efficiently to meet goals.
+Patient: Remains calm and persistent, even in challenging situations.
+Perseverant: Committed to pushing through difficulties until success is achieved.
+Proactive: Anticipates needs and addresses them before they become problems.
+Resilient: Bounces back from setbacks with determination.
+Resourceful: Finds creative solutions to overcome obstacles.
+Sociable: Enjoys interacting with others and builds strong relationships.
+Thoughtful: Considers the needs and feelings of others when making decisions.

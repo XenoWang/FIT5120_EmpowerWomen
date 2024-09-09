@@ -16,7 +16,7 @@ from flask import Flask, jsonify
 from flask_session import Session
 
 from EmpowerWomen.plugins import db
-from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms,resumerefinement,skillass,skillmatching,quiz,recommendations
+from EmpowerWomen.blueprint import home, skills, trends, tests, privacy,terms,resume,skillass,skillmatching,quiz,recommendations
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
@@ -51,10 +51,10 @@ app.register_blueprint(tests)
 app.register_blueprint(terms)
 app.register_blueprint(skillass)
 app.register_blueprint(privacy)
-app.register_blueprint(resumerefinement)
+app.register_blueprint(resume)
 app.register_blueprint(skillmatching)
-app.register_blueprint(recommendations)
 
+app.register_blueprint(recommendations)
 app.register_blueprint(quiz)
 
 # Declare variables
@@ -90,5 +90,5 @@ def test_db_connection():
 
 # Main Function
 if __name__ == '__main__':
-    #test_db_connection()
+    test_db_connection()
     app.run(host='0.0.0.0') # Do not set Debug to True in Production
