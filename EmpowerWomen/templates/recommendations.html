@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+</head>
+<body>
+    <h1>Industry and Occupation Recommendations</h1>
+
+    <!-- 显示推荐的 section -->
+    <h2>Top 3 Sections:</h2>
+    <ul>
+        {% for section in industry_recommendations.top_sections %}
+        <li>{{ section }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 显示推荐的 occupation -->
+    <h2>Top 30 Occupations:</h2>
+    <ul>
+        {% for occupation in industry_recommendations.top_occupations %}
+        <li>{{ occupation }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/quizresult">Back to Results</a>
+</body>
+</html>

@@ -22,6 +22,7 @@ from .resumerefinement import resumerefinement
 from .skillmatching import skillmatching
 from .skillass import skillass
 from .quiz import quiz
+from .recommendations import recommendations
 
 
 def register_blueprints(app):
@@ -35,3 +36,4 @@ def register_blueprints(app):
     app.register_blueprint(skillass)
     app.register_blueprint(skillmatching)
     app.register_blueprint(quiz)
+    app.register_blueprint(recommendations)

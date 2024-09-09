@@ -20,7 +20,11 @@
         {% endfor %}
     </div>
 </div>
-
+<div class="container-center">
+   <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
+        <button type="submit" class="btn btn-primary mt-3 custom-button">View Industry & Occupation Recommendations</button>
+    </form>
+</div>
 <div class="container-center">
     <a href="/skillass" class="btn btn-primary mt-3 custom-button">Back To Assessment Page</a>
 </div>
