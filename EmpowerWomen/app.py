@@ -90,5 +90,5 @@ def test_db_connection():
 
 # Main Function
 if __name__ == '__main__':
-    test_db_connection()
+    #test_db_connection()
     app.run(host='0.0.0.0') # Do not set Debug to True in Production
