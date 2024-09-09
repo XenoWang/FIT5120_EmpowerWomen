@@ -4,32 +4,25 @@
 
 {% block content %}
 
-<div>
-    <h1>Quiz Results</h1>
+<div class="results-section">
+    <h1 class="title">Quiz Results</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Competency</th>
-            <th>Score</th>
-            <th>Proficiency Level</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="chart-wrapper">
         {% for competency, result in results.items() %}
-        <tr>
-            <td>{{ competency }}</td>
-            <td>{{ result.score }}</td>
-            <td>{{ result.proficiency }}</td>
-        </tr>
+        <div class="bar-container">
+            <span class="competency-name">{{ competency }}</span>
+            <div class="bar">
+                <div class="bar-fill" style="width: {{ result.score }}%;"></div>
+                <span class="score-label">{{ result.score }}</span>
+            </div>
+            <span class="proficiency-level">{{ result.proficiency }}</span>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 </div>
 
 <div class="container">
-    <a href="/skillass" class="btn btn-primary mt-3">Back To Assessment Page</a>
+    <a href="/skillass" class="btn btn-primary mt-3 fancy-button">Back To Assessment Page</a>
 </div>
-
 
 {% endblock %}

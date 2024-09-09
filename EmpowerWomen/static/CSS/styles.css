@@ -137,6 +137,69 @@ h6 {
     background-color: #357ab7;
 }
 
+/*result page*/
+.results-section {
+    margin: 20px;
+}
+
+.chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.competency-name {
+    width: 20%;
+    font-weight: bold;
+}
+
+.bar {
+    position: relative;
+    width: 60%;
+    height: 25px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    animation: grow-bar 2s ease;
+    border-radius: 5px;
+}
+
+@keyframes grow-bar {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.score-label {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    font-weight: bold;
+    color: white;
+}
+
+.proficiency-level {
+    width: 15%;
+    text-align: right;
+    font-style: italic;
+}
+
 /*resume refinement page button*/
 .custom-pink-button {
     background: linear-gradient(45deg, #ff66b2, #ff99cc); /* 从粉色到浅粉色的渐变 */
