@@ -15,21 +15,23 @@
 </div>
 
 <!-- Industry Data Section -->
-<div class="row mt-5">
-    <div class="col-md-6">
+<div class="row mt-5 d-flex align-items-start"> <!-- Use d-flex and align-items-start to align top -->
+    <div class="col-md-6 d-flex flex-column justify-content-start"> <!-- Make sure text column aligns to top -->
         <h2 class="section-title">Online<br>Assessment</h2>
         <p class="section-text">Skills online assessments provide a personalized evaluation of your current
             capabilities,
             giving you a clear understanding of whether your skills are aligned with industry standards.
             By taking our assessments, you will gain a deeper understanding of your proficiency in key areas.</p>
     </div>
-    <div class="col-md-6">
-        <img src="/static/Image/skillass2.png" alt="Skillass2" class="img-fluid">
+    <div class="col-md-6 d-flex justify-content-start"> <!-- Make sure image aligns to top -->
+        <img src="/static/Image/quiz_test.jpg" alt="Skillass2" class="img-fluid">
     </div>
     <div class="centered-button" id="quiz-section">
         <a href="/quiz" class="btn btn-primary mt-3" style="margin-bottom: 80px">Attempt Quiz</a>
     </div>
 </div>
+
+
 
 
 {% endblock %}
