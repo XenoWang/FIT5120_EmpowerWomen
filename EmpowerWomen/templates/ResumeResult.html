@@ -5,13 +5,28 @@
 {% block content %}
 <div>
     <body>
-    <h1>Your Generated Resume</h1>
-    <div>
-        <pre>{{ resume }}</pre>
-    </div>
-    <a href="/resume">Go Back</a>
-</body>
+        <h1>Your Generated Resume</h1>
+        <div>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ resume }}</pre>
+        </div>
+        <a href="/ResumeGenerator">
+            <button style="
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: 0.3s;
+                border-radius: 5px;
+            " onmouseover="this.style.color='black'; this.style.textDecoration='underline';"
+               onmouseout="this.style.color='white'; this.style.textDecoration='none';">
+                Go Back
+            </button>
+        </a>
+    </body>
 </div>
+
 
 
 {% endblock %}

@@ -24,7 +24,7 @@ import json
 
 skillass=Blueprint('skillass',__name__)
 
-@skillass.route('/skillass')
+@skillass.route('/skillassessment')
 def skillass_page():
     return render_template("SkillAssessmentPage.html")
 

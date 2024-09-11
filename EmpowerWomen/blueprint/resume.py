@@ -26,7 +26,7 @@ from random import choice
 resume = Blueprint('resume', __name__)
 
 
-@resume.route('/resume')
+@resume.route('/ResumeGenerator')
 def resume_page():
     return render_template("ResumePage.html")
 
