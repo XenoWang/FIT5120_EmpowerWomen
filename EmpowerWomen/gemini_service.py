@@ -1,5 +1,6 @@
 import google.generativeai as genai
 import json
+import os
 
 # Configure the Gemini model
 model = genai.GenerativeModel('gemini-1.5-flash', generation_config={"response_mime_type": "application/json"})
@@ -99,7 +100,7 @@ def prepare_prompt_for_gemini(quiz_data, user_answers):
 
 
 def get_scoring_standards():
-    file_path = 'score_standard.json'
+    file_path = f'{os.getcwd()}\\EmpowerWomen\\score_standard.json'
     with open(file_path, 'r') as f:
         scoring_data = json.load(f)
     return scoring_data
