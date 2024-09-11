@@ -40,7 +40,7 @@ def match_industry_occupations(user_results):
 
             for competency_name, user_score in user_results.items():
                 if competency_name in section_average_scores:
-                    section_score_diff += abs(section_average_scores[competency_name] - user_score['score'])
+                    section_score_diff += abs(section_average_scores[competency_name] - float(user_score['score']))
                     matched_competencies += 1
 
             if matched_competencies > 0:
@@ -89,7 +89,7 @@ def match_industry_occupations(user_results):
                 })
 
         # Sort occupations by their score difference and select the top 10
-        top_occupations_for_section = sorted(occupation_scores, key=lambda x: x['score_difference'])[:10]
+        top_occupations_for_section = sorted(occupation_scores, key=lambda x: x['score_difference'])[:5]
         top_occupations.extend([occ['occupation_title'] for occ in top_occupations_for_section])
 
     return {
