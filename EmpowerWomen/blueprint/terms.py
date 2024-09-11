@@ -10,10 +10,13 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Terms of Use: Python Script
+
+"""
+
 # Imports
 from flask import Blueprint,render_template
-import io
-import base64
 
 terms=Blueprint('terms',__name__)
 
