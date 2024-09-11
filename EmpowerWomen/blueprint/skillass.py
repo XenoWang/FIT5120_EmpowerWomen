@@ -10,6 +10,11 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Python Script for rendering the Skill Assessment Page
+
+"""
+
 # Imports
 from flask import Blueprint,render_template
 import io

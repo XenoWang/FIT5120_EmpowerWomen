@@ -11,7 +11,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
 """
-Terms of Use: Python Script
+Python Script to render the Terms of Use
 
 """
 

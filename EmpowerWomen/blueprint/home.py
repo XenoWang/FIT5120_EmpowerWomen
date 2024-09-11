@@ -11,7 +11,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
 """
-Home Page
+Python Script for rendering the Home Page
 
 """
 

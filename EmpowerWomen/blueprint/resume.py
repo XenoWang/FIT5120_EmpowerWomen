@@ -10,10 +10,16 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 # < ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Python Script for rendering the Resume Content Generator Page
+
+"""
+
 # Imports
 from flask import Blueprint, render_template, request
 import io
 import base64
+import os
 
 from random import choice
 
@@ -24,10 +30,9 @@ resume = Blueprint('resume', __name__)
 def resume_page():
     return render_template("ResumePage.html")
 
-
-
 # 读取一般描述
 def load_descriptions_from_file(file_path):
+    file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
     descriptions_dict = {}
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:
@@ -57,6 +62,7 @@ def load_templates_from_file(file_path):
     :return: 模板列表
     """
     templates = []
+    file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
     with open(file_path, 'r', encoding='utf-8') as file:
         # 读取整个文件，并用 '---' 作为模板分隔符
         templates = file.read().split('---')

@@ -10,6 +10,12 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Python Script for rendering the Quiz (Assessment) that
+the user will take
+
+"""
+
 # Imports
 from flask import Blueprint, render_template, session, request
 import io
