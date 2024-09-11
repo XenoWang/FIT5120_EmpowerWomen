@@ -28,5 +28,10 @@
 <div class="container-center">
     <a href="/skillass" class="btn btn-primary mt-3 custom-button">Back To Assessment Page</a>
 </div>
-
+    <!-- New button for skill comparison -->
+<div class="compare-skills-btn-container">
+    <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
+        <button type="submit" class="compare-btn">Compare Career Skills</button>
+    </form>
+</div>
 {% endblock %}

@@ -9,7 +9,7 @@
     <form action="/quizresult" method="POST">
         {% for competency in quiz_data %}
         <div class="competency-section">
-            <h6>{{ competency.competency_name }} - {{ competency.description }}</h6>
+            <h6>{{ competency.competency_name }}  {{ competency.description }}</h6>
             <div class="questions-container">
                 {% for question in competency.questions %}
                 <div class="question-block">

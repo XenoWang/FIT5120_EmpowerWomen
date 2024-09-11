@@ -8,6 +8,7 @@ model = genai.GenerativeModel('gemini-1.5-flash', generation_config={"response_m
 
 def generate_quiz():
     prompt = '''
+    Write the response in British English. Use vocabulary, spelling, and grammatical structures that are common in British English (e.g., ‘colour’ instead of ‘color’, ‘organise’ instead of ‘organize’, ‘flat’ instead of ‘apartment’, etc.). Ensure that the entire response adheres to the conventions of British English.
     Please create a competency-based quiz to assess individuals' skill levels based on the following core competencies:
 
 Competencies:
@@ -16,7 +17,7 @@ Competencies:
 - Learning
 - Numeracy
 - Oral Communication
-- Planning and Organizing
+- Planning and Organising
 - Problem Solving
 - Reading
 - Teamwork
@@ -66,7 +67,7 @@ def grade_quiz(quiz_data, user_answers):
 
 
 def prepare_prompt_for_gemini(quiz_data, user_answers):
-    prompt = "Grade the following competency-based quiz based on the user's answers and provide proficiency levels:\n\n"
+    prompt = "Write the response in British English. Use vocabulary, spelling, and grammatical structures that are common in British English (e.g., ‘colour’ instead of ‘color’, ‘organise’ instead of ‘organize’, ‘flat’ instead of ‘apartment’, etc.). Ensure that the entire response adheres to the conventions of British English. Grade the following competency-based quiz based on the user's answers and provide proficiency levels:\n\n"
 
     for competency in quiz_data:
         prompt += f"Competency: {competency['competency_name']}\n"

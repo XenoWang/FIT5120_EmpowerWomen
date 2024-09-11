@@ -75,10 +75,9 @@ def match_industry_occupations(user_results):
             for competency in competencies:
                 competency_name = competency.CORE_COMPETENCY
                 user_score = user_results.get(competency_name, {}).get('score')
-
                 if user_score is not None:
                     # Calculate the score difference for each competency
-                    total_score_diff += abs(competency.SCORE - user_score)
+                    total_score_diff += abs(competency.SCORE - float(user_score))
                     competency_count += 1
 
             if competency_count > 0:

@@ -28,10 +28,10 @@ from .skillmatching import skillmatching
 from .skillass import skillass
 from .quiz import quiz
 from .recommendations import recommendations
-
+from .skillgap import skillgap
 # Initializing Variables
 imports = [skills, trends, home, tests, privacy, terms, resume, skillass,
-           skillmatching, quiz, recommendations]
+           skillmatching, quiz, recommendations,skillgap]
 
 def register_blueprints(app):
     # Register all Blueprints
