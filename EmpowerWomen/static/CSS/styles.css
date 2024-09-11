@@ -498,7 +498,7 @@ p1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 20px;
+    padding: 20px 20px 60px 20px;
 }
 
 .barrier {
@@ -547,7 +547,7 @@ p1 {
 
 /* Learn More Pages Description Layout */
 .services-section {
-    padding: 60px 20px;
+    padding: 60px 20px 20px 20px;
     text-align: center;
     background-color: #ffffff;
 }
