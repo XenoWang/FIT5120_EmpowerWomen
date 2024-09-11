@@ -596,6 +596,7 @@ p1 {
 }
 
 .back-to-top:hover {
+    color: #fff;
     opacity: 1;
     transform: translateY(-5px);
 }
