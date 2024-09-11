@@ -10,6 +10,11 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Trends Page -- Unused Functionality
+
+"""
+
 # Imports
 from flask import Blueprint,render_template
 

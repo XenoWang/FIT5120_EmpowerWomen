@@ -11,7 +11,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
 """
-Privacy Statement: Python Script
+Python Script for rendering the Privacy Policy
 
 """
 

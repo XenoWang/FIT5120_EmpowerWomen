@@ -10,6 +10,11 @@ __email3__ = "jsoo0027@student.monash.edu"
 
 #< ------------------------------ 80 Char Limit ------------------------------ >
 
+"""
+Python Script for initializing the libraries needed
+
+"""
+
 # Imports
 from flask import blueprints
 from .skills import skills
@@ -24,16 +29,11 @@ from .skillass import skillass
 from .quiz import quiz
 from .recommendations import recommendations
 
+# Initializing Variables
+imports = [skills, trends, home, tests, privacy, terms, resume, skillass,
+           skillmatching, quiz, recommendations]
 
 def register_blueprints(app):
-    app.register_blueprint(skills)
-    app.register_blueprint(trends)
-    app.register_blueprint(home)
-    app.register_blueprint(tests)
-    app.register_blueprint(privacy)
-    app.register_blueprint(terms)
-    app.register_blueprint(resume)
-    app.register_blueprint(skillass)
-    app.register_blueprint(skillmatching)
-    app.register_blueprint(quiz)
-    app.register_blueprint(recommendations)
+    # Register all Blueprints
+    for element in imports:
+        app.register_blueprint(element)
