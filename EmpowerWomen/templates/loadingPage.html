@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EmpowerWomen{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/neuton-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/federo" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/noto-sans-gujarati" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/stylesheet.css') }}">
+    <script src="{{ url_for('static', filename='Js/script.js') }}"></script>
+</head>
+<body>
+<div class="spinner">
+  <span>L</span>
+  <span>O</span>
+  <span>A</span>
+  <span>D</span>
+  <span>I</span>
+  <span>N</span>
+  <span>G</span>
+</div>
+<div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+        <div class="hamster__body">
+            <div class="hamster__head">
+                <div class="hamster__ear"></div>
+                <div class="hamster__eye"></div>
+                <div class="hamster__nose"></div>
+            </div>
+            <div class="hamster__limb hamster__limb--fr"></div>
+            <div class="hamster__limb hamster__limb--fl"></div>
+            <div class="hamster__limb hamster__limb--br"></div>
+            <div class="hamster__limb hamster__limb--bl"></div>
+            <div class="hamster__tail"></div>
+        </div>
+    </div>
+    <div class="spoke"></div>
+</div>
+
+
+
+
+<script>
+    // Redirect to the quiz page after 3 seconds (you can adjust the delay)
+    setTimeout(function () {
+        window.location.href = "/quiz";
+    }, 25000); // 3000ms = 3 seconds
+</script>
+
+</body>
+</html>
