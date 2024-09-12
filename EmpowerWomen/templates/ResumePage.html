@@ -59,7 +59,7 @@
 <div class="professional-skill-section">
     <div class="left-content">
         <h5>Professional Skill description for Your Resume</h5>
-        <a href="#" class="button">Generate Resume</a>
+        <a href="#custom" class="button">Generate Resume</a>
     </div>
     <div class="right-content">
         <p1>
@@ -79,121 +79,118 @@
     </div>
 </div>
 
-<div class="container_custom" id="custom" style="width: 60%">
+<div class="custom-container" id="custom">
+    <h1 class="mb-4">Generate Your Resume</h1>
     <form action="/resumeresult" method="POST">
-        <h1 class="mb-4">Generate Your Resume</h1>
-
-        <div class="mb-3">
-            <label for="experienceInput" class="form-label">Years of Experience</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="experience" class="form-label">Years of Experience</label>
             <input
-                    type="number"
-                    class="form-control"
-                    id="experienceInput"
-                    name="experience"
-                    min="1"
-                    max="70"
-                    aria-describedby="experienceHelp"
-                    required
+              type="number"
+              class="form-control"
+              id="experience"
+              name="experience"
+              aria-describedby="experienceHelp"
+              required
             />
             <div id="experienceHelp" class="form-text">
-                Enter the number of years you have worked in your field (1-70).
+              Enter the number of years you have worked in your field.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="hobbiesInput" class="form-label">Hobbies (comma separated)</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="hobbies" class="form-label">Hobbies (comma separated)</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="hobbiesInput"
-                    name="hobbies"
-                    aria-describedby="hobbiesHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="hobbies"
+              name="hobbies"
+              aria-describedby="hobbiesHelp"
+              required
             />
             <div id="hobbiesHelp" class="form-text">
-                List your hobbies separated by commas.
+              List your hobbies separated by commas.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="traitsInput" class="form-label">Personality Traits (comma separated)</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="personality" class="form-label">Personality Traits (comma separated)</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="traitsInput"
-                    name="traits"
-                    aria-describedby="traitsHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="personality"
+              name="personality"
+              aria-describedby="personalityHelp"
+              required
             />
-            <div id="traitsHelp" class="form-text">
-                Describe your personality traits separated by commas.
+            <div id="personalityHelp" class="form-text">
+              Describe your personality traits separated by commas.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="industryInput" class="form-label">Industry (comma separated)</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="industry" class="form-label">Industry (comma separated)</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="industryInput"
-                    name="industry"
-                    aria-describedby="industryHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="industry"
+              name="industry"
+              aria-describedby="industryHelp"
+              required
             />
             <div id="industryHelp" class="form-text">
-                Specify industries you have experience in, separated by commas.
+              Specify industries you have experience in, separated by commas.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="positionInput" class="form-label">Position (comma separated)</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="position" class="form-label">Position (comma separated)</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="positionInput"
-                    name="position"
-                    aria-describedby="positionHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="position"
+              name="position"
+              aria-describedby="positionHelp"
+              required
             />
             <div id="positionHelp" class="form-text">
-                List positions you have held, separated by commas.
+              List positions you have held, separated by commas.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="diplomaInput" class="form-label">Diploma/Qualification</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="diploma" class="form-label">Diploma/Qualification</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="diplomaInput"
-                    name="diploma"
-                    aria-describedby="diplomaHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="diploma"
+              name="diploma"
+              aria-describedby="diplomaHelp"
+              required
             />
             <div id="diplomaHelp" class="form-text">
-                Mention your highest diploma or qualification.
+              Mention your highest diploma or qualification.
             </div>
-        </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="skillsInput" class="form-label">Skills (comma separated)</label>
+          <div class="mb-3 scroll-reveal">
+            <label for="skills" class="form-label">Skills (comma separated)</label>
             <input
-                    type="text"
-                    class="form-control"
-                    id="skillsInput"
-                    name="skills"
-                    aria-describedby="skillsHelp"
-                    required
+              type="text"
+              class="form-control"
+              id="skills"
+              name="skills"
+              aria-describedby="skillsHelp"
+              required
             />
             <div id="skillsHelp" class="form-text">
-                List your skills separated by commas.
+              List your skills separated by commas.
             </div>
-        </div>
+          </div>
 
-        <input type="submit" class="btn btn-primary" value="Generate Resume" style="margin-bottom: 100px">
+        <input type="submit" class="btn btn-primary" value="Generate Resume">
     </form>
-
 </div>
+
 
 
 {% endblock %}
