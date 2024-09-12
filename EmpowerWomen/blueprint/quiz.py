@@ -17,7 +17,7 @@ the user will take
 """
 
 # Imports
-from flask import Blueprint, render_template, session, request
+from flask import Blueprint, render_template, session, request, redirect, url_for
 import io
 import base64
 import json
@@ -35,7 +35,7 @@ def quiz_form():
         session.modified = True  # Ensure Flask detects session modification
 
     except Exception as e:
-        return f"Error generating quiz: {e}"
+        return redirect(url_for('quiz.quiz_form'))
 
     # Render quiz on the page
     return render_template('Quiz.html', quiz_data=quiz_data)
