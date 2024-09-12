@@ -4,12 +4,12 @@
 
 {% block content %}
 <div class="quiz-container">
-    <h4>Competency Quiz</h4>
+    <h1>Competency Quiz</h1>
 
     <form id="quizForm" action="/quizresult" method="POST">
         {% for competency in quiz_data %}
         <div class="competency-section" id="competency-section-{{ loop.index }}" style="display: {% if loop.first %}block{% else %}none{% endif %};">
-            <h6>{{ competency.competency_name }}</h6>
+            <h style="font-size: 1.7vw">{{ competency.competency_name }}</h>
             <div class="questions-container">
                 {% for question in competency.questions %}
                 <div class="question-block">
@@ -30,7 +30,9 @@
 
         <!-- Progress bar above the navigation buttons -->
         <div class="progress-container">
-            <progress id="progressBar" value="1" max="{{ quiz_data|length }}"></progress>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
             <p id="progressText">Step 1 of {{ quiz_data|length }}</p>
         </div>
 
@@ -47,10 +49,17 @@
     </form>
 </div>
 
+
 <!-- JavaScript for pagination, progress bar, and form validation -->
 <script>
     let currentSection = 1;
     const totalSections = {{ quiz_data|length }};
+
+    // Function to initialize the progress bar
+    function initializeProgressBar() {
+        const progressPercentage = (currentSection / totalSections) * 100;
+        document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+    }
 
     function changeSection(step) {
         const currentElement = document.getElementById(`competency-section-${currentSection}`);
@@ -73,7 +82,8 @@
         }
 
         // Update progress bar and text
-        document.getElementById('progressBar').value = currentSection;
+        const progressPercentage = (currentSection / totalSections) * 100;
+        document.getElementById('progressFill').style.width = `${progressPercentage}%`;
         document.getElementById('progressText').textContent = `Step ${currentSection} of ${totalSections}`;
     }
 
@@ -102,5 +112,8 @@
 
         return true; // Allow form submission
     }
+
+    // Initialize progress bar when the page loads
+    document.addEventListener('DOMContentLoaded', initializeProgressBar);
 </script>
 {% endblock %}
