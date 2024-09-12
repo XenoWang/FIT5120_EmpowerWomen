@@ -47,95 +47,72 @@ h3 {
 }
 
 /*Quiz css*/
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
 .quiz-container {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease-in-out;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-/*main title*/
+
 h4 {
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: #4a90e2;
+    color: #333;
 }
+
 .competency-section {
-    margin-bottom: 40px;
-}
-/*sub title*/
-h6 {
-    font-size: 1.6em;
-    color: #333;
     margin-bottom: 20px;
-    border-bottom: 2px solid #4a90e2;
-    padding-bottom: 10px;
 }
-/* 问题样式 */
+
+.question-block {
+    margin-bottom: 15px;
+}
+
 .question {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #555;
+    font-weight: bold;
 }
 
-/* 选项容器样式 */
 .options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
-/* 单个选项样式 */
 .option-label {
-    font-size: 1.1em;
-    color: #333;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.option-label input[type="radio"] {
-    margin-right: 10px;
-    transform: scale(1.2);
-}
-.option-label:hover {
-    background-color: #e8f0fe;
-    transform: scale(1.02);
-    border-radius: 5px;
-}
-
-/* 提交按钮样式 */
-.submit-btn {
     display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #4a90e2;
-    color: #fff;
-    font-size: 1.2em;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.submit-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 30px;
+    transition: background-color 0.3s;
 }
 
-/* 按钮点击时的缩放效果 */
-.submit-btn:active {
-    transform: scale(0.95);
+button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
 }
 
-.submit-btn:hover {
-    background-color: #357ab7;
+button:hover:not(:disabled) {
+    background-color: #45a049;
 }
+
 
 /*result page*/
 .results-section {
