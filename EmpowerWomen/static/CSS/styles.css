@@ -150,6 +150,51 @@ button:hover:not(:disabled) {
     font-weight: bold;
 }
 
+
+.jb-button {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.jb-button:hover {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.jb-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.jb-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.jb-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
 /*result page*/
 .results-section {
     margin: 20px;
@@ -623,6 +668,7 @@ p1 {
     margin-bottom: 80px;
     font-family: 'noto-sans-gujarati', sans-serif;
 }
+
 
 /* Media query for screens 576px and smaller */
 @media (max-width: 576px) {

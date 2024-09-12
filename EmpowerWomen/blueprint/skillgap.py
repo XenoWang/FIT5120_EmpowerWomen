@@ -54,9 +54,9 @@ def skill_gap_page():
             required_score = competency.SCORE
 
             if user_score >= required_score:
-                competency_results[competency.CORE_COMPETENCY] = "Meets Requirement"
+                competency_results[competency.CORE_COMPETENCY] = "Meets Requirement ✅"
             else:
-                competency_results[competency.CORE_COMPETENCY] = f"Requires {required_score}, you have {user_score}"
+                competency_results[competency.CORE_COMPETENCY] = f"Requires {required_score}, you have {user_score}🚩"
 
         selected_occupation = ANZSCO4.query.get(selected_occupation_id).TITLE
 

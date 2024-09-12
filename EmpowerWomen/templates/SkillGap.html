@@ -4,56 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Gap Analysis</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/skillgap.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Skill Gap Analysis</h1>
+<div class="container_background"></div>
 
-        <!-- Dropdown to select occupation -->
-        <form action="{{ url_for('skillgap.skill_gap_page') }}" method="POST">
-            <label for="occupation">Select an Occupation:</label>
-            <select name="occupation" id="occupation" required>
-                <!-- 默认空选项 -->
-                <option value="" {% if not selected_occupation_id %}selected{% endif %}>-- Select an Occupation --</option>
+<div class="container">
+    <h1>Skill Gap Analysis🔎</h1>
 
-                <!-- 循环职业列表，并保持用户选择的值 -->
-                {% for occupation in occupations %}
-                    <option value="{{ occupation.ANZSCO4_CODE }}"
-                        {% if occupation.ANZSCO4_CODE == selected_occupation_id %}selected{% endif %}>
-                        {{ occupation.TITLE }}
-                    </option>
-                {% endfor %}
-            </select>
-            <button type="submit">Analyze Skill Gap</button>
-        </form>
+    <!-- Dropdown to select occupation -->
+    <form action="{{ url_for('skillgap.skill_gap_page') }}" method="POST" class="form-control">
+        <label for="occupation">Select an Occupation:</label>
+        <select name="occupation" id="occupation" required>
+            <option value="" {% if not selected_occupation_id %}selected{% endif %}>-- Select an Occupation --</option>
+            {% for occupation in occupations %}
+            <option value="{{ occupation.ANZSCO4_CODE }}"
+                    {% if occupation.ANZSCO4_CODE== selected_occupation_id %}selected{% endif %}>
+                {{ occupation.TITLE }}
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn-submit">Analyze Skill Gap</button>
+    </form>
 
-        <!-- 显示比较结果 -->
-        {% if competency_results %}
-        <h2>Results for {{ selected_occupation }}</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Competency</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for competency, result in competency_results.items() %}
-                <tr>
-                    <td>{{ competency }}</td>
-                    <td>{{ result }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+    <!-- 显示比较结果 -->
+    {% if competency_results %}
+    <h2>Results for {{ selected_occupation }}</h2>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>Competency</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for competency, result in competency_results.items() %}
+        <tr>
+            <td>{{ competency }}</td>
+            <td>{{ result }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 
-        <!-- 显示Word Cloud-->
-        {% if wordcloud_path %}
-        <h2>Specialist Task Word Cloud</h2>
-        <img src="{{ url_for('skillgap.wordcloud', occupation_id=selected_occupation_id) }}" alt="Word Cloud">
-        {% endif %}
+    <!-- 显示Word Cloud-->
+    {% if wordcloud_path %}
+    <h2>Specialist Task Word Cloud</h2>
+    <div class="wordcloud-container">
+        <img src="{{ url_for('skillgap.wordcloud', occupation_id=selected_occupation_id) }}" alt="Word Cloud"
+             class="wordcloud-img">
     </div>
+    {% endif %}
+    <div class="container-center">
+        <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>
+    </div>
+</div>
 </body>
 </html>
