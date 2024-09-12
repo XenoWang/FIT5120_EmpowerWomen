@@ -94,8 +94,8 @@ h4 {
     margin-top: 20px;
 }
 
-button {
-    background-color: #4CAF50;
+#prevBtn, #nextBtn {
+    background-color: #0072ff;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -110,7 +110,7 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-    background-color: #45a049;
+    background-color: #00c6ff;
 }
 
 
