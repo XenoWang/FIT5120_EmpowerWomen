@@ -20,17 +20,34 @@
         {% endfor %}
     </div>
 </div>
-<div class="container-center">
-    <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
-        <button type="submit" class="btn btn-primary mt-3 custom-button">View Industry & Occupation Recommendations
-        </button>
-    </form>
+<div class="container">
+    <div class="row">
+        <!-- Card for Industry & Occupation Recommendations -->
+        <div class="col-md-6">
+            <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
+                <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
+                    <div class="card-body">
+                        <h5 class="card-title">Industry & Occupation Recommendations</h5>
+                        <p class="card-text">Click to view your recommended industries and occupations.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Card for Compare Career Skills -->
+        <div class="col-md-6">
+            <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
+                <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
+                    <div class="card-body">
+                        <h5 class="card-title">Compare Career Skills</h5>
+                        <p class="card-text">Click to compare skills needed for your career.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<div class="container-center">
-    <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
-        <button type="submit" class="btn btn-primary mt-3 custom-button">Compare Career Skills</button>
-    </form>
-</div>
+
 <div class="container-center">
     <a href="/skillass" class="btn btn-primary mt-3 custom-button">Back To Assessment Page</a>
 </div>

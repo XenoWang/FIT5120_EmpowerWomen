@@ -43,9 +43,11 @@
             background-color: cornflowerblue;
         }
 
-        .back-button {
+        .recommend_button_container {
             display: flex;
             justify-content: center;
+            gap: 20px; /* Space between buttons */
+            margin-top: 20px;
         }
 
         button {
@@ -56,10 +58,35 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            position: relative;
         }
 
         button:hover {
-            background-color: cornflowerblue;
+            background-color: dodgerblue;
+        }
+
+        /* Tooltip for Compare Skill Gap button */
+        .compare-skill-gap-btn:hover::after {
+            content: "Having your desired job? Compare your gaps";
+            position: absolute;
+            top: -35px; /* Adjusts the tooltip position above the button */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .compare-skill-gap-btn::after {
+            display: none;
+        }
+
+        .compare-skill-gap-btn:hover::after {
+            display: block;
         }
     </style>
 </head>
@@ -84,18 +111,16 @@
     </tbody>
 </table>
 {% endfor %}
+
 <div class="recommend_button_container">
-    <div class="button">
-        <a href="/">
-            <button>Back to Homepage</button>
-        </a>
-    </div>
-    <br>
-    <div class="button">
-        <a href="/SkillGap">
-            <button>Compare Skill Gap</button>
-        </a>
-    </div>
+    <a href="/">
+        <button>Back to Homepage</button>
+    </a>
+
+    <a href="/SkillGap">
+        <button class="compare-skill-gap-btn">Compare Skill Gap</button>
+    </a>
 </div>
+
 </body>
 </html>
