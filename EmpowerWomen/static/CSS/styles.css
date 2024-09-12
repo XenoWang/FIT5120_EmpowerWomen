@@ -45,6 +45,17 @@ h2 {
 h3 {
     font-size: 2vw;
 }
+/*recommend page*/
+.recommend_button_container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    gap: 20px; /* 按钮之间的间距 */
+    position: fixed; /* 固定在底部 */
+    bottom: 20px; /* 距离页面底部 */
+    left: 0;
+    right: 0;
+}
+
 
 /*Quiz css*/
 .quiz-container {
@@ -95,7 +106,7 @@ h4 {
 }
 
 #prevBtn, #nextBtn {
-    background-color: #0072ff;
+    background-color: cornflowerblue;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -110,7 +121,28 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-    background-color: #00c6ff;
+    background-color:cornflowerblue;
+}
+.progress-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: cornflowerblue;
+    border-radius: 5px;
 }
 
 
@@ -435,14 +467,14 @@ p1 {
     font-weight: 650;
     margin-bottom: 20px;
     margin-left: 70px;
-    color: #2575FC;
+    color: cornflowerblue;
 }
 
 .home-subtext {
     font-size: 20px;
     margin-bottom: 10px;
     margin-left: 70px;
-    color: #2575FC;
+    color: cornflowerblue;
 }
 
 /* Description layout */

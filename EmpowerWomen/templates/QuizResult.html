@@ -13,7 +13,7 @@
             <span class="competency-name">{{ competency }}</span>
             <div class="bar">
                 <div class="bar-fill" style="width: calc({{ result.score }} * 10%);"></div>
-                <span class="score-label">{{ result.score }}/5</span>
+                <span class="score-label">{{ result.score }}/10</span>
             </div>
             <span class="proficiency-level">{{ result.proficiency }}</span>
         </div>
@@ -21,17 +21,19 @@
     </div>
 </div>
 <div class="container-center">
-   <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
-        <button type="submit" class="btn btn-primary mt-3 custom-button">View Industry & Occupation Recommendations</button>
+    <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
+        <button type="submit" class="btn btn-primary mt-3 custom-button">View Industry & Occupation Recommendations
+        </button>
+    </form>
+</div>
+<div class="container-center">
+    <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
+        <button type="submit" class="btn btn-primary mt-3 custom-button">Compare Career Skills</button>
     </form>
 </div>
 <div class="container-center">
     <a href="/skillass" class="btn btn-primary mt-3 custom-button">Back To Assessment Page</a>
 </div>
-    <!-- New button for skill comparison -->
-<div class="compare-skills-btn-container">
-    <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
-        <button type="submit" class="compare-btn">Compare Career Skills</button>
-    </form>
-</div>
+<!-- New button for skill comparison -->
+
 {% endblock %}

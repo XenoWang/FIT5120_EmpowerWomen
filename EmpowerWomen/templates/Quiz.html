@@ -5,10 +5,11 @@
 {% block content %}
 <div class="quiz-container">
     <h4>Competency Quiz</h4>
+
     <form id="quizForm" action="/quizresult" method="POST">
         {% for competency in quiz_data %}
         <div class="competency-section" id="competency-section-{{ loop.index }}" style="display: {% if loop.first %}block{% else %}none{% endif %};">
-            <h6>{{ competency.competency_name }} - {{ competency.description }}</h6>
+            <h6>{{ competency.competency_name }}</h6>
             <div class="questions-container">
                 {% for question in competency.questions %}
                 <div class="question-block">
@@ -26,17 +27,27 @@
             </div>
         </div>
         {% endfor %}
-        <div class="navigation-buttons">
-            <button type="button" id="prevBtn" onclick="changeSection(-1)" disabled>Previous</button>
-            <button type="button" id="nextBtn" onclick="changeSection(1)">Next</button>
+
+        <!-- Progress bar above the navigation buttons -->
+        <div class="progress-container">
+            <progress id="progressBar" value="1" max="{{ quiz_data|length }}"></progress>
+            <p id="progressText">Step 1 of {{ quiz_data|length }}</p>
         </div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation-buttons">
+            <button type="button" class="page-button" id="prevBtn" onclick="changeSection(-1)" disabled>Previous</button>
+            <button type="button" class="page-button" id="nextBtn" onclick="changeSection(1)">Next</button>
+        </div>
+
+        <!-- Submit button container -->
         <div class="submit-container" style="display:none;">
-            <button type="submit" class="submit-btn">Submit Quiz</button>
+            <button type="submit" class="btn btn-primary mt-3 custom-button" onclick="return validateForm()">Submit Quiz</button>
         </div>
     </form>
 </div>
 
-<!-- JavaScript for pagination -->
+<!-- JavaScript for pagination, progress bar, and form validation -->
 <script>
     let currentSection = 1;
     const totalSections = {{ quiz_data|length }};
@@ -60,6 +71,36 @@
             document.getElementById("nextBtn").style.display = "inline-block";
             document.querySelector(".submit-container").style.display = "none";
         }
+
+        // Update progress bar and text
+        document.getElementById('progressBar').value = currentSection;
+        document.getElementById('progressText').textContent = `Step ${currentSection} of ${totalSections}`;
+    }
+
+    // Function to validate if all questions are answered
+    function validateForm() {
+        const sections = document.querySelectorAll('.competency-section');
+        let allAnswered = true;
+
+        sections.forEach(section => {
+            const inputs = section.querySelectorAll("input[type='radio']");
+            const names = new Set();
+            inputs.forEach(input => names.add(input.name));
+
+            names.forEach(name => {
+                const checked = section.querySelector(`input[name="${name}"]:checked`);
+                if (!checked) {
+                    allAnswered = false;
+                }
+            });
+        });
+
+        if (!allAnswered) {
+            alert("You must answer all questions!!");
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
     }
 </script>
 {% endblock %}
