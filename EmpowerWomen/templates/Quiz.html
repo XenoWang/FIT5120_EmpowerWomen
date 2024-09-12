@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}SkillAssessmentPage - EmpowerWomen{% endblock %}
+{% block title %}Skill Assessment - EmpowerWomen{% endblock %}
 
 {% block content %}
-
 <div class="quiz-container">
     <h4>Competency Quiz</h4>
-    <form action="/quizresult" method="POST">
+    <form id="quizForm" action="/quizresult" method="POST">
         {% for competency in quiz_data %}
-        <div class="competency-section">
-            <h6>{{ competency.competency_name }}  {{ competency.description }}</h6>
+        <div class="competency-section" id="competency-section-{{ loop.index }}" style="display: {% if loop.first %}block{% else %}none{% endif %};">
+            <h6>{{ competency.competency_name }} - {{ competency.description }}</h6>
             <div class="questions-container">
                 {% for question in competency.questions %}
                 <div class="question-block">
@@ -17,7 +16,7 @@
                     <div class="options-container">
                         {% for option in question.options %}
                         <label class="option-label">
-                            <input type="radio" name="{{ question.question_index }}" value="{{ option }}">
+                            <input type="radio" name="{{ question.question_index }}" value="{{ option }}" required>
                             {{ option }}
                         </label>
                         {% endfor %}
@@ -27,8 +26,40 @@
             </div>
         </div>
         {% endfor %}
-        <button type="submit" class="submit-btn">Submit Quiz</button>
+        <div class="navigation-buttons">
+            <button type="button" id="prevBtn" onclick="changeSection(-1)" disabled>Previous</button>
+            <button type="button" id="nextBtn" onclick="changeSection(1)">Next</button>
+        </div>
+        <div class="submit-container" style="display:none;">
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </div>
     </form>
 </div>
 
+<!-- JavaScript for pagination -->
+<script>
+    let currentSection = 1;
+    const totalSections = {{ quiz_data|length }};
+
+    function changeSection(step) {
+        const currentElement = document.getElementById(`competency-section-${currentSection}`);
+        const nextSection = currentSection + step;
+
+        if (nextSection < 1 || nextSection > totalSections) return;
+
+        currentElement.style.display = "none";
+        document.getElementById(`competency-section-${nextSection}`).style.display = "block";
+
+        currentSection = nextSection;
+
+        document.getElementById("prevBtn").disabled = currentSection === 1;
+        if (currentSection === totalSections) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.querySelector(".submit-container").style.display = "block";
+        } else {
+            document.getElementById("nextBtn").style.display = "inline-block";
+            document.querySelector(".submit-container").style.display = "none";
+        }
+    }
+</script>
 {% endblock %}
