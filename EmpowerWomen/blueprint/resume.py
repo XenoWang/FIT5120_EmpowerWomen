@@ -30,6 +30,7 @@ resume = Blueprint('resume', __name__)
 def resume_page():
     return render_template("ResumePage.html")
 
+
 # 读取一般描述
 def load_descriptions_from_file(file_path):
     file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
@@ -44,6 +45,7 @@ def load_descriptions_from_file(file_path):
                 # 跳过没有冒号的行，或者你可以记录这些行
                 print(f"Skipping invalid line: {line}")
     return descriptions_dict
+
 
 # 加载各类描述
 hobbies_dict = load_descriptions_from_file('hobbies.txt')
@@ -69,6 +71,8 @@ def load_templates_from_file(file_path):
 
     # 去除每个模板前后的空白字符，并返回模板列表
     return [template.strip() for template in templates]
+
+
 # 模板读取函数不变
 templates = load_templates_from_file('templates.txt')
 
