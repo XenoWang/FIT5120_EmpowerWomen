@@ -4,84 +4,11 @@
 
 {% block content %}
 
-<div class="container_background_4">
-    <div class="home-title">Resume Refinement</div>
-    <div class="centered-button">
-        <a href="#custom" class="btn btn-primary mt-3">Generate Resume</a>
-    </div>
-</div>
-
-<div class="description_container">
-    <!-- Start of the additional content section -->
-    <!-- Start of the content section with image on the left and text on the right -->
-    <div class="resume-container">
-        <!-- Sample resume image on the left -->
-        <div class="resume-image">
-            <img src="#" alt="Sample Resume Image"/>
-        </div>
-
-        <!-- Text content with icons on the right -->
-        <div class="resume-description-container">
-            <!-- Quickly generate resume descriptions -->
-            <div class="description-item">
-                <img src="/static/Image/List.png" alt="Quickly Generate Icon"/>
-                <div class="description-text">
-                    <h3>Quickly generate resume descriptions</h3>
-                    <p>No need to spend a lot of time and energy thinking about how to describe your skills, the system
-                        will generate a professional description after simple input.</p>
-                </div>
-            </div>
-
-            <!-- Personalized content -->
-            <div class="description-item">
-                <img src="/static/Image/Class.png" alt="Personalized Content Icon"/>
-                <div class="description-text">
-                    <h3>Personalized content</h3>
-                    <p>Generates a tailored description based on the skills, focus, and achievements entered by the
-                        user, ensuring that the resume content meets the requirements of the specific position.</p>
-                </div>
-            </div>
-
-            <!-- Improve the competitiveness of resume -->
-            <div class="description-item">
-                <img src="/static/Image/Users.png" alt="Competitiveness Icon"/>
-                <div class="description-text">
-                    <h3>Improve the competitiveness of resume</h3>
-                    <p>The generated description is highly professional and can highlight the user's skills and
-                        achievements, making the resume more attractive and increasing the chances of getting an
-                        interview.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="professional-skill-section">
-    <div class="left-content">
-        <h5>Professional Skill description for Your Resume</h5>
-        <a href="#custom" class="button">Generate Resume</a>
-    </div>
-    <div class="right-content">
-        <p1>
-            Crafting a resume that wins jobs can be overwhelming. Employers want specific information and keywords in
-            the right places.
-            <br>
-            <br>
-            Our professional skills description builder takes the guesswork out of how to showcase your abilities. We’ll
-            provide you with a skills description tailored to your industry. Simply select your preferred layout, enter
-            your skills, and receive a polished, professional description in minutes.
-            <br>
-            <br>
-            In just a few easy steps, you'll have an outstanding skills description that highlights your strengths and
-            gets you one step closer to landing your dream job. Let us help you confidently take the next step in your
-            career.
-        </p1>
-    </div>
-</div>
+<div class="container_background_4"></div>
 
 <div class="container_custom" id="custom" style="width: 60%; margin-bottom: 50px;margin-top: 50px">
   <form action="/resumeresult" method="POST">
-    <h1 class="mb-4">Generate Your Resume</h1>
+    <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Generate Your Resume Introduction</h1>
 
     <div class="form-group">
       <input type="number" id="experienceInput" name="experience" min="1" max="70" required />
@@ -125,8 +52,50 @@
       <div id="skillsHelp" class="form-text">List your skills separated by commas.</div>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Generate Resume" style="margin-bottom: 100px; width: 30%">
+    <input type="submit" class="btn btn-primary" value="Generate Resume" style="margin-left: 100px; width: 30%">
   </form>
+</div>
+
+<div class="description_container">
+  <!-- Start of the additional content section -->
+  <!-- Start of the content section with image on the left and text on the right -->
+  <div class="resume-container">
+      <!-- Text content with icons on the right -->
+      <div class="resume-description-container">
+          <!-- Quickly generate resume descriptions -->
+          <div class="description-item">
+              <img src="/static/Image/List.png" alt="Quickly Generate Icon"/>
+              <div class="description-text">
+                  <h3>Build a Resume Introduction</h3>
+                  <p>Building the perfect resume doesn't have to be stressful. Our skills description 
+                     builder simplifies the process, providing you with a professional, tailored 
+                     summary of your abilities with a few simple inputs.</p>
+              </div>
+          </div>
+
+          <!-- Personalized content -->
+          <div class="description-item">
+              <img src="/static/Image/Class.png" alt="Personalized Content Icon"/>
+              <div class="description-text">
+                  <h3>Personalized and Tailored to You</h3>
+                  <p>Get a skills description customized for your industry. Simply input your skills, 
+                    and our tool generates a polished description designed to highlight your strengths 
+                    and match what employers are looking for.</p>
+              </div>
+          </div>
+
+          <!-- Improve the competitiveness of resume -->
+          <div class="description-item">
+              <img src="/static/Image/Users.png" alt="Competitiveness Icon"/>
+              <div class="description-text">
+                  <h3>Improve your Resume Competitiveness</h3>
+                  <p>Stand out in the job market with a well-crafted skills description that showcases 
+                    your abilities and makes a strong impression. Give yourself the competitive edge 
+                    needed to land your dream job.</p>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
 <!-- Add custom CSS for the floating label animation and tool tips -->

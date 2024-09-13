@@ -421,7 +421,7 @@ p1 {
 
 /*skill page text css*/
 .section-title {
-    font-size: 4rem; /* 调整标题的字体大小 */
+    font-size: 3rem; /* 调整标题的字体大小 */
     font-weight: bold; /* 如果需要，可以加粗 */
     margin-top: 150px;
     margin-left: 80px;
@@ -477,7 +477,7 @@ p1 {
 }
 
 /* Top container layout */
-.container_background, .container_background_1, .container_background_2,.container_background_3,.container_background_4{
+.container_background, .container_background_1, .container_background_2{
     width: 100vw;
     padding: 180px 20px;
     text-align: left;
@@ -487,6 +487,14 @@ p1 {
     margin-left: calc(-50vw + 50%);
     overflow: visible;
     font-family: 'noto-sans-gujarati', sans-serif;
+}
+
+.container_background_3, .container_background_4{
+    width: 100vw;
+    background-size: cover;
+    background-position: center top;
+    margin-left: calc(-50vw + 50%);
+    overflow: visible;
 }
 
 .container_background {
@@ -503,12 +511,12 @@ p1 {
     background-image: url("/static/Image/TrendsPage.jpg");
 }
 .container_background_3 {
-    height: 75vh;
-    background-image: url("/static/Image/skillass1.jpg");
+    height: 30vh;
+    background-image: url("/static/Image/skillass1_crop.jpg");
 }
 .container_background_4 {
-    height: 75vh;
-    background-image: url("/static/Image/matching1.jpg");
+    height: 30vh;
+    background-image: url("/static/Image/matching1_crop.jpg");
 }
 .container_background_5 {
     height: 25vh;
