@@ -510,7 +510,10 @@ p1 {
     height: 75vh;
     background-image: url("/static/Image/matching1.jpg");
 }
-
+.container_background_5 {
+    height: 25vh;
+    background-image: url("/static/Image/resumepg1.jpg");
+}
 .home-title {
     font-size: 45px;
     font-weight: 650;
@@ -632,8 +635,65 @@ p1 {
     font-size: 24px;
     color: #333;
 }
+/*resume button*/
 
 /* Back to Top Button */
+/* 容器的布局样式 */
+.button-container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: flex-end; /* 垂直底部对齐 */
+    height: 100vh; /* 设置容器高度，确保占据页面全部高度 */
+    padding-bottom: 20px; /* 可选，留一点空白在底部 */
+}
+
+/* 按钮样式保持不变 */
+.resume-button {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.resume-button:hover {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.resume-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.resume-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.resume-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*back to top*/
 .back-to-top {
     position: fixed;
     bottom: 30px;
