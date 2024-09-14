@@ -46,28 +46,46 @@
       <div id="diplomaHelp" class="form-text">Mention your highest diploma or qualification.</div>
     </div>
 
+    <!-- 改为 month 输入 -->
+    <div class="form-group">
+<input type="month" id="educationStart" name="education_start" value="" required />
+      <label for="educationStart">Education Start Month and Year</label>
+      <div class="form-text">Enter the start month and year of your highest education.</div>
+    </div>
+
+    <div class="form-group">
+      <input type="month" id="educationEnd" name="education_end" value="" required />
+      <label for="educationEnd">Graduation Month and Year</label>
+      <div class="form-text">Enter the graduation month and year of your highest education.</div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="schoolInput" name="school" required />
+      <label for="schoolInput">School</label>
+      <div class="form-text">Enter the name of the school you attended.</div>
+    </div>
+
     <div class="form-group">
       <input type="text" id="skillsInput" name="skills" required />
       <label for="skillsInput">Skills (comma separated)</label>
       <div id="skillsHelp" class="form-text">List your skills separated by commas.</div>
     </div>
+
     <input type="submit" class="btn btn-primary" value="Generate Resume" style="margin-left: 100px; width: 40%; font-size: 1.5vw; display: flex; justify-content: center; align-items: center;">
   </form>
 </div>
 
 <div class="description_container">
   <!-- Start of the additional content section -->
-  <!-- Start of the content section with image on the left and text on the right -->
   <div class="resume-container">
-      <!-- Text content with icons on the right -->
       <div class="resume-description-container">
           <!-- Quickly generate resume descriptions -->
           <div class="description-item">
               <img src="/static/Image/List.png" alt="Quickly Generate Icon"/>
               <div class="description-text">
                   <h3>Build a Resume Introduction</h3>
-                  <p>Building the perfect resume doesn't have to be stressful. Our skills description 
-                     builder simplifies the process, providing you with a professional, tailored 
+                  <p>Building the perfect resume doesn't have to be stressful. Our skills description
+                     builder simplifies the process, providing you with a professional, tailored
                      summary of your abilities with a few simple inputs.</p>
               </div>
           </div>
@@ -77,8 +95,8 @@
               <img src="/static/Image/Class.png" alt="Personalized Content Icon"/>
               <div class="description-text">
                   <h3>Personalized and Tailored to You</h3>
-                  <p>Get a skills description customized for your industry. Simply input your skills, 
-                    and our tool generates a polished description designed to highlight your strengths 
+                  <p>Get a skills description customized for your industry. Simply input your skills,
+                    and our tool generates a polished description designed to highlight your strengths
                     and match what employers are looking for.</p>
               </div>
           </div>
@@ -88,8 +106,8 @@
               <img src="/static/Image/Users.png" alt="Competitiveness Icon"/>
               <div class="description-text">
                   <h3>Improve your Resume Competitiveness</h3>
-                  <p>Stand out in the job market with a well-crafted skills description that showcases 
-                    your abilities and makes a strong impression. Give yourself the competitive edge 
+                  <p>Stand out in the job market with a well-crafted skills description that showcases
+                    your abilities and makes a strong impression. Give yourself the competitive edge
                     needed to land your dream job.</p>
               </div>
           </div>
@@ -97,7 +115,6 @@
   </div>
 </div>
 
-<!-- Add custom CSS for the floating label animation and tool tips -->
 <style>
   .form-group {
     position: relative;

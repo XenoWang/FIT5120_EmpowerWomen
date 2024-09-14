@@ -1,37 +1,65 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-__author1__ = "Linhao Wang"
-__email1__ = "lwan0191@student.monash.edu"
-__author2__ = "Yuxiang Zou"
-__email2__ = "yzou0027@student.monash.edu"
-__author3__ = "Joshua Yu Xuan Soo"
-__email3__ = "jsoo0027@student.monash.edu"
-
-# < ------------------------------ 80 Char Limit ------------------------------ >
-
-"""
-Python Script for rendering the Resume Content Generator Page
-
-"""
-
-# Imports
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, send_file
 import io
 import base64
 import os
-
 from random import choice
+from PIL import Image, ImageDraw, ImageFont
 
 resume = Blueprint('resume', __name__)
-
-
 @resume.route('/ResumeGenerator')
 def resume_page():
     return render_template("ResumePage.html")
+base_dir = os.getcwd()
+print(base_dir)
+# Define a dictionary to store template-specific information
+template_configs = {
+    'Grey Modern Company Resume.jpg': {
+        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\GreyModernCompanyResume.jpg',
+        'text_position': (80, 750),
+        'skill_position': (80, 1350),
+        'hobby_position': (80, 1730),
+        'font_path': 'arial.ttf',
+        'font_size': 25,
+        'text_color': 'white',
+        'max_width': 500,
+        'skill_spacing': 50,
+        'hobby_spacing': 50,
+        'education_position': (750, 680),
+        'edu_color': 'black'
 
+    },
+    'Pink White Clean Teacher Resume.jpg': {
+        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\PinkWhiteCleanTeacherResume.jpg',
+        'text_position': (620, 680),
+        'skill_position': (90, 1700),
+        'hobby_position': (90, 1050),
+        'font_path': 'arial.ttf',
+        'font_size': 30,
+        'text_color': 'black',
+        'max_width': 600,
+        'skill_spacing': 50,
+        'hobby_spacing': 50,
+        'education_position': (85, 1400),
+        'edu_color': 'black'
 
-# 读取一般描述
+    },
+    'Pink Professional Business Administration Resume.jpg': {
+        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\PinkProfessionalBusinessAdministrationResume.jpg',
+        'text_position': (200, 800),
+        'skill_position': (800, 1700),
+        'hobby_position': (200, 1470),
+        'font_path': 'arial.ttf',
+        'font_size': 22,
+        'text_color': 'black',
+        'max_width': 450,
+        'skill_spacing': 50,
+        'hobby_spacing': 35,
+        'education_position': (190, 1700),
+        'edu_color': 'black'
+
+    }
+    # Add more templates here
+}
 def load_descriptions_from_file(file_path):
     file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
     descriptions_dict = {}
@@ -39,10 +67,9 @@ def load_descriptions_from_file(file_path):
         for line in file:
             line = line.strip()
             if ':' in line:
-                key, description = line.split(':', 1)  # 确保只分割一次
+                key, description = line.split(':', 1)
                 descriptions_dict[key.strip()] = description.strip()
             else:
-                # 跳过没有冒号的行，或者你可以记录这些行
                 print(f"Skipping invalid line: {line}")
     return descriptions_dict
 
@@ -57,61 +84,81 @@ diploma_dict = load_descriptions_from_file('diplomas.txt')
 
 
 def load_templates_from_file(file_path):
-    """
-    从文件中读取简历模板，将每个模板用 '---' 分隔，并返回模板列表。
-
-    :param file_path: 模板文件路径
-    :return: 模板列表
-    """
     templates = []
     file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
     with open(file_path, 'r', encoding='utf-8') as file:
-        # 读取整个文件，并用 '---' 作为模板分隔符
         templates = file.read().split('---')
-
-    # 去除每个模板前后的空白字符，并返回模板列表
     return [template.strip() for template in templates]
+def wrap_text(text, font, max_width):
+    """
+    Wraps text into multiple lines based on a maximum width.
 
+    :param text: The text to wrap.
+    :param font: The font used to measure the text width.
+    :param max_width: The maximum width (in pixels) of a line of text.
+    :return: The wrapped text with new lines inserted.
+    """
+    lines = []
+    words = text.split(' ')
+    current_line = ""
+
+    for word in words:
+        test_line = current_line + word + " "
+        # Measure the width of the current line using textbbox()
+        text_width = font.getbbox(test_line)[2]  # getbbox returns a bounding box, [2] gives width
+        if text_width <= max_width:
+            current_line = test_line
+        else:
+            lines.append(current_line.strip())  # Save the current line
+            current_line = word + " "  # Start a new line with the current word
+
+    # Add the last line
+    if current_line:
+        lines.append(current_line.strip())
+
+    return "\n".join(lines)
 
 # 模板读取函数不变
 templates = load_templates_from_file('templates.txt')
-
-
 @resume.route('/resumeresult', methods=['POST'])
 def generate_resume():
-    # 从表单获取用户输入
-    experience = request.form['experience']  # 获取用户工作年限
-    hobbies_input = request.form['hobbies']  # 获取用户输入的爱好
-    personality_input = request.form['personality']  # 获取性格
-    industry_input = request.form['industry']  # 获取工作行业
-    position_input = request.form['position']  # 获取职位
-    diploma = request.form['diploma']  # 获取文凭
-    skills_input = request.form['skills']  # 获取用户输入的技能
-
-    # 处理爱好、性格、行业、职位和技能
+    # Collect form data
+    experience = request.form['experience']
+    hobbies_input = request.form['hobbies']
+    personality_input = request.form['personality']
+    industry_input = request.form['industry']
+    position_input = request.form['position']
+    diploma = request.form['diploma']
+    skills_input = request.form['skills']
+    education_start = request.form['education_start']
+    education_end = request.form['education_end']
+    school = request.form['school']
+    # Process input data
     hobbies = [hobby.strip().capitalize() for hobby in hobbies_input.split(',')]
     personalities = [personality.strip().capitalize() for personality in personality_input.split(',')]
     industries = [industry.strip().capitalize() for industry in industry_input.split(',')]
     positions = [position.strip().capitalize() for position in position_input.split(',')]
     skills = [skill.strip().capitalize() for skill in skills_input.split(',')]
 
-    # 获取各类描述，如果找不到对应的描述，保持为空白
+    # Fetch descriptions
     hobby_description = ', '.join([hobbies_dict.get(hobby, "") for hobby in hobbies[:1]])
     personality_description = ', '.join([personalities_dict.get(personality, "") for personality in personalities[:1]])
     industry_description = industries_dict.get(industries[0], "") if industries else ""
     position_description = positions_dict.get(positions[0], "") if positions else ""
 
-    # 获取技能描述，最多处理5个技能
     skill_descriptions = [skills_dict.get(skill, "") for skill in skills[:5]]
-
-    # 如果技能不足5个，用空白填充
     while len(skill_descriptions) < 5:
-        skill_descriptions.append("")  # 用空字符串代替
+        skill_descriptions.append("")
+    education_description = f"From {education_start} to {education_end}\n{diploma} at {school} "
 
-    # 随机选择一个模板
+    # Select a template and its configuration
+    selected_template_name = choice(list(template_configs.keys()))
+    config = template_configs[selected_template_name]
+
+    # Randomly choose a resume text template
     template = choice(templates)
 
-    # 生成简历，替换模板中的占位符
+    # Generate the resume text
     generated_resume = template.format(
         years=experience,
         hobbies=hobby_description,
@@ -126,4 +173,40 @@ def generate_resume():
         skill5=skill_descriptions[4]
     )
 
-    return render_template('ResumeResult.html', resume=generated_resume)
+    # Load the template image
+    image_path = config['image_path']
+    image = Image.open(image_path)
+    draw = ImageDraw.Draw(image)
+    education_position=config['education_position']
+    # Define the font
+    font = ImageFont.truetype(config['font_path'], size=config['font_size'])
+
+    # Wrap the main text
+    max_width = config['max_width']
+    wrapped_text = wrap_text(generated_resume, font, max_width)
+
+    # Draw the main text
+    draw.text(config['text_position'], wrapped_text, font=font, fill=config['text_color'])
+    draw.text(education_position, education_description, font=font, fill=config['edu_color'])
+
+    # Draw the skills
+    skill_position = config['skill_position']
+    skill_spacing = config['skill_spacing']
+    for skill in skills:
+        draw.text(skill_position, skill, font=font, fill=config['text_color'])
+        skill_position = (skill_position[0], skill_position[1] + skill_spacing)
+
+    # Draw the hobbies
+    hobby_position = config['hobby_position']
+    hobby_spacing = config['hobby_spacing']
+    for hobby in hobbies:
+        draw.text(hobby_position, hobby, font=font, fill=config['text_color'])
+        hobby_position = (hobby_position[0], hobby_position[1] + hobby_spacing)
+
+    # Save the image to a BytesIO object
+    img_io = io.BytesIO()
+    image.save(img_io, 'JPEG')
+    img_io.seek(0)
+
+    return send_file(img_io, mimetype='image/jpeg')
+
