@@ -22,6 +22,7 @@
             height: 100vh;
         }
 
+        /* Fade-in animation for the heading */
         h1 {
             color: #f0f0f0;
             text-align: center;
@@ -31,6 +32,9 @@
             background: -webkit-linear-gradient(#f0f0f0, #cccccc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            opacity: 0; /* Start transparent */
+            animation: fadeIn 3s ease forwards; /* Fade-in animation */
+            animation-delay: 0.5s; /* Optional delay */
         }
 
         h2 .emoji {
@@ -191,6 +195,16 @@
             }
             50% {
                 opacity: 0.5;
+            }
+        }
+
+        /* Keyframe for fade-in effect */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
             }
         }
 
