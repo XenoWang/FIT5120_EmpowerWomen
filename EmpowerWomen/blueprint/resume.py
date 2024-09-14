@@ -208,5 +208,5 @@ def generate_resume():
     image.save(img_io, 'JPEG')
     img_io.seek(0)
 
-    return send_file(img_io, mimetype='image/jpeg')
+    return send_file(img_io, mimetype='image/jpeg', as_attachment=True, download_name='resume_image.jpg')
 
