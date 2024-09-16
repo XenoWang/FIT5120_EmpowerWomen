@@ -17,58 +17,56 @@ else:
 def resume_page():
     return render_template("ResumeRefinement.html")
 base_dir = os.getcwd()
-print(base_dir)
+#print(base_dir)
 # Define a dictionary to store template-specific information
 template_configs = {
     'Grey Modern Company Resume.jpg': {
-        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\GreyModernCompanyResume.jpg',
+        'image_path': os.path.join(os.getcwd(), 'EmpowerWomen', 'static', 'Image', 'GreyModernCompanyResume.jpg'),
         'text_position': (80, 750),
         'skill_position': (80, 1350),
         'hobby_position': (80, 1730),
         'font_path': font_path,
-        'font_size': 25,
+        'font_size': 23,
         'text_color': 'white',
         'max_width': 500,
         'skill_spacing': 50,
         'hobby_spacing': 50,
         'education_position': (750, 680),
         'edu_color': 'black'
-
     },
     'Pink White Clean Teacher Resume.jpg': {
-        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\PinkWhiteCleanTeacherResume.jpg',
+        'image_path': os.path.join(os.getcwd(), 'EmpowerWomen', 'static', 'Image', 'PinkWhiteCleanTeacherResume.jpg'),
         'text_position': (620, 680),
         'skill_position': (90, 1700),
         'hobby_position': (90, 1050),
         'font_path': font_path,
-        'font_size': 30,
+        'font_size': 25,
         'text_color': 'black',
         'max_width': 600,
         'skill_spacing': 50,
         'hobby_spacing': 50,
         'education_position': (85, 1400),
         'edu_color': 'black'
-
     },
     'Pink Professional Business Administration Resume.jpg': {
-        'image_path': f'{os.getcwd()}\\EmpowerWomen\\static\\Image\\PinkProfessionalBusinessAdministrationResume.jpg',
+        'image_path': os.path.join(os.getcwd(), 'EmpowerWomen', 'static', 'Image', 'PinkProfessionalBusinessAdministrationResume.jpg'),
         'text_position': (200, 800),
         'skill_position': (800, 1700),
         'hobby_position': (200, 1470),
         'font_path': font_path,
-        'font_size': 22,
+        'font_size': 21,
         'text_color': 'black',
         'max_width': 450,
         'skill_spacing': 50,
         'hobby_spacing': 35,
         'education_position': (190, 1700),
         'edu_color': 'black'
-
     }
     # Add more templates here
 }
+
 def load_descriptions_from_file(file_path):
-    file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
+    file_path = os.path.join(os.getcwd(), 'EmpowerWomen', 'documents', file_path)
     descriptions_dict = {}
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:

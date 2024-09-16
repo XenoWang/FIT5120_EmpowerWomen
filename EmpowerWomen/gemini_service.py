@@ -127,7 +127,7 @@ def prepare_prompt_for_gemini(quiz_data, user_answers):
 
 
 def get_scoring_standards():
-    file_path = f'{os.getcwd()}\\EmpowerWomen\\score_standard.json'
+    file_path = os.path.join(os.getcwd(), 'EmpowerWomen', 'score_standard.json')
     with open(file_path, 'r') as f:
         scoring_data = json.load(f)
     return scoring_data
