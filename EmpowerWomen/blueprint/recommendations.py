@@ -99,4 +99,4 @@ def view_recommendations():
     #print(industry_recommendations)
 
     # Render the recommendations page
-    return render_template('recommendations.html', industry_recommendations=industry_recommendations)
+    return render_template('Recommendations.html', industry_recommendations=industry_recommendations)

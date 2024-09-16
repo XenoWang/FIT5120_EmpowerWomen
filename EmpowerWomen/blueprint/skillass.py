@@ -26,6 +26,6 @@ skillass=Blueprint('skillass',__name__)
 
 @skillass.route('/skillassessment')
 def skillass_page():
-    return render_template("SkillAssessmentPage.html")
+    return render_template("SkillAssessmen.html")
 
 

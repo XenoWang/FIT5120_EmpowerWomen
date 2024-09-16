@@ -26,6 +26,6 @@ loading=Blueprint('loading',__name__)
 
 @loading.route('/loading')
 def loading_page():
-    return render_template("loadingPage.html")
+    return render_template("Loading.html")
 
 

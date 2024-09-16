@@ -22,5 +22,5 @@ skills=Blueprint('skills',__name__)
 
 @skills.route('/skills')
 def skills_page():
-    return render_template("SkillsPage.html")
+    return render_template("Skills.html")
 

@@ -24,5 +24,5 @@ skillmatching=Blueprint('skillmatching',__name__)
 
 @skillmatching.route('/skillmatching')
 def skillmatching_page():
-    return render_template("SkillMatchingPage.html")
+    return render_template("SkillMatching.html")
 

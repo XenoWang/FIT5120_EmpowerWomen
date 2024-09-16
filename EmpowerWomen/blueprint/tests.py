@@ -25,7 +25,7 @@ tests=Blueprint('tests',__name__)
 
 @tests.route('/tests')
 def tests_page():
-    return render_template("TestsPage.html")
+    return render_template("Tests.html")
 
 
 @tests.route('/api/anzsco1', methods=['GET'])

@@ -22,4 +22,4 @@ trends=Blueprint('trends',__name__)
 
 @trends.route('/trends')
 def trends_page():
-    return render_template('TrendsPage.html')
+    return render_template('Trends.html')

@@ -22,4 +22,4 @@ terms=Blueprint('terms',__name__)
 
 @terms.route('/terms')
 def terms_page():
-    return render_template("TermsPage.html")
+    return render_template("Terms.html")
