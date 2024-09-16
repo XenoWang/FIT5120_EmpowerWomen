@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}SkillAssessmentPage - EmpowerWomen{% endblock %}
+{% block title %}Quiz Result - EmpowerWomen{% endblock %}
 
 {% block content %}
 
@@ -28,8 +28,8 @@
             <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
                 <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
                     <div class="card-body">
-                        <h5 class="card-title">Industry & Occupation Recommendations</h5>
-                        <p class="card-text">Click to view your recommended industries and occupations.</p>
+                        <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Industry & Occupation Recommendations</h5>
+                        <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to view your recommended industries and occupations.</p>
                     </div>
                 </div>
             </form>
@@ -40,8 +40,8 @@
             <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
                 <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
                     <div class="card-body">
-                        <h5 class="card-title">Compare Career Skills</h5>
-                        <p class="card-text">Click to compare skills needed for your career.</p>
+                        <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Compare Career Skills</h5>
+                        <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to compare skills needed for your career.</p>
                     </div>
                 </div>
             </form>

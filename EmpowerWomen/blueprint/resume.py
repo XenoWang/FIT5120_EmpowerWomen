@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 resume = Blueprint('resume', __name__)
 @resume.route('/ResumeGenerator')
 def resume_page():
-    return render_template("Resume.html")
+    return render_template("ResumeRefinement.html")
 base_dir = os.getcwd()
 print(base_dir)
 # Define a dictionary to store template-specific information
