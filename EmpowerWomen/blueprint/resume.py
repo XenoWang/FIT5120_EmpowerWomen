@@ -4,8 +4,15 @@ import base64
 import os
 from random import choice
 from PIL import Image, ImageDraw, ImageFont
+import platform
 
 resume = Blueprint('resume', __name__)
+
+if platform.system() == 'Windows':
+    font_path = 'arial.ttf'
+else:
+    font_path = 'DejaVuSans.ttf'
+
 @resume.route('/ResumeGenerator')
 def resume_page():
     return render_template("ResumeRefinement.html")
@@ -18,7 +25,7 @@ template_configs = {
         'text_position': (80, 750),
         'skill_position': (80, 1350),
         'hobby_position': (80, 1730),
-        'font_path': 'arial.ttf',
+        'font_path': font_path,
         'font_size': 25,
         'text_color': 'white',
         'max_width': 500,
@@ -33,7 +40,7 @@ template_configs = {
         'text_position': (620, 680),
         'skill_position': (90, 1700),
         'hobby_position': (90, 1050),
-        'font_path': 'arial.ttf',
+        'font_path': font_path,
         'font_size': 30,
         'text_color': 'black',
         'max_width': 600,
@@ -48,7 +55,7 @@ template_configs = {
         'text_position': (200, 800),
         'skill_position': (800, 1700),
         'hobby_position': (200, 1470),
-        'font_path': 'arial.ttf',
+        'font_path': font_path,
         'font_size': 22,
         'text_color': 'black',
         'max_width': 450,
@@ -85,7 +92,10 @@ diploma_dict = load_descriptions_from_file('diplomas.txt')
 
 def load_templates_from_file(file_path):
     templates = []
-    file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
+    if platform.system() == 'Windows':
+        file_path = f'{os.getcwd()}\\EmpowerWomen\\documents\\{file_path}'
+    else:
+        file_path = f'{os.getcwd()}/EmpowerWomen/documents/{file_path}'
     with open(file_path, 'r', encoding='utf-8') as file:
         templates = file.read().split('---')
     return [template.strip() for template in templates]
