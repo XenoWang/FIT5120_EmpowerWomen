@@ -22,6 +22,7 @@ from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
 import google.generativeai as genai
+import os
 # Load Flask App
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ app.config['SESSION_FILE_THRESHOLD'] = 5
 # Initialize session management
 Session(app)
 # Configure Gemini API key
-genai.configure(api_key='AIzaSyAjlxhkIHcK1BcDhyFied9EDMz9iuaKrFY')
+genai.configure(api_key=os.getenv('HarmonyAPIKey'))
 
 db.init_app(app)
 migrate = Migrate(app,db)
