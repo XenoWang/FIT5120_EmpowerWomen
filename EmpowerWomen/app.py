@@ -38,7 +38,7 @@ app.config['SESSION_FILE_THRESHOLD'] = 5
 # Initialize session management
 Session(app)
 # Configure Gemini API key
-genai.configure(api_key='AIzaSyAjlxhkIHcK1BcDhyFied9EDMz9iuaKrFY')
+genai.configure(api_key='HarmonyAPIKey')
 
 db.init_app(app)
 migrate = Migrate(app,db)

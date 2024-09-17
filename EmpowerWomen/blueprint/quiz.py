@@ -51,8 +51,8 @@ def submit_quiz():
     try:
         results = grade_quiz(quiz_data, user_answers)
         session['quiz_results']= results
-    except Exception as e:
-        return f"Error grading quiz: {e}"
+    except Exception:
+        return f"Error grading quiz"
 
     # Render the results page
     return render_template('QuizResult.html', results=results)
