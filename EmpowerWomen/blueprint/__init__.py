@@ -30,9 +30,10 @@ from .quiz import quiz
 from .recommendations import recommendations
 from .skillgap import skillgap
 from .loading import loading
+from .errorpage import errorpage
 # Initializing Variables
 imports = [skills, trends, home, tests, privacy, terms, resume, skillass,
-           skillmatching, quiz, recommendations,skillgap,loading]
+           skillmatching, quiz, recommendations,skillgap,loading,errorpage]
 
 def register_blueprints(app):
     # Register all Blueprints

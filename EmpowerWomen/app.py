@@ -17,7 +17,7 @@ from flask_session import Session
 
 from EmpowerWomen.plugins import db
 from EmpowerWomen.blueprint import (home, skills, trends, tests, privacy,terms,resume,skillass,skillmatching,quiz,
-                                    recommendations,skillgap,loading)
+                                    recommendations,skillgap,loading,errorpage)
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
@@ -60,6 +60,7 @@ app.register_blueprint(skillgap)
 app.register_blueprint(recommendations)
 app.register_blueprint(quiz)
 app.register_blueprint(loading)
+app.register_blueprint(errorpage)
 # Declare variables
 valid_tables = ['ANZSCO1', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']
 
@@ -94,4 +95,4 @@ def test_db_connection():
 # Main Function
 if __name__ == '__main__':
     test_db_connection()
-    app.run(host='0.0.0.0') # Do not set Debug to True in Production
+    app.run(host='0.0.0.0',port=5001) # Do not set Debug to True in Production
