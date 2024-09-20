@@ -285,7 +285,7 @@ button:hover:not(:disabled) {
     text-align: right;
     font-style: italic;
     font-size: 15px;
-    color: #5a5a5a=;
+    color: #5a5a5a;
 }
 
 .bar-container:hover .bar-fill {
@@ -507,6 +507,11 @@ p1 {
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%2869,152,247, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
+.nav-link.active {
+    font-weight: bold; /* Optional: make the active link bold */
+}
+
 
 /* Top container layout */
 .container_background, .container_background_1, .container_background_2{
