@@ -1,10 +1,137 @@
 {% extends 'base.html' %}
 
-{% block title %}Homepage - EmpowerWomen{% endblock %}
+{% block title %}Career Pathway - EmpowerWomen{% endblock %}
 
 {% block content %}
 
-<div class="container">
+<div class="container-career">
+    <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
+        <div class="col">
+            <img src="#">
+        </div>
+        <div class="col">
+            <div class="heading">
+                Career Pathways
+            </div>
+            <br>
+            <div class="paragraphs">
+                Realise your career ambitions with Equalwomen
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
+        <div class="col">
+            <div class="heading">
+                About Career pathways
+            </div>
+            <br>
+            <div class="paragraphs">
+                Below is a selection of common career pathways to explore
+                <br>
+                Realise your career ambitions with Equalwomen
+            </div>
+        </div>
+
+        <div class="col">
+            <img src="#">
+        </div>
+    </div>
 </div>
 
+<div class="category-container">
+    <div class="category" onclick="toggleExpansion('art')">
+        <img src="path_to_art_image.jpg" alt="Art">
+        <div>
+            <h2>Art</h2>
+            <p>Find out what career pathways are related to the Art</p>
+        </div>
+        <button class="expand-button">+</button>
+    </div>
+    <div class="expansion-panel" id="art">
+        asdasdasdasdasdasdasda
+    </div>
+</div>
+
+<div class="category-container">
+    <div class="category" onclick="toggleExpansion('it')">
+        <img src="path_to_it_image.jpg" alt="IT">
+        <div>
+            <h2>IT</h2>
+            <p>Find out what career pathways are related to the IT</p>
+        </div>
+        <button class="expand-button">+</button>
+    </div>
+    <div class="expansion-panel" id="it">
+        <!-- Content that expands goes here -->
+    </div>
+</div>
+
+<div class="category-container" style="margin-bottom: 20vh">
+    <div class="category" onclick="toggleExpansion('sale')">
+        <img src="path_to_sale_image.jpg" alt="Sale">
+        <div>
+            <h2>Sale</h2>
+            <p>Find out what career pathways are related to the IT</p>
+        </div>
+        <button class="expand-button">+</button>
+    </div>
+    <div class="expansion-panel" id="sale">
+        <!-- Content that expands goes here -->
+    </div>
+</div>
+
+<style>
+    .category-container {
+        margin: 20px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .category {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .category img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .expand-button {
+        margin-left: auto;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .expansion-panel {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+    }
+
+    .category h2, .category p {
+        margin-left: 10px;
+    }
+
+    /* Security consideration: avoid any external hosted CSS or untrusted CSS */
+</style>
+
+<script>
+    function toggleExpansion(id) {
+        const panel = document.getElementById(id);
+        if (panel.style.height) {
+            panel.style.height = null;
+        } else {
+            panel.style.height = panel.scrollHeight + 'px';
+        }
+    }
+
+</script>
 {% endblock %}
