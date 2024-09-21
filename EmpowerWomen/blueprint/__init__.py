@@ -23,7 +23,7 @@ from .home import home
 from .tests import tests
 from .privacy import privacy
 from .terms import terms
-from .resume import resume
+from .elevator import elevator
 from .skillmatching import skillmatching
 from .skillass import skillass
 from .quiz import quiz
@@ -34,7 +34,7 @@ from .errorpage import errorpage
 from .careerpathway import careerpathway
 from .companydata import companydata
 # Initializing Variables
-imports = [skills, trends, home, tests, privacy, terms, resume, skillass,
+imports = [skills, trends, home, tests, privacy, terms, elevator, skillass,
            skillmatching, quiz, recommendations,skillgap,loading,errorpage,careerpathway,companydata]
 
 def register_blueprints(app):
