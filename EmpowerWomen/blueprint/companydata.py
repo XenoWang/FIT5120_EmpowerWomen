@@ -22,10 +22,9 @@ import base64
 import json
 
 
-skillass=Blueprint('skillass',__name__)
+companydata=Blueprint('companydata',__name__)
 
-@skillass.route('/skillassessment')
-def skillass_page():
-    return render_template("SkillAssessment.html")
-
+@companydata.route('/companydata')
+def company_page():
+    return render_template("CompanyData.html")
 
