@@ -14,3 +14,12 @@ document.getElementById("backToTop").addEventListener("click", function(event) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+document.getElementById('search-button').addEventListener('click', function() {
+    const query = document.getElementById('search-input').value;
+
+    if (query.trim() !== '') {
+        document.getElementById('search-results').innerHTML = `You searched for: "${query}"`;
+    } else {
+        document.getElementById('search-results').innerHTML = 'Please enter a search term.';
+    }
+});

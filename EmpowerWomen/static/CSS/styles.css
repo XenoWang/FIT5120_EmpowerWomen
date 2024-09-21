@@ -511,7 +511,40 @@ p1 {
 .nav-link.active {
     font-weight: bold; /* Optional: make the active link bold */
 }
+/*company data css*/
+.search-container {
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
+#search-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #6998f7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    background-color: #6998f7;
+}
+
+#search-results {
+    margin-top: 20px;
+    font-size: 18px;
+}
 
 /* Top container layout */
 .container_background, .container_background_1, .container_background_2{
