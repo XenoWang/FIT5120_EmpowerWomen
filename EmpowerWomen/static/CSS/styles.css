@@ -515,45 +515,50 @@ p1 {
 
 /*company data css*/
 .search-container {
-    margin: 50px;
+    margin: 50px auto; /* Center the container horizontally */
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: flex; /* Ensures the input and button stay in a single line */
+    width: 100%; /* Full width */
+    max-width: 600px; /* Set a max width for the container */
 }
 
 #search-input {
-    width: 300px; /* You can adjust this width to match the desired size */
-    padding: 10px 20px; /* Increased padding for a smoother, rounded look */
+    flex-grow: 1; /* Makes the input take up available space */
+    padding: 10px 20px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 50px; /* Rounded edges for the input */
+    border-radius: 50px 0 0 50px; /* Rounded edges with left side fully rounded */
     outline: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for a more modern feel */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for modern look */
 }
 
 #search-button {
     padding: 10px 20px;
-    background-color: #6998f7;
+    background-color: cornflowerblue;
     color: white;
     border: none;
-    border-radius: 50px; /* Rounded edges for the button */
+    border-radius: 0 50px 50px 0; /* Right side rounded to match the input */
     cursor: pointer;
-    margin-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
 #search-button:hover {
     background-color: #5786e7; /* Slightly darker blue on hover */
 }
 
-/* Optional for styling search icon within button */
 #search-button i {
     font-size: 18px;
 }
 
+/* Ensure the input and button fit well in the same line */
+.search-container form {
+    display: flex; /* Makes the input and button inline */
+    width: 100%;
+}
 .companydata-title {
     font-size: 3vw;
     padding-top: 15vh; /* Adjusts top padding */
