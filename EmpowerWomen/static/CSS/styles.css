@@ -19,7 +19,6 @@ body {
 }
 
 
-
 /*for resume refinement*/
 .image-box {
     width: 50%;
@@ -31,6 +30,7 @@ body {
     max-width: 100%;
     border-radius: 10px;
 }
+
 /*learn button*/
 .btn {
     font-size: 20px; /* 增大字体 */
@@ -45,6 +45,7 @@ h2 {
 h3 {
     font-size: 2vw;
 }
+
 /*recommend page*/
 .recommend_button_container {
     display: flex;
@@ -121,7 +122,7 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-    background-color:cornflowerblue;
+    background-color: cornflowerblue;
 }
 
 .progress-container {
@@ -317,8 +318,8 @@ button:hover:not(:disabled) {
 /*resume refinement page button*/
 .custom-pink-button {
     background: linear-gradient(45deg, #ff66b2, #ff99cc); /* 从粉色到浅粉色的渐变 */
-    border: none;  /* 移除边框 */
-    color: white;  /* 文字颜色为白色 */
+    border: none; /* 移除边框 */
+    color: white; /* 文字颜色为白色 */
     padding: 10px 20px; /* 按钮内边距 */
     border-radius: 5px; /* 圆角按钮 */
     font-size: 16px; /* 字体大小 */
@@ -511,6 +512,7 @@ p1 {
 .nav-link.active {
     font-weight: bold; /* Optional: make the active link bold */
 }
+
 /*company data css*/
 .search-container {
     margin: 50px;
@@ -520,11 +522,13 @@ p1 {
 }
 
 #search-input {
-    width: 300px;
-    padding: 10px;
+    width: 300px; /* You can adjust this width to match the desired size */
+    padding: 10px 20px; /* Increased padding for a smoother, rounded look */
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 50px; /* Rounded edges for the input */
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for a more modern feel */
 }
 
 #search-button {
@@ -532,22 +536,42 @@ p1 {
     background-color: #6998f7;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px; /* Rounded edges for the button */
     cursor: pointer;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for modern look */
 }
 
 #search-button:hover {
-    background-color: #6998f7;
+    background-color: #5786e7; /* Slightly darker blue on hover */
 }
 
-#search-results {
-    margin-top: 20px;
+/* Optional for styling search icon within button */
+#search-button i {
     font-size: 18px;
 }
 
+.companydata-title {
+    font-size: 3vw;
+    padding-top: 15vh; /* Adjusts top padding */
+    padding-bottom: 15px;
+    padding-left: 10vw; /* Left padding */
+    padding-right: 10vw; /* Right padding */
+    color: black; /* Sets the text color to black */
+    text-align: center; /* Centers the text */
+    font-family: 'noto-sans-gujarati', sans-serif;
+}
+
+
+.companydata-subtext {
+    font-size: 16px;
+}
+
 /* Top container layout */
-.container_background, .container_background_1, .container_background_2{
+.container_background, .container_background_1, .container_background_2 {
     width: 100vw;
     padding: 180px 20px;
     text-align: left;
@@ -559,7 +583,7 @@ p1 {
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
-.container_background_3, .container_background_4{
+.container_background_3, .container_background_4 {
     width: 100vw;
     background-size: cover;
     background-position: center top;
@@ -580,18 +604,32 @@ p1 {
     height: 75vh;
     background-image: url("/static/Image/TrendsPage.jpg");
 }
+
 .container_background_3 {
     height: 30vh;
     background-image: url("/static/Image/skillass1_crop.jpg");
 }
+
 .container_background_4 {
     height: 30vh;
     background-image: url("/static/Image/matching1_crop.jpg");
 }
+
 .container_background_5 {
     height: 25vh;
     background-image: url("/static/Image/resumepg1.jpg");
 }
+
+.container_background_6 {
+    width: 100vw;
+    height: 80vh;
+    background-size: cover;
+    background-position: center top;
+    margin-left: calc(-50vw + 50%);
+    overflow: visible;
+    background-image: url("/static/Image/company_page.jpg");
+}
+
 .home-title {
     font-size: 45px;
     font-weight: 650;
@@ -713,6 +751,7 @@ p1 {
     font-size: 24px;
     color: #333;
 }
+
 /*resume button*/
 
 /* Back to Top Button */
@@ -881,16 +920,20 @@ p1 {
     .barriers-container {
         grid-template-columns: 1fr;
     }
+
     .quiz-container {
         padding: 15px;
     }
+
     h4 {
         font-size: 2em;
     }
+
     h6 {
         font-size: 1.4em;
     }
-     .submit-btn {
+
+    .submit-btn {
         font-size: 1em;
         padding: 12px;
     }
