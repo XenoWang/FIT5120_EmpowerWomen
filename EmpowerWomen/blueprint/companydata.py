@@ -16,15 +16,26 @@ Python Script for rendering the Skill Assessment Page
 """
 
 # Imports
-from flask import Blueprint,render_template
+from flask import Blueprint,render_template,request
 import io
 import base64
 import json
 
 
 companydata=Blueprint('companydata',__name__)
+searchdata = Blueprint('searchdata', __name__)
 
 @companydata.route('/companydata')
 def company_page():
     return render_template("CompanyData.html")
 
+
+@searchdata.route('/searchdata', methods=['POST'])
+def search():
+    search_query = request.form.get('search_query')
+
+    # Log the search input in the console
+    print(f"Search Query: {search_query}")
+
+    # Return response for the front-end (you can adjust it as needed)
+    return f'Search input received: {search_query}', 200

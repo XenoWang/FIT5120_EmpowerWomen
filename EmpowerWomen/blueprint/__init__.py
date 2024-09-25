@@ -32,10 +32,11 @@ from .skillgap import skillgap
 from .loading import loading
 from .errorpage import errorpage
 from .careerpathway import careerpathway
-from .companydata import companydata
+from .companydata import companydata, searchdata
+
 # Initializing Variables
 imports = [skills, trends, home, tests, privacy, terms, elevator, skillass,
-           skillmatching, quiz, recommendations,skillgap,loading,errorpage,careerpathway,companydata]
+           skillmatching, quiz, recommendations,skillgap,loading,errorpage,careerpathway,companydata,searchdata]
 
 def register_blueprints(app):
     # Register all Blueprints

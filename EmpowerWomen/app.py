@@ -17,7 +17,7 @@ from flask_session import Session
 
 from EmpowerWomen.plugins import db
 from EmpowerWomen.blueprint import (home, skills, trends, tests, privacy,terms,elevator,skillass,skillmatching,quiz,
-                                    recommendations,skillgap,loading,errorpage,careerpathway,companydata)
+                                    recommendations,skillgap,loading,errorpage,careerpathway,companydata,searchdata)
 from EmpowerWomen.config import Config
 from sqlalchemy import text
 from flask_migrate import Migrate
@@ -62,6 +62,7 @@ app.register_blueprint(recommendations)
 app.register_blueprint(quiz)
 app.register_blueprint(loading)
 app.register_blueprint(errorpage)
+app.register_blueprint(searchdata)
 
 # Declare variables
 valid_tables = ['ANZSCO1', 'ANZSCO4', 'SPECIALIST', 'CORE_COMPETENCY', 'OCCUPATION_CORE_COMPETENCY']
