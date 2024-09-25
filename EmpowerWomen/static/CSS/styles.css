@@ -586,7 +586,51 @@ p1 {
     margin-top: 5px;
     margin-left: 5%;
 }
+/*career pathway*/
+.container-career {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.col-text {
+    display: block; /* Ensure text elements are block elements */
+    text-align: left; /* Align text to the left if needed */
+    white-space: normal; /* Allow text to wrap as expected */
+}
+
+.career-image {
+    max-width: 100%; /* Ensures image won't overflow its container */
+    height: auto; /* Keeps the image's aspect ratio */
+    object-fit: contain; /* Ensures image fits within its container */
+}
+.heading {
+    font-size: 48px; /* Larger heading size */
+    color: #d9534f; /* Red color */
+    font-weight: bold;
+    margin-bottom: 15px; /* Adds space below the heading */
+}
+
+.paragraphs {
+    font-size: 31px; /* Increased font size for better readability */
+    color: #333;
+    line-height: 1.8; /* Increased line height for better readability */
+    margin-top: 15px;
+    margin-bottom: 25px; /* Adds space below the paragraph */
+}
 /* Top container layout */
 .container_background, .container_background_1, .container_background_2 {
     width: 100vw;
