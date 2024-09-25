@@ -84,7 +84,7 @@ class Company(db.Model):
     ANZSIC = db.Column(db.String(4))
     DIVISION_NAME = db.Column(db.String(255))
 
-    # 关系定义
+
     employees = db.relationship('Employee', backref='company', lazy=True)
     questionnaires = db.relationship('CompanyQuestionnaire', backref='company', lazy=True)
 
@@ -96,7 +96,7 @@ class Questionnaire(db.Model):
     UPPER_QUESTION_TEXT = db.Column(db.Text)
     RESPONSE_TYPE = db.Column(db.String(50))
 
-    # 关系定义
+
     company_questionnaires = db.relationship('CompanyQuestionnaire', backref='questionnaire', lazy=True)
 
 class CompanyQuestionnaire(db.Model):
