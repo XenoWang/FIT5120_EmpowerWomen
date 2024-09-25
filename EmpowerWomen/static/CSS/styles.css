@@ -575,6 +575,14 @@ p1 {
     font-size: 16px;
 }
 
+.companydata-container{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .explore-title {
     font-size: 3vw;
     margin-top: 20px;
