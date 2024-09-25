@@ -269,11 +269,11 @@
         {% endfor %}
     </ul>
     <div class="container-center">
-        <a href="/companydata" class="btn btn-primary mt-3 custom-button">Discover Company 🏢</a>
+        <!-- Link to a new route to store the section name in the session -->
+        <a href="{{ url_for('recommendations.set_section', section_name=section_name) }}" class="btn btn-primary mt-3 custom-button">Discover Company 🏢</a>
     </div>
 </div>
 {% endfor %}
-
 
 <div class="container-center">
     <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>

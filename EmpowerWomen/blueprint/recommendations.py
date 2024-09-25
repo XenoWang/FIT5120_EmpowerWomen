@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, redirect, url_for
 from EmpowerWomen.plugins import db
 from EmpowerWomen.model import OccupationCoreCompetency, ANZSCO4, ANZSCO1
 recommendations = Blueprint('recommendations', __name__)
@@ -100,3 +100,11 @@ def view_recommendations():
 
     # Render the recommendations page
     return render_template('Recommendations.html', industry_recommendations=industry_recommendations)
+
+@recommendations.route('/set_section/<section_name>')
+def set_section(section_name):
+    # Store the section name in the session
+    session['selected_section'] = section_name
+
+    # Redirect to company data page
+    return redirect(url_for('companydata.company_page'))

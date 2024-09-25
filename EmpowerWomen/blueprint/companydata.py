@@ -16,7 +16,7 @@ Python Script for rendering the Skill Assessment Page
 """
 
 # Imports
-from flask import Blueprint,render_template,request
+from flask import Blueprint,render_template,request,session
 import io
 import base64
 import json
@@ -27,8 +27,12 @@ searchdata = Blueprint('searchdata', __name__)
 
 @companydata.route('/companydata')
 def company_page():
-    return render_template("CompanyData.html")
-
+    # Get the section name from the session
+    section_name = session.get('selected_section', 'No section selected')
+    # Print the section name to the console
+    print(f"Selected section: {section_name}")
+    # Render the CompanyData.html template with the section name
+    return render_template("CompanyData.html", section_name=section_name)
 
 @searchdata.route('/searchdata', methods=['POST'])
 def search():
