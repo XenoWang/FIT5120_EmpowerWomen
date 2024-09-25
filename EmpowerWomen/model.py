@@ -74,3 +74,44 @@ class OccupationCoreCompetency(db.Model):
         backref=db.backref('occupation_core_competencies', lazy=True),
         foreign_keys=[CORE_COMPETENCY]  # Specify explicit foreign key columns
     )
+
+class Company(db.Model):
+    __tablename__ = 'COMPANY'
+
+    ABN = db.Column(db.String(11), primary_key=True)
+    COMPANY_NAME = db.Column(db.String(255), nullable=False)
+    GROUP_SIZE = db.Column(db.String(50))
+    ANZSIC = db.Column(db.String(4))
+    DIVISION_NAME = db.Column(db.String(255))
+
+
+    employees = db.relationship('Employee', backref='company', lazy=True)
+    questionnaires = db.relationship('CompanyQuestionnaire', backref='company', lazy=True)
+
+class Questionnaire(db.Model):
+    __tablename__ = 'QUESTIONNAIRE'
+
+    QUESTION_INDEX = db.Column(db.String(50), primary_key=True)
+    QUESTION_TEXT = db.Column(db.String(255), primary_key=True)
+    UPPER_QUESTION_TEXT = db.Column(db.Text)
+    RESPONSE_TYPE = db.Column(db.String(50))
+
+
+    company_questionnaires = db.relationship('CompanyQuestionnaire', backref='questionnaire', lazy=True)
+
+class CompanyQuestionnaire(db.Model):
+    __tablename__ = 'COMPANY_QUESTIONNAIRE'
+
+    ABN = db.Column(db.String(11), db.ForeignKey('COMPANY.ABN'), primary_key=True)
+    QUESTION_INDEX = db.Column(db.String(50), db.ForeignKey('QUESTIONNAIRE.QUESTION_INDEX'), primary_key=True)
+    QUESTION_TEXT = db.Column(db.String(255), db.ForeignKey('QUESTIONNAIRE.QUESTION_TEXT'), primary_key=True)
+    RESPONSE = db.Column(db.String(10))
+
+class Employee(db.Model):
+    __tablename__ = 'EMPLOYEE'
+
+    ABN = db.Column(db.String(11), db.ForeignKey('COMPANY.ABN'), primary_key=True)
+    OCCUPATION = db.Column(db.String(40), primary_key=True)
+    GENDER = db.Column(db.String(6), primary_key=True)
+    EMPLOYMENT_STATUS = db.Column(db.String(15), primary_key=True)
+    EMPLOYEE_NUMBER = db.Column(db.Integer)
