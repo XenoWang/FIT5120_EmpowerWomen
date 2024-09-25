@@ -16,7 +16,7 @@ Python Script for rendering the Skill Assessment Page
 """
 
 # Imports
-from flask import Blueprint,render_template
+from flask import Blueprint,render_template,session
 import io
 import base64
 import json
@@ -26,6 +26,9 @@ careerpathway=Blueprint('careerpathway',__name__)
 
 @careerpathway.route('/careerpathway')
 def career_page():
-    return render_template("CareerPathway.html")
+    # Retrieve the occupation and section from the session
+    occupation = session.get('selected_occupation', 'No Occupation Selected')
+    section_name = session.get('selected_section', 'No Section Selected')
 
-
+    # Render the CareerPathway.html template, passing the occupation and section
+    return render_template("CareerPathway.html", occupation=occupation, section_name=section_name)

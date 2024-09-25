@@ -235,74 +235,95 @@
                 opacity: 0;
             }
         }
-    </style>
 
+        /* Style for the links */
+        .occupation-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .occupation-link:hover {
+            color: lightgray;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Industry and Occupation Recommendations </h1>
+    <h1>Industry and Occupation Recommendations</h1>
 
-<h2>
-    <span class="emoji">👮‍♀️ 👩‍🍳 👩‍🔧 👩‍🏭 👩‍💼 👩‍🔬 👩‍💻 👩‍🎤 👩‍🎨 👩‍✈️ 👩‍🚀 👩‍🚒 👷‍♀️</span>
-</h2>
-<div class="card-container">
-    {% for section_name in industry_recommendations.top_sections %}
-    <!-- Dynamic Card -->
-    <div class="card" onclick="showPopup('{{ section_name }}')">
-        <div class="star">⭐</div>
-        {{ section_name }}
+    <h2>
+        <span class="emoji">👮‍♀️ 👩‍🍳 👩‍🔧 👩‍🏭 👩‍💼 👩‍🔬 👩‍💻 👩‍🎤 👩‍🎨 👩‍✈️ 👩‍🚀 👩‍🚒 👷‍♀️</span>
+    </h2>
+
+    <div class="card-container">
+        {% for section_name in industry_recommendations.top_sections %}
+        <!-- Dynamic Card -->
+        <div class="card" onclick="showPopup('{{ section_name }}')">
+            <div class="star">⭐</div>
+            {{ section_name }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Pop-up Modals for each section -->
+    {% for section_name, occupations in industry_recommendations.section_occupations.items() %}
+    <div id="popup_{{ section_name }}" class="popup">
+        <button class="close-btn" onclick="closePopup()">X</button>
+        <h2>Top 5 Occupations in {{ section_name }}😉</h2>
+        <ul>
+            {% for occupation in occupations %}
+            <!-- Make each occupation a clickable link -->
+            <li>
+                <a href="{{ url_for('recommendations.set_occupation', section_name=section_name, occupation=occupation) }}"
+                   class="occupation-link"
+                   title="Click to explore career pathways for {{ occupation }}">
+                    {{ occupation }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="container-center">
+            <!-- Link to a new route to store the section name in the session -->
+            <a href="{{ url_for('recommendations.set_section', section_name=section_name) }}" class="btn btn-primary mt-3 custom-button">Discover Company 🏢</a>
+        </div>
     </div>
     {% endfor %}
-</div>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay"></div>
-
-<!-- Pop-up Modals for each section -->
-{% for section_name, occupations in industry_recommendations.section_occupations.items() %}
-<div id="popup_{{ section_name }}" class="popup">
-    <button class="close-btn" onclick="closePopup()">X</button>
-    <h2>Top 5 Occupations in {{ section_name }}😉</h2>
-    <ul>
-        {% for occupation in occupations %}
-        <li>{{ occupation }}</li>
-        {% endfor %}
-    </ul>
     <div class="container-center">
-        <!-- Link to a new route to store the section name in the session -->
-        <a href="{{ url_for('recommendations.set_section', section_name=section_name) }}" class="btn btn-primary mt-3 custom-button">Discover Company 🏢</a>
+        <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>
     </div>
-</div>
-{% endfor %}
 
-<div class="container-center">
-    <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>
-</div>
-<script>
-    function showPopup(sectionId) {
-        // Hide any open popups
-        const popups = document.querySelectorAll('.popup');
-        popups.forEach(popup => popup.classList.remove('active'));
+    <script>
+        function showPopup(sectionId) {
+            // Hide any open popups
+            const popups = document.querySelectorAll('.popup');
+            popups.forEach(popup => popup.classList.remove('active'));
 
-        // Show the selected popup
-        const popup = document.getElementById('popup_' + sectionId);
-        popup.classList.add('active');
+            // Show the selected popup
+            const popup = document.getElementById('popup_' + sectionId);
+            popup.classList.add('active');
 
-        // Show the overlay
-        const overlay = document.getElementById('overlay');
-        overlay.classList.add('active');
-    }
+            // Show the overlay
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('active');
+        }
 
-    function closePopup() {
-        // Close the open popup
-        const popups = document.querySelectorAll('.popup');
-        popups.forEach(popup => popup.classList.remove('active'));
+        function closePopup() {
+            // Close the open popup
+            const popups = document.querySelectorAll('.popup');
+            popups.forEach(popup => popup.classList.remove('active'));
 
-        // Hide the overlay
-        const overlay = document.getElementById('overlay');
-        overlay.classList.remove('active');
-    }
-</script>
+            // Hide the overlay
+            const overlay = document.getElementById('overlay');
+            overlay.classList.remove('active');
+        }
+    </script>
 
 </body>
 </html>

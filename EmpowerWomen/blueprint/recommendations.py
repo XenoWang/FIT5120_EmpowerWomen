@@ -108,3 +108,12 @@ def set_section(section_name):
 
     # Redirect to company data page
     return redirect(url_for('companydata.company_page'))
+
+@recommendations.route('/set_occupation/<section_name>/<occupation>')
+def set_occupation(section_name, occupation):
+    # Store the section and occupation in the session
+    session['selected_section'] = section_name
+    session['selected_occupation'] = occupation
+
+    # Redirect to the Career Pathway page
+    return redirect(url_for('careerpathway.career_page'))
