@@ -575,6 +575,18 @@ p1 {
     font-size: 16px;
 }
 
+.explore-title {
+    font-size: 3vw;
+    margin-top: 20px;
+    margin-left: 5%;
+}
+
+.explore-subtitle {
+    font-size: 1.5vw;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
 /* Top container layout */
 .container_background, .container_background_1, .container_background_2 {
     width: 100vw;

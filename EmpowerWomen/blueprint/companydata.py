@@ -34,8 +34,9 @@ def company_page():
 def search():
     search_query = request.form.get('search_query')
 
-    # Log the search input in the console
+    # Log the search input in the console for debugging (optional)
     print(f"Search Query: {search_query}")
 
-    # Return response for the front-end (you can adjust it as needed)
-    return f'Search input received: {search_query}', 200
+    # Return only the user input (no additional text)
+    return search_query, 200
+

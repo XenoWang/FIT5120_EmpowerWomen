@@ -4,48 +4,59 @@
 
 {% block content %}
 
-
 <div class="container_background_6">
     <div class="companydata-title">Help you find the company that best<br> matches your career goals</div>
 
+    <!-- Search bar container -->
     <div class="search-container">
         <form id="search-form">
+            <!-- Input field for search query -->
             <input type="text" id="search-input" name="search_query" placeholder="Search...">
+            <!-- Button to trigger the search -->
             <button type="submit" id="search-button">Search</button>
         </form>
     </div>
-
-
-    <div id="search-results"></div>
-
     <script src="script.js"></script>
 </div>
+
+
+<!-- Explore Companies Title and Subtitle (Outside the container background) -->
+<div class="explore-title">
+    Explore Companies: <span id="user-input"></span> <!-- Placeholder for user input -->
+</div>
+<div class="explore-subtitle">
+    Use our powerful search tool to explore company metrics, family-friendly policies, and long-term growth opportunities.
+</div>
+
+<!-- Div to display the search results -->
+<div id="search-results"></div>
+
 <script>
-    // Attach event listener for form submission
+    // Attach an event listener to the form to handle submission
     document.getElementById('search-form').addEventListener('submit', function (event) {
-        event.preventDefault();  // Prevent the form from submitting traditionally
+        event.preventDefault();  // Prevent the default form submission (page reload)
 
-
-        // Grab the search query
+        // Get the search input value entered by the user
         const searchQuery = document.getElementById('search-input').value;
 
+        // Dynamically update the title with the user input
+        document.getElementById('user-input').textContent = searchQuery;
 
-        // Perform AJAX request
+        // Use fetch to send an AJAX POST request to the server
         fetch('/searchdata', {
-            method: 'POST',
+            method: 'POST',  // Use POST to send the search query
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded'  // Set the request headers
             },
-            body: `search_query=${encodeURIComponent(searchQuery)}`
+            body: `search_query=${encodeURIComponent(searchQuery)}`  // Encode and send the search query
         })
-            .then(response => response.text())  // Convert the response to text
-            .then(data => {
-                console.log(data);  // Log response to the console
-                document.getElementById('search-results').innerHTML = data;  // Display the response inside the div
-            })
-            .catch(error => console.error('Error:', error));
+        .then(response => response.text())  // Convert the server response to text
+        .then(data => {
+            console.log(data);  // Log the server response (for debugging purposes)
+            document.getElementById('user-input').textContent = data;  // Update the "Explore Companies:" with user input
+        })
+        .catch(error => console.error('Error:', error));  // Log any errors that occur
     });
 </script>
-
 
 {% endblock %}
