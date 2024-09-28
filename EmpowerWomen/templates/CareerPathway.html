@@ -50,34 +50,6 @@
     </div>
 </div>
 
-<div class="category-container">
-    <div class="category" onclick="toggleExpansion('it')">
-        <img src="path_to_it_image.jpg" alt="IT">
-        <div>
-            <h2>IT</h2>
-            <p>Find out what career pathways are related to IT</p>
-        </div>
-        <button class="expand-button">+</button>
-    </div>
-    <div class="expansion-panel" id="it">
-        <!-- Content that expands goes here -->
-    </div>
-</div>
-
-<div class="category-container" style="margin-bottom: 20vh">
-    <div class="category" onclick="toggleExpansion('sale')">
-        <img src="path_to_sale_image.jpg" alt="Sale">
-        <div>
-            <h2>Sale</h2>
-            <p>Find out what career pathways are related to Sales</p>
-        </div>
-        <button class="expand-button">+</button>
-    </div>
-    <div class="expansion-panel" id="sale">
-        <!-- Content that expands goes here -->
-    </div>
-</div>
-
 <style>
     .category-container {
         margin: 20px;
@@ -123,15 +95,24 @@
     var careerPathwayData = {{ career_pathway_json | safe }};
 </script>
 
-<script>
-    // Function to toggle the expansion panel
-    function toggleExpansion(id) {
-        const panel = document.getElementById(id);
-        if (panel.style.height) {
-            panel.style.height = null;
-        } else {
-            panel.style.height = panel.scrollHeight + 'px';
+<script type="text/javascript">
+    // Recursive function to create career pathway HTML dynamically
+    function createCareerHTML(level, title) {
+        let html = `
+            <div>
+                <h3>${title} - ${level.job_title}</h3>
+                <p><strong>Skills:</strong> ${level.skills.join(', ')}</p>
+            </div>
+        `;
+
+        if (level.next_steps) {
+            for (let key in level.next_steps) {
+                const nextStep = level.next_steps[key];
+                html += createCareerHTML(nextStep, capitalizeWords(key.replace('_', ' ')));
+            }
         }
+
+        return html;
     }
 
     // Function to insert the career pathway data into the expansion panel
@@ -142,29 +123,27 @@
         // Clear existing content
         panel.innerHTML = '';
 
-        // Create the HTML content dynamically based on the career pathway data
-        const entryLevel = careerTree.entry_level;
-        const midLevel = entryLevel.next_steps.mid_level;
-        const seniorLevel = midLevel.next_steps.senior_level;
+        // Dynamically loop through the career tree levels
+        for (let level in careerTree) {
+            const entryLevel = careerTree[level];
+            const levelHTML = createCareerHTML(entryLevel, capitalizeWords(level.replace('_', ' ')));
+            panel.innerHTML += levelHTML;
+        }
+    }
 
-        // Example of creating HTML structure dynamically
-        const entryLevelHTML = `
-            <h3>Entry Level - ${entryLevel.job_title}</h3>
-            <p>Skills: ${entryLevel.skills.join(', ')}</p>
-        `;
+    // Helper function to capitalize words
+    function capitalizeWords(str) {
+        return str.replace(/\b\w/g, char => char.toUpperCase());
+    }
 
-        const midLevelHTML = `
-            <h3>Mid Level - ${midLevel.job_title}</h3>
-            <p>Skills: ${midLevel.skills.join(', ')}</p>
-        `;
-
-        const seniorLevelHTML = `
-            <h3>Senior Level - ${seniorLevel.job_title}</h3>
-            <p>Skills: ${seniorLevel.skills.join(', ')}</p>
-        `;
-
-        // Append the content to the panel
-        panel.innerHTML = entryLevelHTML + midLevelHTML + seniorLevelHTML;
+    // Function to toggle the expansion panel
+    function toggleExpansion(id) {
+        const panel = document.getElementById(id);
+        if (panel.style.height) {
+            panel.style.height = null;
+        } else {
+            panel.style.height = panel.scrollHeight + 'px';
+        }
     }
 
     // Call the function to insert career pathway data when the page loads
