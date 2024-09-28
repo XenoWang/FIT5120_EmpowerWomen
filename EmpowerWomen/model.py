@@ -103,9 +103,17 @@ class CompanyQuestionnaire(db.Model):
     __tablename__ = 'COMPANY_QUESTIONNAIRE'
 
     ABN = db.Column(db.String(11), db.ForeignKey('COMPANY.ABN'), primary_key=True)
-    QUESTION_INDEX = db.Column(db.String(50), db.ForeignKey('QUESTIONNAIRE.QUESTION_INDEX'), primary_key=True)
-    QUESTION_TEXT = db.Column(db.String(255), db.ForeignKey('QUESTIONNAIRE.QUESTION_TEXT'), primary_key=True)
+    QUESTION_INDEX = db.Column(db.String(50), primary_key=True)
+    QUESTION_TEXT = db.Column(db.String(255), primary_key=True)
     RESPONSE = db.Column(db.String(10))
+
+  
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['QUESTION_INDEX', 'QUESTION_TEXT'],
+            ['QUESTIONNAIRE.QUESTION_INDEX', 'QUESTIONNAIRE.QUESTION_TEXT']
+        ),
+    )
 
 class Employee(db.Model):
     __tablename__ = 'EMPLOYEE'
