@@ -18,7 +18,6 @@
                 Realise your career ambitions with Equalwomen
             </div>
         </div>
-
     </div>
 
     <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
@@ -37,7 +36,6 @@
     </div>
 </div>
 
-
 <div class="category-container">
     <div class="category" onclick="toggleExpansion('art')">
         <img src="path_to_art_image.jpg" alt="Art">
@@ -48,7 +46,7 @@
         <button class="expand-button">+</button>
     </div>
     <div class="expansion-panel" id="art">
-        asdasdasdasdasdasdasda
+        <!-- Dynamic content will be inserted here -->
     </div>
 </div>
 
@@ -57,7 +55,7 @@
         <img src="path_to_it_image.jpg" alt="IT">
         <div>
             <h2>IT</h2>
-            <p>Find out what career pathways are related to the IT</p>
+            <p>Find out what career pathways are related to IT</p>
         </div>
         <button class="expand-button">+</button>
     </div>
@@ -71,7 +69,7 @@
         <img src="path_to_sale_image.jpg" alt="Sale">
         <div>
             <h2>Sale</h2>
-            <p>Find out what career pathways are related to the IT</p>
+            <p>Find out what career pathways are related to Sales</p>
         </div>
         <button class="expand-button">+</button>
     </div>
@@ -118,13 +116,15 @@
     .category h2, .category p {
         margin-left: 10px;
     }
-
-    /* Security consideration: avoid any external hosted CSS or untrusted CSS */
 </style>
 
-
+<!-- The career pathway data is dynamically injected into the HTML here -->
+<script type="text/javascript">
+    var careerPathwayData = {{ career_pathway_json | safe }};
+</script>
 
 <script>
+    // Function to toggle the expansion panel
     function toggleExpansion(id) {
         const panel = document.getElementById(id);
         if (panel.style.height) {
@@ -134,5 +134,41 @@
         }
     }
 
+    // Function to insert the career pathway data into the expansion panel
+    function insertCareerPathwayData() {
+        const panel = document.getElementById('art');
+        const careerTree = careerPathwayData.response.career_tree;
+
+        // Clear existing content
+        panel.innerHTML = '';
+
+        // Create the HTML content dynamically based on the career pathway data
+        const entryLevel = careerTree.entry_level;
+        const midLevel = entryLevel.next_steps.mid_level;
+        const seniorLevel = midLevel.next_steps.senior_level;
+
+        // Example of creating HTML structure dynamically
+        const entryLevelHTML = `
+            <h3>Entry Level - ${entryLevel.job_title}</h3>
+            <p>Skills: ${entryLevel.skills.join(', ')}</p>
+        `;
+
+        const midLevelHTML = `
+            <h3>Mid Level - ${midLevel.job_title}</h3>
+            <p>Skills: ${midLevel.skills.join(', ')}</p>
+        `;
+
+        const seniorLevelHTML = `
+            <h3>Senior Level - ${seniorLevel.job_title}</h3>
+            <p>Skills: ${seniorLevel.skills.join(', ')}</p>
+        `;
+
+        // Append the content to the panel
+        panel.innerHTML = entryLevelHTML + midLevelHTML + seniorLevelHTML;
+    }
+
+    // Call the function to insert career pathway data when the page loads
+    document.addEventListener('DOMContentLoaded', insertCareerPathwayData);
 </script>
+
 {% endblock %}

@@ -3,6 +3,7 @@ import json
 import os
 import random
 from flask import session
+import re
 
 
 def shuffle_and_relabel_options(question_data):
@@ -133,43 +134,112 @@ def get_scoring_standards():
         scoring_data = json.load(f)
     return scoring_data
 
-
 def get_session_occupation():
     occupation = session.get('selected_occupation', 'No Occupation Selected')
     section_name = session.get('selected_section', 'No Section Selected')
+    occupation_safe = json.dumps(occupation)
+    section_name_safe = json.dumps(section_name)
 
     # Construct the query to ask Gemini
-    question = f"Gemini, can you provide more information about {occupation} in the {section_name} section?\n"
-    question += '''Please return the results in JSON format:
-    {
-      "response": {
-        "occupation": "Software Engineer",
-        "section": "Job Description",
-        "details": {
-          "summary": "A Software Engineer is responsible for developing, testing, and maintaining software applications.",
-          "responsibilities": [
-            "Design and implement software systems.",
-            "Collaborate with cross-functional teams.",
-            "Maintain software documentation.",
-            "Test and debug software applications."
-          ],
-          "skills": [
-            "Proficiency in programming languages such as Java, Python, C++.",
-            "Strong problem-solving skills.",
-            "Knowledge of software development methodologies.",
-            "Ability to work in a team environment."
-          ]
-        }
-      }
-    }'''
+    question = f'''
+    Gemini, can you provide a detailed future career pathway for a {occupation_safe} in the {section_name_safe} section?
+    Make sure the JSON format is correct and remove spare line breaks and spaces. Please structure the response in a tree diagram format, with stages of the career, necessary skills, potential job titles, and possible transitions to other related roles. Return the results in JSON format: {{
+
+      "response": {{
+        "occupation": "{occupation}",
+        "section": "{section_name}",
+        "career_tree": {{
+          "entry_level": {{
+            "job_title": "Junior {occupation}",
+            "skills": ["Basic programming knowledge (Java, Python, C++)", "Understanding of algorithms and data structures", "Basic debugging and testing skills", "Version control knowledge (e.g., Git)"],
+            "next_steps": {{
+              "mid_level": {{
+                "job_title": "{occupation}",
+                "skills": ["Proficiency in multiple programming languages", "Experience with software design patterns", "Collaborative development skills", "Ability to work on full-stack development"],
+                "next_steps": {{
+                  "senior_level": {{
+                    "job_title": "Senior {occupation}",
+                    "skills": ["Leadership and mentoring skills", "Advanced system architecture and design", "Project management and team collaboration", "Expertise in cloud services and infrastructure"],
+                    "next_steps": {{
+                      "management_path": {{
+                        "job_title": "Engineering Manager",
+                        "skills": ["Team management and leadership", "Budgeting and resource allocation", "Cross-departmental communication", "Strategic decision-making"],
+                        "next_steps": {{
+                          "executive": {{
+                            "job_title": "CTO (Chief Technology Officer)",
+                            "skills": ["Strategic vision for technology", "Executive-level communication", "Long-term technology planning", "Stakeholder management"]
+                          }},
+                          "director": {{
+                            "job_title": "Director of Engineering",
+                            "skills": ["Managing multiple teams", "Resource allocation and budgeting", "Defining long-term technical strategies", "Mentorship at a large scale"]
+                          }}
+                        }}
+                      }},
+                      "technical_path": {{
+                        "job_title": "Principal Engineer",
+                        "skills": ["Deep technical expertise in specific fields", "Leading innovation and R&D", "Mentoring other engineers", "Industry-level impact and recognition"],
+                        "next_steps": {{
+                          "architect": {{
+                            "job_title": "Software Architect",
+                            "skills": ["Architecting large-scale software systems", "Deep knowledge of design patterns and frameworks", "Cross-functional collaboration", "Long-term system planning"]
+                          }},
+                          "fellow": {{
+                            "job_title": "Engineering Fellow",
+                            "skills": ["Industry leadership in technology", "Driving long-term innovation", "Mentoring at a global scale", "Influence on company-wide architecture"]
+                          }}
+                        }}
+                      }}
+                    }}
+                  }}
+                }}
+              }}
+            }}
+          }}
+        }}
+      }}
+    }}
+    '''
 
     # Send the question to Gemini
     response = model.generate_content(question)
 
-    # Parse the response (assuming the response is in JSON format)
+    # Attempt to parse the response
     try:
-        json_response = response.json()  # Parse the response text as JSON
+        json_response = json.loads(response.text)
+        print("Parsed JSON Response:", json_response)
         return json_response
-    except ValueError:
-        # If parsing fails, return raw response text
-        return response.text
+    except json.JSONDecodeError as e:
+        print(f"Initial JSON parse failed: {e}. Attempting to clean the response...")
+
+        # Clean the JSON string and try again
+        cleaned_response = clean_json_string(response.text)
+        print(f"Cleaned response text:\n{cleaned_response}")
+        try:
+            json_response = json.loads(cleaned_response)
+            print("Parsed cleaned JSON Response:", json_response)
+            return json_response
+        except json.JSONDecodeError as e:
+            print(f"Failed to parse cleaned JSON: {e}")
+            return {"error": "Failed to parse response"}
+
+def clean_json_string(json_string):
+    # Remove any stray newlines or tabs that may have corrupted the JSON format
+    json_string = json_string.replace('\n', '').replace('\t', '')
+
+    # Attempt to fix any missing commas between JSON objects/arrays
+    # Example: "}{" -> "},{"
+    json_string = re.sub(r'}\s*{', '},{', json_string)
+
+    # Fix any unbalanced brackets or quotes by checking if they are closed
+    open_brackets = json_string.count('{') - json_string.count('}')
+    if open_brackets > 0:
+        # Add missing closing brackets
+        json_string += '}' * open_brackets
+
+    open_square_brackets = json_string.count('[') - json_string.count(']')
+    if open_square_brackets > 0:
+        # Add missing closing square brackets
+        json_string += ']' * open_square_brackets
+
+    # Return the cleaned string
+    return json_string

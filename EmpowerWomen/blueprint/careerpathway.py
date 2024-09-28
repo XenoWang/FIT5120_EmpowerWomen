@@ -20,6 +20,7 @@ from flask import Blueprint,render_template,session
 import io
 import base64
 import json
+from EmpowerWomen.gemini_service import get_session_occupation
 
 
 careerpathway=Blueprint('careerpathway',__name__)
@@ -30,5 +31,14 @@ def career_page():
     occupation = session.get('selected_occupation', 'No Occupation Selected')
     section_name = session.get('selected_section', 'No Section Selected')
 
-    # Render the CareerPathway.html template, passing the occupation and section
-    return render_template("CareerPathway.html", occupation=occupation, section_name=section_name)
+    # Call your function to get the career pathway JSON
+    career_pathway_data = get_session_occupation()  # Assuming this function works correctly and returns JSON
+
+    # Convert the career pathway data to a JSON string to send to the front-end
+    career_pathway_json = json.dumps(career_pathway_data)
+
+    # Render the template and pass the occupation, section, and career pathway JSON
+    return render_template("CareerPathway.html",
+                           occupation=occupation,
+                           section_name=section_name,
+                           career_pathway_json=career_pathway_json)
