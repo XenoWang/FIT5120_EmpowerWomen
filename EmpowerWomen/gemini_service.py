@@ -2,6 +2,7 @@ import google.generativeai as genai
 import json
 import os
 import random
+from flask import session
 
 
 def shuffle_and_relabel_options(question_data):
@@ -131,3 +132,44 @@ def get_scoring_standards():
     with open(file_path, 'r') as f:
         scoring_data = json.load(f)
     return scoring_data
+
+
+def get_session_occupation():
+    occupation = session.get('selected_occupation', 'No Occupation Selected')
+    section_name = session.get('selected_section', 'No Section Selected')
+
+    # Construct the query to ask Gemini
+    question = f"Gemini, can you provide more information about {occupation} in the {section_name} section?\n"
+    question += '''Please return the results in JSON format:
+    {
+      "response": {
+        "occupation": "Software Engineer",
+        "section": "Job Description",
+        "details": {
+          "summary": "A Software Engineer is responsible for developing, testing, and maintaining software applications.",
+          "responsibilities": [
+            "Design and implement software systems.",
+            "Collaborate with cross-functional teams.",
+            "Maintain software documentation.",
+            "Test and debug software applications."
+          ],
+          "skills": [
+            "Proficiency in programming languages such as Java, Python, C++.",
+            "Strong problem-solving skills.",
+            "Knowledge of software development methodologies.",
+            "Ability to work in a team environment."
+          ]
+        }
+      }
+    }'''
+
+    # Send the question to Gemini
+    response = model.generate_content(question)
+
+    # Parse the response (assuming the response is in JSON format)
+    try:
+        json_response = response.json()  # Parse the response text as JSON
+        return json_response
+    except ValueError:
+        # If parsing fails, return raw response text
+        return response.text

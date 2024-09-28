@@ -56,6 +56,12 @@ h3 {
     left: 0;
     right: 0;
 }
+/*resume result*/
+.resume-result-container {
+    height: 55vh;  /* Sets the height to 80% of the viewport height */
+    padding: 20px; /* Optional: Add padding if needed */
+    overflow-y: auto; /* Optional: Adds scroll if content exceeds the container's height */
+}
 
 
 /*Quiz css*/
