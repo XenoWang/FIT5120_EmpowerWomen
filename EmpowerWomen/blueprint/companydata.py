@@ -22,11 +22,11 @@ import base64
 import json
 from EmpowerWomen.plugins import db
 from EmpowerWomen.model import CompanyCategoryFinalScores
-from sqlalchemy import or_
+from sqlalchemy import or_, func, desc
 
 companydata=Blueprint('companydata',__name__)
 searchdata = Blueprint('searchdata', __name__)
-def get_top_15_companies():
+def define_top_15_companies():
     """
     Function to fetch the top 15 companies based on the average final score
     across the four categories.
@@ -104,7 +104,7 @@ def search():
 @searchdata.route('/searchdata/top15', methods=['GET'])
 def get_top_15_companies():
     # Call the function to get the top 15 companies with the average final score
-    top_data = get_top_15_companies()  # Use the get_top_15_companies function you previously created
+    top_data = define_top_15_companies()  # Use the get_top_15_companies function you previously created
 
     # Return the top 15 companies in JSON format
     return jsonify(top_data), 200
