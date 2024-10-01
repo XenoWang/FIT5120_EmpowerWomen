@@ -35,6 +35,58 @@
 </div>
 
 <script>
+    // Function to display companies in the search-results container
+    function displayCompanies(data) {
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = '';  // Clear previous results
+
+        if (data.error) {
+            // If there's an error (e.g., no results), show a message
+            resultsContainer.innerHTML = `<p>${data.error}</p>`;
+            return;
+        }
+
+        // Loop through the companies in the response
+        for (const company in data) {
+            if (data.hasOwnProperty(company)) {
+                // Create a container for each company
+                const companyDiv = document.createElement('div');
+                companyDiv.classList.add('company-result');
+                companyDiv.innerHTML = `<h3>${company}</h3>`;
+
+                // Create a list for the categories and scores
+                const categoryList = document.createElement('ul');
+
+                data[company].forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${item.category}</strong>: ${item.final_score}`;
+                    categoryList.appendChild(listItem);
+                });
+
+                // Append the list to the company container
+                companyDiv.appendChild(categoryList);
+
+                // Append the company container to the results container
+                resultsContainer.appendChild(companyDiv);
+            }
+        }
+    }
+
+    // Fetch top 15 companies when the page is loaded
+    window.onload = function() {
+        fetch('/searchdata/top15', {
+            method: 'GET'  // Use GET to retrieve the top 15 companies
+        })
+        .then(response => response.json())  // Convert the server response to JSON
+        .then(data => {
+            displayCompanies(data);  // Display the top 15 companies
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('search-results').innerHTML = '<p>There was an error loading the top companies.</p>';
+        });
+    };
+
     // Attach an event listener to the form to handle submission
     document.getElementById('search-form').addEventListener('submit', function (event) {
         event.preventDefault();  // Prevent the default form submission (page reload)
@@ -55,39 +107,7 @@
         })
         .then(response => response.json())  // Convert the server response to JSON
         .then(data => {
-            const resultsContainer = document.getElementById('search-results');
-            resultsContainer.innerHTML = '';  // Clear previous search results
-
-            if (data.error) {
-                // If there's an error (e.g., no results), show a message
-                resultsContainer.innerHTML = `<p>${data.error}</p>`;
-                return;
-            }
-
-            // Loop through the companies in the response
-            for (const company in data) {
-                if (data.hasOwnProperty(company)) {
-                    // Create a container for each company
-                    const companyDiv = document.createElement('div');
-                    companyDiv.classList.add('company-result');
-                    companyDiv.innerHTML = `<h3>${company}</h3>`;
-
-                    // Create a list for the categories and scores
-                    const categoryList = document.createElement('ul');
-
-                    data[company].forEach(item => {
-                        const listItem = document.createElement('li');
-                        listItem.innerHTML = `<strong>${item.category}</strong>: ${item.final_score}`;
-                        categoryList.appendChild(listItem);
-                    });
-
-                    // Append the list to the company container
-                    companyDiv.appendChild(categoryList);
-
-                    // Append the company container to the results container
-                    resultsContainer.appendChild(companyDiv);
-                }
-            }
+            displayCompanies(data);  // Display the search results
         })
         .catch(error => {
             console.error('Error:', error);

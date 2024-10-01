@@ -26,7 +26,38 @@ from sqlalchemy import or_
 
 companydata=Blueprint('companydata',__name__)
 searchdata = Blueprint('searchdata', __name__)
+def get_top_15_companies():
+    """
+    Function to fetch the top 15 companies based on the average final score
+    across the four categories.
+    """
 
+    # Query to group by company and calculate the average final score
+    top_companies_query = db.session.query(
+        CompanyCategoryFinalScores.COMPANY_NAME,
+        func.avg(CompanyCategoryFinalScores.FINAL_SCORE).label('avg_final_score')
+    ).group_by(CompanyCategoryFinalScores.COMPANY_NAME).order_by(
+        desc('avg_final_score')
+    ).limit(15)
+
+    # Execute the query and get results
+    top_companies = top_companies_query.all()
+
+    # Prepare the data for each company with its categories and final score
+    top_data = {}
+    for company_name, avg_final_score in top_companies:
+        # Query to get the categories and final scores for this company
+        categories = CompanyCategoryFinalScores.query.filter_by(COMPANY_NAME=company_name).all()
+
+        # Prepare the list of categories and final scores for each company
+        top_data[company_name] = []
+        for category_info in categories:
+            top_data[company_name].append({
+                "category": category_info.CATEGORY,
+                "final_score": category_info.FINAL_SCORE
+            })
+
+    return top_data
 @companydata.route('/companydata')
 def company_page():
     # Get the section name from the session
@@ -70,3 +101,10 @@ def search():
 
     # Return the search results in JSON format
     return jsonify(response_data), 200
+@searchdata.route('/searchdata/top15', methods=['GET'])
+def get_top_15_companies():
+    # Call the function to get the top 15 companies with the average final score
+    top_data = get_top_15_companies()  # Use the get_top_15_companies function you previously created
+
+    # Return the top 15 companies in JSON format
+    return jsonify(top_data), 200
