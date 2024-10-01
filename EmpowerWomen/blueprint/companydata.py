@@ -16,11 +16,13 @@ Python Script for rendering the Skill Assessment Page
 """
 
 # Imports
-from flask import Blueprint,render_template,request,session
+from flask import Blueprint,render_template,request,session, jsonify
 import io
 import base64
 import json
-
+from EmpowerWomen.plugins import db
+from EmpowerWomen.models import CompanyCategoryFinalScores
+from sqlalchemy import or_
 
 companydata=Blueprint('companydata',__name__)
 searchdata = Blueprint('searchdata', __name__)
@@ -41,6 +43,24 @@ def search():
     # Log the search input in the console for debugging (optional)
     print(f"Search Query: {search_query}")
 
-    # Return only the user input (no additional text)
-    return search_query, 200
+    # Perform a fuzzy search using the SQL LIKE operator for partial matches
+    results = CompanyCategoryFinalScores.query.filter(
+        CompanyCategoryFinalScores.COMPANY_NAME.ilike(f"%{search_query}%")
+    ).all()
 
+    # If no results found, return a 404
+    if not results:
+        return jsonify({"error": "No matching company found."}), 404
+
+    # Prepare the data to return only relevant fields
+    response_data = [
+        {
+            "company_name": result.COMPANY_NAME,
+            "category": result.CATEGORY,
+            "final_score": result.FINAL_SCORE
+        }
+        for result in results
+    ]
+    print(response_data)
+    # Return the search results in JSON format
+    return jsonify(response_data), 200
