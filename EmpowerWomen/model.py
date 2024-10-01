@@ -123,3 +123,49 @@ class Employee(db.Model):
     GENDER = db.Column(db.String(6), primary_key=True)
     EMPLOYMENT_STATUS = db.Column(db.String(15), primary_key=True)
     EMPLOYEE_NUMBER = db.Column(db.Integer)
+
+class Division(db.Model):
+    """
+    Class for the DIVISION Table
+    """
+    __tablename__ = 'DIVISION'
+    DIVISION_NAME = db.Column(db.String(255), primary_key=True)
+
+class ANZSCO4Division(db.Model):
+    """
+    Class for the ANZSCO4_DIVISION Table
+    """
+    __tablename__ = 'ANZSCO4_DIVISION'
+    ANZSCO4_CODE = db.Column(db.Integer, db.ForeignKey('ANZSCO4.ANZSCO4_CODE'), primary_key=True)
+    TITLE = db.Column(db.String(255), nullable=True)
+    DIVISION_NAME = db.Column(db.String(255), db.ForeignKey('DIVISION.DIVISION_NAME'), primary_key=True)
+
+    # Relationships to ANZSCO4 and Division
+    anzsco4 = db.relationship('ANZSCO4', backref=db.backref('anzsco4_divisions', lazy=True))
+    division = db.relationship('Division', backref=db.backref('anzsco4_divisions', lazy=True))
+
+class CompanyDivision(db.Model):
+    """
+    Class for the COMPANY_DIVISION Table
+    """
+    __tablename__ = 'COMPANY_DIVISION'
+    ABN = db.Column(db.String(11), db.ForeignKey('COMPANY.ABN'), primary_key=True)
+    DIVISION_NAME = db.Column(db.String(255), db.ForeignKey('DIVISION.DIVISION_NAME'), primary_key=True)
+
+    # Relationships to Company and Division
+    company = db.relationship('Company', backref=db.backref('company_divisions', lazy=True))
+    division = db.relationship('Division', backref=db.backref('company_divisions', lazy=True))
+
+class CompanyCategoryFinalScores(db.Model):
+    """
+    Class for the CompanyCategoryFinalScores Table
+    """
+    __tablename__ = 'CompanyCategoryFinalScores'
+    ABN = db.Column(db.String(11), db.ForeignKey('COMPANY.ABN', ondelete="CASCADE", onupdate="CASCADE"), primary_key=True)
+    COMPANY_NAME = db.Column(db.String(255), nullable=True)
+    CATEGORY = db.Column(db.String(255), primary_key=True)
+    TOTAL_SCORE = db.Column(db.Integer, nullable=True)
+    FINAL_SCORE = db.Column(db.Integer, nullable=True)
+
+    # Relationship to Company
+    company = db.relationship('Company', backref=db.backref('company_category_final_scores', lazy=True))

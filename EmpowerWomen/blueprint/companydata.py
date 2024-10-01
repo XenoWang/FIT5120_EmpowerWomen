@@ -28,11 +28,11 @@ searchdata = Blueprint('searchdata', __name__)
 @companydata.route('/companydata')
 def company_page():
     # Get the section name from the session
-    section_name = session.get('selected_section', 'No section selected')
+    occupation = session.get('selected_occupation', 'No Occupation Selected')
     # Print the section name to the console
-    print(f"Selected section: {section_name}")
+    print(f"Selected Occupation: {occupation}")
     # Render the CompanyData.html template with the section name
-    return render_template("CompanyData.html", section_name=section_name)
+    return render_template("CompanyData.html", Occupation=occupation)
 
 @searchdata.route('/searchdata', methods=['POST'])
 def search():
