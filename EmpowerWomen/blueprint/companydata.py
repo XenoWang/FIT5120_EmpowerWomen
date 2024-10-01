@@ -21,7 +21,7 @@ import io
 import base64
 import json
 from EmpowerWomen.plugins import db
-from EmpowerWomen.models import CompanyCategoryFinalScores
+from EmpowerWomen.model import CompanyCategoryFinalScores
 from sqlalchemy import or_
 
 companydata=Blueprint('companydata',__name__)
@@ -52,15 +52,21 @@ def search():
     if not results:
         return jsonify({"error": "No matching company found."}), 404
 
-    # Prepare the data to return only relevant fields
-    response_data = [
-        {
-            "company_name": result.COMPANY_NAME,
-            "category": result.CATEGORY,
-            "final_score": result.FINAL_SCORE
-        }
-        for result in results
-    ]
-    print(response_data)
+    response_data = {}
+    for result in results:
+        company_name = result.COMPANY_NAME
+        category = result.CATEGORY
+        final_score = result.FINAL_SCORE
+
+        # If the company name is not already in the dictionary, add it
+        if company_name not in response_data:
+            response_data[company_name] = []
+
+        # Append the category and final score to the company's list
+        response_data[company_name].append({
+            "category": category,
+            "final_score": final_score
+        })
+
     # Return the search results in JSON format
     return jsonify(response_data), 200
