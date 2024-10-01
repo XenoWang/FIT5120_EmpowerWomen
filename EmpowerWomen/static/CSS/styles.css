@@ -565,6 +565,7 @@ p1 {
     display: flex; /* Makes the input and button inline */
     width: 100%;
 }
+
 .companydata-title {
     font-size: 3vw;
     padding-top: 15vh; /* Adjusts top padding */
@@ -582,6 +583,7 @@ p1 {
 
 .search-results-container {
     margin-top: 20px; /* Add some spacing from the subtitle */
+    margin-bottom: 20px;
     padding: 15px;    /* Add padding inside the container */
     border: 1px solid #ccc; /* Optional: Add a border to define the container */
     background-color: #f9f9f9; /* Optional: Light background color for visibility */
