@@ -576,9 +576,15 @@ p1 {
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
-
 .companydata-subtext {
     font-size: 16px;
+}
+
+.search-results-container {
+    margin-top: 20px; /* Add some spacing from the subtitle */
+    padding: 15px;    /* Add padding inside the container */
+    border: 1px solid #ccc; /* Optional: Add a border to define the container */
+    background-color: #f9f9f9; /* Optional: Light background color for visibility */
 }
 
 .explore-title {

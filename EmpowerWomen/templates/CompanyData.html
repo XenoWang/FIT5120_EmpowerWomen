@@ -22,14 +22,16 @@
 <div class="container">
     <!-- Explore Companies Title and Subtitle (Outside the container background) -->
     <div class="explore-title">
-        Explore Companies for {{ Occupation }}: <span id="user-input"></span> <!-- Placeholder for user input -->
+        Explore Companies for {{ Section }}: <span id="user-input"></span> <!-- Placeholder for user input -->
     </div>
     <div class="explore-subtitle">
         Use our powerful search tool to explore company metrics, family-friendly policies, and long-term growth opportunities.
     </div>
 
-    <!-- Div to display the search results -->
-    <div id="search-results"></div>
+    <!-- New container for search results -->
+    <div class="search-results-container">
+        <div id="search-results"></div> <!-- This div will display the search results -->
+    </div>
 </div>
 
 <script>
@@ -51,12 +53,46 @@
             },
             body: `search_query=${encodeURIComponent(searchQuery)}`  // Encode and send the search query
         })
-        .then(response => response.text())  // Convert the server response to text
+        .then(response => response.json())  // Convert the server response to JSON
         .then(data => {
-            console.log(data);  // Log the server response (for debugging purposes)
-            document.getElementById('user-input').textContent = data;  // Update the "Explore Companies:" with user input
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';  // Clear previous search results
+
+            if (data.error) {
+                // If there's an error (e.g., no results), show a message
+                resultsContainer.innerHTML = `<p>${data.error}</p>`;
+                return;
+            }
+
+            // Loop through the companies in the response
+            for (const company in data) {
+                if (data.hasOwnProperty(company)) {
+                    // Create a container for each company
+                    const companyDiv = document.createElement('div');
+                    companyDiv.classList.add('company-result');
+                    companyDiv.innerHTML = `<h3>${company}</h3>`;
+
+                    // Create a list for the categories and scores
+                    const categoryList = document.createElement('ul');
+
+                    data[company].forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `<strong>${item.category}</strong>: ${item.final_score}`;
+                        categoryList.appendChild(listItem);
+                    });
+
+                    // Append the list to the company container
+                    companyDiv.appendChild(categoryList);
+
+                    // Append the company container to the results container
+                    resultsContainer.appendChild(companyDiv);
+                }
+            }
         })
-        .catch(error => console.error('Error:', error));  // Log any errors that occur
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('search-results').innerHTML = '<p>There was an error processing your request.</p>';
+        });
     });
 </script>
 
