@@ -7,7 +7,7 @@
 <div class="container-career">
     <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
         <div class="col">
-            <img src="/static/Image/career.jpg" class="career-image">
+            <img src="{{ url_for('static', filename='Image/career.jpg') }}" class="career-image">
         </div>
         <div class="col col-text">
             <div class="heading">
@@ -31,14 +31,14 @@
         </div>
 
         <div class="col">
-            <img src="/static/Image/career2.jpg" class="career-image">
+            <img src="{{ url_for('static', filename='Image/career2.jpg') }}" class="career-image">
         </div>
     </div>
 </div>
 
 <div class="category-container">
     <div class="category" onclick="toggleExpansion('art')">
-        <img src="path_to_art_image.jpg" alt="Art">
+        <img src="{{ url_for('static', filename='images/art_image.jpg') }}" alt="Art">
         <div>
             <h2>{{ occupation }}</h2>
             <p>Find out what career pathways are related to {{ occupation }}</p>
@@ -46,7 +46,15 @@
         <button class="expand-button">+</button>
     </div>
     <div class="expansion-panel" id="art">
-        <!-- Dynamic content will be inserted here -->
+        <!-- Tree Diagram Will Be Inserted Here -->
+    </div>
+
+    <!-- Sidebar for displaying clicked node details -->
+    <div id="details-panel" style="display:none; position:absolute; background-color:#f9f9f9; padding:20px; border:1px solid #ddd; border-radius:8px;">
+        <h3 id="job-title"></h3>
+        <p id="job-description"></p>
+        <p><strong>Years of Commitment:</strong> <span id="years-of-commitment"></span></p>
+        <p><strong>Skills:</strong> <span id="skills"></span></p>
     </div>
 </div>
 
@@ -92,68 +100,203 @@
     .career-detail {
         margin-bottom: 20px;
     }
+
+    .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 3px;
+        cursor: pointer;
+    }
+
+    .node text {
+        font: 12px sans-serif;
+    }
+
+    .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+    }
+
+    /* CSS for transparent rows */
+    .transparent {
+        opacity: 0.5;
+    }
+
+    /* CSS for fully visible rows */
+    .fully-visible {
+        opacity: 1;
+    }
+
+    /* Adjust spacing for vertical layout */
+    svg {
+        width: 100%;
+    }
+
+    .node text {
+        font-size: 12px;
+        font-family: sans-serif;
+    }
+
+    #details-panel {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
 </style>
 
-<!-- The career pathway data is dynamically injected into the HTML here -->
+<!-- Include D3.js -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
 <script type="text/javascript">
     var careerPathwayData = {{ career_pathway_json | safe }};
-</script>
 
-<script type="text/javascript">
-    // Recursive function to create career pathway HTML dynamically
-    function createCareerHTML(level, title) {
-        let html = `
-            <div class="career-detail">
-                <h3>${title} - ${level.job_title}</h3>
-                <p><strong>Years of Commitment:</strong> ${level.years_of_commitment}</p>
-                <p><strong>Description:</strong> ${level.description}</p>
-                <p><strong>Skills:</strong> ${level.skills.join(', ')}</p>
-            </div>
-        `;
+    // Debugging to check structure of data
+    console.log(careerPathwayData);
 
-        if (level.next_steps) {
-            for (let key in level.next_steps) {
-                const nextStep = level.next_steps[key];
-                html += createCareerHTML(nextStep, capitalizeWords(key.replace('_', ' ')));
+    function createTreeDiagram() {
+        var i = 0;  // Initialize a counter for unique node IDs
+
+        if (!careerPathwayData || !careerPathwayData.response || !careerPathwayData.response.career_tree) {
+            console.error("Invalid careerPathwayData format.");
+            return;
+        }
+
+        // Set margins and size for the SVG container
+        var margin = {top: 20, right: 90, bottom: 30, left: 150},  // Increased left margin for text
+            width = 600 - margin.left - margin.right,
+            height = 1200 - margin.top - margin.bottom;  // Increased height for better vertical spacing
+
+        // Create the SVG container and set its dimensions
+        var svg = d3.select("#art").append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Create a tree layout with the desired size
+        var treeLayout = d3.tree().size([height, width]);  // Adjust size to be vertical
+
+        // Create a hierarchy from the data
+        var root = d3.hierarchy(careerPathwayData.response.career_tree.entry_level, function(d) {
+            if (d.next_steps) {
+                return Object.keys(d.next_steps).map(function(key) {
+                    return d.next_steps[key];
+                });
             }
+            return null;
+        });
+
+        update(root);  // Call the update function to draw the tree
+
+        function update(source) {
+            var treeData = treeLayout(root);
+            var nodes = treeData.descendants();  // Get nodes from the tree
+            var links = treeData.links();  // Get links between nodes
+
+            // Adjust the position of the nodes for a vertical layout
+            nodes.forEach(function(d) {
+                d.y = d.depth * 200;  // Increase vertical space between nodes
+            });
+
+            // Select all nodes and bind data to them
+            var node = svg.selectAll(".node")
+                .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+            // Add new nodes as needed
+            var nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function(d) {
+                    return "translate(" + d.x + "," + d.y + ")";  // Use x for horizontal position and y for vertical
+                });
+
+            // Append circles to the nodes and make them clickable
+            nodeEnter.append("circle")
+                .attr("r", 10)
+                .style("fill", "#fff")
+                .style("cursor", "pointer")  // Make the circle a clickable pointer
+                .on("click", function(event, d) {
+                    showDetails(event, d.data, d.x, d.y);  // Show job details on the right side of the circle
+                });
+
+            // Append text to the nodes (job titles)
+            nodeEnter.append("text")
+                .attr("dy", ".35em")
+                .attr("x", -15)  // Position text 15px to the left of the circle
+                .attr("text-anchor", "end")  // Ensure all text appears to the left
+                .text(function(d) {
+                    return d.data.job_title;  // Display the job title text
+                })
+                .call(wrapText, 150);  // Call the wrapText function to handle long titles and restrict width to 150px
+
+            // Create links between the nodes
+            var link = svg.selectAll(".link")
+                .data(links, function(d) { return d.target.id; });
+
+            // Draw links (lines) between nodes
+            link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", d3.linkVertical()  // Use a vertical link (y and x are swapped to make it top to bottom)
+                    .x(function(d) { return d.x; })
+                    .y(function(d) { return d.y; }));
         }
 
-        return html;
-    }
+        // Function to show job details when a circle is clicked
+        function showDetails(event, data, x, y) {
+            // Update the job details in the panel
+            document.getElementById('job-title').textContent = data.job_title;
+            document.getElementById('job-description').textContent = data.description;
+            document.getElementById('years-of-commitment').textContent = data.years_of_commitment;
+            document.getElementById('skills').textContent = data.skills.join(", ");
 
-    // Function to insert the career pathway data into the expansion panel
-    function insertCareerPathwayData() {
-        const panel = document.getElementById('art');
-        const careerTree = careerPathwayData.response.career_tree;
+            // Position the details panel dynamically to the right of the clicked node
+            var panel = document.getElementById('details-panel');
+            panel.style.display = 'block';
+            panel.style.left = (x + margin.left + 50) + 'px';  // Adjust the left position relative to the node
+            panel.style.top = (y + margin.top) + 'px';  // Adjust the top position relative to the node
+        }
 
-        // Clear existing content
-        panel.innerHTML = '';
+        // Function to wrap long text labels
+        function wrapText(text, width) {
+            text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1, // ems
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", -15).attr("y", y).attr("dy", dy + "em");  // Adjust position for wrapped text
 
-        // Dynamically loop through the career tree levels
-        for (let level in careerTree) {
-            const entryLevel = careerTree[level];
-            const levelHTML = createCareerHTML(entryLevel, capitalizeWords(level.replace('_', ' ')));
-            panel.innerHTML += levelHTML;
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", -15).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);  // Ensure all wrapped text is left-aligned
+                    }
+                }
+            });
         }
     }
 
-    // Helper function to capitalize words
-    function capitalizeWords(str) {
-        return str.replace(/\b\w/g, char => char.toUpperCase());
-    }
-
-    // Function to toggle the expansion panel
+    // Function to toggle the expansion panel and render the tree diagram
     function toggleExpansion(id) {
         const panel = document.getElementById(id);
         if (panel.style.height) {
             panel.style.height = null;
         } else {
             panel.style.height = panel.scrollHeight + 'px';
+            createTreeDiagram();
         }
     }
-
-    // Call the function to insert career pathway data when the page loads
-    document.addEventListener('DOMContentLoaded', insertCareerPathwayData);
 </script>
 
 {% endblock %}
