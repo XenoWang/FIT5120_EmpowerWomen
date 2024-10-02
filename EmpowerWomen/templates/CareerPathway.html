@@ -156,26 +156,29 @@
 <script type="text/javascript">
     var careerPathwayData = {{ career_pathway_json | safe }};
 
-    // Debugging to check structure of data
-    console.log(careerPathwayData);
+    // Debugging: Print the careerPathwayData to check the format
+    console.log(careerPathwayData);  // <-- Add this line to inspect the data
 
     function createTreeDiagram() {
-        var i = 0;  // Initialize a counter for unique node IDs
+        // Clear any existing SVG to avoid multiple tree diagrams
+        d3.select("#art").selectAll("svg").remove();
+
+        var i = 0;
 
         if (!careerPathwayData || !careerPathwayData.response || !careerPathwayData.response.career_tree) {
-            console.error("Invalid careerPathwayData format.");
+            console.error("Invalid careerPathwayData format. Actual data:", careerPathwayData);  // <-- Log actual data
             return;
         }
 
         // Set margins and size for the SVG container
         var margin = {top: 20, right: 90, bottom: 30, left: 150},  // Increased left margin for text
-            width = 600 - margin.left - margin.right,
+            width = document.getElementById('art').offsetWidth - margin.left - margin.right,  // Make dynamic width
             height = 1200 - margin.top - margin.bottom;  // Increased height for better vertical spacing
 
         // Create the SVG container and set its dimensions
         var svg = d3.select("#art").append("svg")
-            .attr("width", width + margin.right + margin.left)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+            .attr("preserveAspectRatio", "xMidYMid meet")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
