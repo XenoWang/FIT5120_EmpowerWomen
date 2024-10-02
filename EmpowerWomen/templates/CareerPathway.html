@@ -51,6 +51,7 @@
 
     <!-- Sidebar for displaying clicked node details -->
     <div id="details-panel" style="display:none; position:absolute; background-color:#f9f9f9; padding:20px; border:1px solid #ddd; border-radius:8px;">
+        <button id="close-panel-btn" style="float:right; background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Close</button>
         <h3 id="job-title"></h3>
         <p id="job-description"></p>
         <p><strong>Years of Commitment:</strong> <span id="years-of-commitment"></span></p>
@@ -220,7 +221,7 @@
                 .style("fill", "#fff")
                 .style("cursor", "pointer")  // Make the circle a clickable pointer
                 .on("click", function(event, d) {
-                    showDetails(event, d.data, d.x, d.y);  // Show job details on the right side of the circle
+                    showDetails(event, d.data);  // Show job details on the right side of the circle
                 });
 
             // Append text to the nodes (job titles)
@@ -246,18 +247,20 @@
         }
 
         // Function to show job details when a circle is clicked
-        function showDetails(event, data, x, y) {
+        function showDetails(event, data) {
             // Update the job details in the panel
             document.getElementById('job-title').textContent = data.job_title;
             document.getElementById('job-description').textContent = data.description;
             document.getElementById('years-of-commitment').textContent = data.years_of_commitment;
             document.getElementById('skills').textContent = data.skills.join(", ");
 
-            // Position the details panel dynamically to the right of the clicked node
+            // Position the details panel dynamically next to the clicked node based on event coordinates
             var panel = document.getElementById('details-panel');
             panel.style.display = 'block';
-            panel.style.left = (x + margin.left + 50) + 'px';  // Adjust the left position relative to the node
-            panel.style.top = (y + margin.top) + 'px';  // Adjust the top position relative to the node
+
+            // Use event.pageX and event.pageY for positioning
+            panel.style.left = (event.pageX + 20) + 'px';  // 20px to the right of the click
+            panel.style.top = (event.pageY - 20) + 'px';   // 20px above the click
         }
 
         // Function to wrap long text labels
@@ -286,6 +289,11 @@
             });
         }
     }
+
+    // Function to close the details panel
+    document.getElementById('close-panel-btn').addEventListener('click', function() {
+        document.getElementById('details-panel').style.display = 'none';
+    });
 
     // Function to toggle the expansion panel and render the tree diagram
     function toggleExpansion(id) {
