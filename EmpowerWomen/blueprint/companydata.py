@@ -80,7 +80,7 @@ def define_top_15_companies():
             "employment_status_count": employment_status_count
         }
 
-    print(top_data)
+    #print(top_data)
     return top_data
 
 @companydata.route('/companydata')
@@ -154,7 +154,7 @@ def search():
         }
 
     # Return the search results in JSON format
-    print(response_data)
+    #print(response_data)
     return jsonify(response_data), 200
 
 
