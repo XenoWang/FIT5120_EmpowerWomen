@@ -52,19 +52,57 @@
                 // Create a container for each company
                 const companyDiv = document.createElement('div');
                 companyDiv.classList.add('company-result');
-                companyDiv.innerHTML = `<h3>${company}</h3>`;
+
+                // Add company name and group size
+                companyDiv.innerHTML = `
+                    <h3>${company}</h3>
+                    <p><strong>Group Size:</strong> ${data[company].group_size}</p>
+                    <p><strong>Average Final Score:</strong> ${data[company].average_final_score.toFixed(2)}</p>
+                `;
 
                 // Create a list for the categories and scores
                 const categoryList = document.createElement('ul');
-
-                data[company].forEach(item => {
+                data[company].categories.forEach(item => {
                     const listItem = document.createElement('li');
                     listItem.innerHTML = `<strong>${item.category}</strong>: ${item.final_score}`;
                     categoryList.appendChild(listItem);
                 });
-
-                // Append the list to the company container
                 companyDiv.appendChild(categoryList);
+
+                // Create a section for occupation details
+                const occupationSection = document.createElement('div');
+                occupationSection.innerHTML = `<p><strong>Occupations:</strong></p>`;
+                const occupationList = document.createElement('ul');
+                for (const occupation in data[company].occupations) {
+                    const occupationItem = document.createElement('li');
+                    occupationItem.innerHTML = `${occupation}: ${data[company].occupations[occupation]}`;
+                    occupationList.appendChild(occupationItem);
+                }
+                occupationSection.appendChild(occupationList);
+                companyDiv.appendChild(occupationSection);
+
+                // Create a section for gender count
+                const genderSection = document.createElement('div');
+                genderSection.innerHTML = `<p><strong>Gender Count:</strong></p>`;
+                const genderList = document.createElement('ul');
+                genderList.innerHTML = `
+                    <li>Men: ${data[company].gender_count.Men}</li>
+                    <li>Women: ${data[company].gender_count.Women}</li>
+                `;
+                genderSection.appendChild(genderList);
+                companyDiv.appendChild(genderSection);
+
+                // Create a section for employment status count
+                const statusSection = document.createElement('div');
+                statusSection.innerHTML = `<p><strong>Employment Status:</strong></p>`;
+                const statusList = document.createElement('ul');
+                statusList.innerHTML = `
+                    <li>Full-time: ${data[company].employment_status_count['Full-time']}</li>
+                    <li>Part-time: ${data[company].employment_status_count['Part-time']}</li>
+                    <li>Casual: ${data[company].employment_status_count.Casual}</li>
+                `;
+                statusSection.appendChild(statusList);
+                companyDiv.appendChild(statusSection);
 
                 // Append the company container to the results container
                 resultsContainer.appendChild(companyDiv);
