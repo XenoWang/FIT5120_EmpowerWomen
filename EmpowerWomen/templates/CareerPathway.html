@@ -88,6 +88,10 @@
     .category h2, .category p {
         margin-left: 10px;
     }
+
+    .career-detail {
+        margin-bottom: 20px;
+    }
 </style>
 
 <!-- The career pathway data is dynamically injected into the HTML here -->
@@ -99,8 +103,10 @@
     // Recursive function to create career pathway HTML dynamically
     function createCareerHTML(level, title) {
         let html = `
-            <div>
+            <div class="career-detail">
                 <h3>${title} - ${level.job_title}</h3>
+                <p><strong>Years of Commitment:</strong> ${level.years_of_commitment}</p>
+                <p><strong>Description:</strong> ${level.description}</p>
                 <p><strong>Skills:</strong> ${level.skills.join(', ')}</p>
             </div>
         `;

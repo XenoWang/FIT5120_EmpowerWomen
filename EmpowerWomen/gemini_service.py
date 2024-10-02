@@ -143,7 +143,7 @@ def get_session_occupation():
     # Construct the query to ask Gemini
     question = f'''
     Gemini, can you provide a detailed future career pathway for a {occupation_safe} in the {section_name_safe} section?
-    Make sure the JSON format is correct and remove spare line breaks and spaces. Please structure the response in a tree diagram format, with stages of the career, necessary skills, potential job titles, and possible transitions to other related roles. Return the results in JSON format: {{
+    Make sure the JSON format is correct and remove spare line breaks and spaces. Please structure the response in a tree diagram format, with stages of the career, necessary skills, potential job titles, descriptions of each role, the number of years typically required to commit to the current role before moving to the next, and potential transitions to other related roles. Return the results in JSON format: {{
 
       "response": {{
         "occupation": "{occupation}",
@@ -151,40 +151,58 @@ def get_session_occupation():
         "career_tree": {{
           "entry_level": {{
             "job_title": "Junior {occupation}",
+            "description": "This is a starting role where individuals gain foundational skills in {occupation}.",
+            "years_of_commitment": 0,
             "skills": ["Basic programming knowledge (Java, Python, C++)", "Understanding of algorithms and data structures", "Basic debugging and testing skills", "Version control knowledge (e.g., Git)"],
             "next_steps": {{
               "mid_level": {{
                 "job_title": "{occupation}",
+                "description": "In this role, individuals expand their skills, becoming proficient in core technologies while working on larger projects.",
+                "years_of_commitment": 2,
                 "skills": ["Proficiency in multiple programming languages", "Experience with software design patterns", "Collaborative development skills", "Ability to work on full-stack development"],
                 "next_steps": {{
                   "senior_level": {{
                     "job_title": "Senior {occupation}",
+                    "description": "Senior professionals lead projects, mentor junior team members, and oversee more complex systems.",
+                    "years_of_commitment": 4,
                     "skills": ["Leadership and mentoring skills", "Advanced system architecture and design", "Project management and team collaboration", "Expertise in cloud services and infrastructure"],
                     "next_steps": {{
                       "management_path": {{
                         "job_title": "Engineering Manager",
+                        "description": "Managers lead teams, manage resources, and are responsible for project delivery and strategic planning.",
+                        "years_of_commitment": 5,
                         "skills": ["Team management and leadership", "Budgeting and resource allocation", "Cross-departmental communication", "Strategic decision-making"],
                         "next_steps": {{
                           "executive": {{
                             "job_title": "CTO (Chief Technology Officer)",
+                            "description": "CTOs provide a strategic vision for technology across the organization, collaborating with stakeholders to align technical and business objectives.",
+                            "years_of_commitment": 10,
                             "skills": ["Strategic vision for technology", "Executive-level communication", "Long-term technology planning", "Stakeholder management"]
                           }},
                           "director": {{
                             "job_title": "Director of Engineering",
+                            "description": "Directors manage multiple teams and are responsible for long-term technical strategies and resource allocation.",
+                            "years_of_commitment": 8,
                             "skills": ["Managing multiple teams", "Resource allocation and budgeting", "Defining long-term technical strategies", "Mentorship at a large scale"]
                           }}
                         }}
                       }},
                       "technical_path": {{
                         "job_title": "Principal Engineer",
+                        "description": "Principal Engineers provide deep technical expertise, lead innovation, and contribute to industry-level impact.",
+                        "years_of_commitment": 7,
                         "skills": ["Deep technical expertise in specific fields", "Leading innovation and R&D", "Mentoring other engineers", "Industry-level impact and recognition"],
                         "next_steps": {{
                           "architect": {{
                             "job_title": "Software Architect",
+                            "description": "Architects design and manage large-scale software systems, ensuring their long-term sustainability.",
+                            "years_of_commitment": 9,
                             "skills": ["Architecting large-scale software systems", "Deep knowledge of design patterns and frameworks", "Cross-functional collaboration", "Long-term system planning"]
                           }},
                           "fellow": {{
                             "job_title": "Engineering Fellow",
+                            "description": "Engineering Fellows are industry leaders, driving long-term innovation and influencing company-wide architecture.",
+                            "years_of_commitment": 12,
                             "skills": ["Industry leadership in technology", "Driving long-term innovation", "Mentoring at a global scale", "Influence on company-wide architecture"]
                           }}
                         }}
@@ -221,6 +239,7 @@ def get_session_occupation():
         except json.JSONDecodeError as e:
             print(f"Failed to parse cleaned JSON: {e}")
             return {"error": "Failed to parse response"}
+
 
 def clean_json_string(json_string):
     # Remove any stray newlines or tabs that may have corrupted the JSON format
