@@ -838,7 +838,100 @@ p1 {
     height: 100vh; /* 设置容器高度，确保占据页面全部高度 */
     padding-bottom: 20px; /* 可选，留一点空白在底部 */
 }
+/*companydata*/
+.companydata-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    margin: 20px;
+}
+
+.explore-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.explore-subtitle {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.content-section {
+    display: flex;
+    gap: 20px;
+}
+
+.company-list {
+    width: 30%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.company-result {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+}
+
+.company-result:hover {
+    background-color: #ddd;
+}
+
+.company-info {
+    width: 70%;
+    background-color: #e3eafc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating span {
+    font-size: 20px;
+    color: red;
+}
+
+.company-description p,
+.company-description ul {
+    margin: 10px 0;
+}
 /* 按钮样式保持不变 */
 .resume-button {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);

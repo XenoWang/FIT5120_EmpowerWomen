@@ -16,21 +16,32 @@
             <button type="submit" id="search-button">Search</button>
         </form>
     </div>
-    <script src="script.js"></script>
 </div>
 
 <div class="container">
-    <!-- Explore Companies Title and Subtitle (Outside the container background) -->
+    <!-- Explore Companies Title and Subtitle -->
     <div class="explore-title">
-        Explore Companies for {{ Section }}: <span id="user-input"></span> <!-- Placeholder for user input -->
+        Explore Companies for <span id="user-input"></span> <!-- Placeholder for user input -->
     </div>
     <div class="explore-subtitle">
         Use our powerful search tool to explore company metrics, family-friendly policies, and long-term growth opportunities.
     </div>
 
-    <!-- New container for search results -->
-    <div class="search-results-container">
-        <div id="search-results"></div> <!-- This div will display the search results -->
+    <!-- Main content section for search results -->
+    <div class="content-section">
+        <!-- Left column: List of companies -->
+        <div id="search-results" class="company-list"></div> <!-- This div will display the search results -->
+
+        <!-- Right column: Company information -->
+        <div class="company-info" id="company-info-container">
+            <div class="company-info-header">
+                <span>Company Information</span>
+                <div id="dynamic-rating" class="rating"></div> <!-- Dynamic star rating -->
+            </div>
+            <div class="company-description" id="company-details">
+                <p>Select a company to view detailed information.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -52,57 +63,12 @@
                 // Create a container for each company
                 const companyDiv = document.createElement('div');
                 companyDiv.classList.add('company-result');
+                companyDiv.innerHTML = `<h3>${company}</h3>`;
 
-                // Add company name and group size
-                companyDiv.innerHTML = `
-                    <h3>${company}</h3>
-                    <p><strong>Group Size:</strong> ${data[company].group_size}</p>
-                    <p><strong>Average Final Score:</strong> ${data[company].average_final_score.toFixed(2)}</p>
-                `;
-
-                // Create a list for the categories and scores
-                const categoryList = document.createElement('ul');
-                data[company].categories.forEach(item => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `<strong>${item.category}</strong>: ${item.final_score}`;
-                    categoryList.appendChild(listItem);
+                // Add an event listener for each company
+                companyDiv.addEventListener('click', function() {
+                    displayCompanyDetails(data[company]);  // Show company details when clicked
                 });
-                companyDiv.appendChild(categoryList);
-
-                // Create a section for occupation details
-                const occupationSection = document.createElement('div');
-                occupationSection.innerHTML = `<p><strong>Occupations:</strong></p>`;
-                const occupationList = document.createElement('ul');
-                for (const occupation in data[company].occupations) {
-                    const occupationItem = document.createElement('li');
-                    occupationItem.innerHTML = `${occupation}: ${data[company].occupations[occupation]}`;
-                    occupationList.appendChild(occupationItem);
-                }
-                occupationSection.appendChild(occupationList);
-                companyDiv.appendChild(occupationSection);
-
-                // Create a section for gender count
-                const genderSection = document.createElement('div');
-                genderSection.innerHTML = `<p><strong>Gender Count:</strong></p>`;
-                const genderList = document.createElement('ul');
-                genderList.innerHTML = `
-                    <li>Men: ${data[company].gender_count.Men}</li>
-                    <li>Women: ${data[company].gender_count.Women}</li>
-                `;
-                genderSection.appendChild(genderList);
-                companyDiv.appendChild(genderSection);
-
-                // Create a section for employment status count
-                const statusSection = document.createElement('div');
-                statusSection.innerHTML = `<p><strong>Employment Status:</strong></p>`;
-                const statusList = document.createElement('ul');
-                statusList.innerHTML = `
-                    <li>Full-time: ${data[company].employment_status_count['Full-time']}</li>
-                    <li>Part-time: ${data[company].employment_status_count['Part-time']}</li>
-                    <li>Casual: ${data[company].employment_status_count.Casual}</li>
-                `;
-                statusSection.appendChild(statusList);
-                companyDiv.appendChild(statusSection);
 
                 // Append the company container to the results container
                 resultsContainer.appendChild(companyDiv);
@@ -110,12 +76,64 @@
         }
     }
 
+    // Function to display company details in the company-info section
+    function displayCompanyDetails(companyData) {
+        const detailsContainer = document.getElementById('company-details');
+
+        // Calculate star rating based on the average final score
+        const maxStars = 5;  // Total number of stars
+        const filledStars = Math.round(companyData.average_final_score);  // Round the score to nearest integer
+        const emptyStars = maxStars - filledStars;
+
+        // Create star rating HTML
+        let ratingHTML = '';
+        for (let i = 0; i < filledStars; i++) {
+            ratingHTML += '<span>★</span>';
+        }
+        for (let i = 0; i < emptyStars; i++) {
+            ratingHTML += '<span>☆</span>';
+        }
+
+        // Update the rating section dynamically
+        document.getElementById('dynamic-rating').innerHTML = ratingHTML;
+
+        // Update the company details section with the new rating and other details
+        detailsContainer.innerHTML = `
+            <p><strong>Group Size:</strong> ${companyData.group_size}</p>
+            <p><strong>Average Final Score:</strong> ${companyData.average_final_score.toFixed(2)}</p>
+            <ul>
+                ${companyData.categories.map(category => `<li><strong>${category.category}</strong>: ${category.final_score}</li>`).join('')}
+            </ul>
+            <div>
+                <p><strong>Occupations:</strong></p>
+                <ul>
+                    ${Object.entries(companyData.occupations).map(([occupation, count]) => `<li>${occupation}: ${count}</li>`).join('')}
+                </ul>
+            </div>
+            <div>
+                <p><strong>Gender Count:</strong></p>
+                <ul>
+                    <li>Men: ${companyData.gender_count.Men}</li>
+                    <li>Women: ${companyData.gender_count.Women}</li>
+                </ul>
+            </div>
+            <div>
+                <p><strong>Employment Status:</strong></p>
+                <ul>
+                    <li>Full-time: ${companyData.employment_status_count['Full-time']}</li>
+                    <li>Part-time: ${companyData.employment_status_count['Part-time']}</li>
+                    <li>Casual: ${companyData.employment_status_count.Casual}</li>
+                </ul>
+            </div>
+        `;
+    }
+
     // Fetch top 15 companies when the page is loaded
     window.onload = function() {
         fetch('/searchdata/top15', {
-            method: 'GET'  // Use GET to retrieve the top 15 companies
+            method: 'GET'
         })
-        .then(response => response.json())  // Convert the server response to JSON
+        .then(response => response.json())
         .then(data => {
             displayCompanies(data);  // Display the top 15 companies
         })
@@ -125,25 +143,25 @@
         });
     };
 
-    // Attach an event listener to the form to handle submission
+    // Handle form submission for search
     document.getElementById('search-form').addEventListener('submit', function (event) {
-        event.preventDefault();  // Prevent the default form submission (page reload)
+        event.preventDefault();  // Prevent the default form submission
 
-        // Get the search input value entered by the user
+        // Get the search input value
         const searchQuery = document.getElementById('search-input').value;
 
         // Dynamically update the title with the user input
         document.getElementById('user-input').textContent = searchQuery;
 
-        // Use fetch to send an AJAX POST request to the server
+        // Fetch search results from the server
         fetch('/searchdata', {
-            method: 'POST',  // Use POST to send the search query
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'  // Set the request headers
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `search_query=${encodeURIComponent(searchQuery)}`  // Encode and send the search query
+            body: `search_query=${encodeURIComponent(searchQuery)}`
         })
-        .then(response => response.json())  // Convert the server response to JSON
+        .then(response => response.json())
         .then(data => {
             displayCompanies(data);  // Display the search results
         })
