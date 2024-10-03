@@ -182,7 +182,7 @@
             var nodeEnter = node.enter().append("g")
                 .attr("class", "node")
                 .attr("transform", function(d) {
-                    return "translate(" + d.x + "," + d.y + ")";
+                    return "translate(" + d.x + "," + d.y + ")";  // Position nodes correctly
                 });
 
             // Append circles to the nodes
@@ -210,8 +210,7 @@
                 .attr("text-anchor", "end")
                 .text(function(d) {
                     return d.data.job_title;
-                })
-                .call(wrapText, 150);
+                });
 
             // Create links between the nodes
             var link = svg.selectAll(".link")
@@ -234,31 +233,6 @@
             panel.style.display = 'block';
             panel.style.left = (event.pageX + 20) + 'px';
             panel.style.top = (event.pageY - 20) + 'px';
-        }
-
-        function wrapText(text, width) {
-            text.each(function() {
-                var text = d3.select(this),
-                    words = text.text().split(/\s+/).reverse(),
-                    word,
-                    line = [],
-                    lineNumber = 0,
-                    lineHeight = 1.1, // ems
-                    y = text.attr("y"),
-                    dy = parseFloat(text.attr("dy")),
-                    tspan = text.text(null).append("tspan").attr("x", -25).attr("y", y).attr("dy", dy + "em");
-
-                while (word = words.pop()) {
-                    line.push(word);
-                    tspan.text(line.join(" "));
-                    if (tspan.node().getComputedTextLength() > width) {
-                        line.pop();
-                        tspan.text(line.join(" "));
-                        line = [word];
-                        tspan = text.append("tspan").attr("x", -135).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-                    }
-                }
-            });
         }
     }
 
