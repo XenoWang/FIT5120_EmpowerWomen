@@ -37,15 +37,17 @@
 </div>
 
 <div class="category-container">
-    <div class="category" onclick="toggleExpansion('art')">
+    <!-- Retained this part with the occupation image and description -->
+    <div class="category">
         <img src="{{ url_for('static', filename='images/art_image.jpg') }}" alt="Art">
         <div>
             <h2>{{ occupation }}</h2>
-            <p>Find out what career pathways are related to {{ occupation }}</p>
+            <p style="font-size: 1.7vw;">Find out what career pathways are related to {{ occupation }}</p>
         </div>
-        <button class="expand-button">+</button>
     </div>
-    <div class="expansion-panel" id="art">
+
+    <!-- Container for the tree diagram, loaded directly -->
+    <div id="tree-diagram-container">
         <!-- Tree Diagram Will Be Inserted Here -->
     </div>
 
@@ -67,40 +69,19 @@
         background-color: #f0f0f0;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
     }
 
     .category {
         display: flex;
         align-items: center;
-        cursor: pointer;
+        cursor: default; /* Removed the pointer cursor */
     }
 
     .category img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-    }
-
-    .expand-button {
-        margin-left: auto;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    .expansion-panel {
-        height: 0;
-        overflow: hidden;
-        transition: height 0.3s ease;
-    }
-
-    .category h2, .category p {
-        margin-left: 10px;
-    }
-
-    .career-detail {
-        margin-bottom: 20px;
     }
 
     .node circle {
@@ -120,24 +101,8 @@
         stroke-width: 2px;
     }
 
-    /* CSS for transparent rows */
-    .transparent {
-        opacity: 0.5;
-    }
-
-    /* CSS for fully visible rows */
-    .fully-visible {
-        opacity: 1;
-    }
-
-    /* Adjust spacing for vertical layout */
     svg {
         width: 100%;
-    }
-
-    .node text {
-        font-size: 12px;
-        font-family: sans-serif;
     }
 
     #details-panel {
@@ -155,36 +120,38 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script type="text/javascript">
+    var selectedNode = null;  // Variable to store the currently selected circle
     var careerPathwayData = {{ career_pathway_json | safe }};
 
     // Debugging: Print the careerPathwayData to check the format
-    console.log(careerPathwayData);  // <-- Add this line to inspect the data
+    console.log(careerPathwayData);
 
+    // Function to create the tree diagram and ensure it is rendered on page load
     function createTreeDiagram() {
         // Clear any existing SVG to avoid multiple tree diagrams
-        d3.select("#art").selectAll("svg").remove();
+        d3.select("#tree-diagram-container").selectAll("svg").remove();
 
         var i = 0;
 
         if (!careerPathwayData || !careerPathwayData.response || !careerPathwayData.response.career_tree) {
-            console.error("Invalid careerPathwayData format. Actual data:", careerPathwayData);  // <-- Log actual data
+            console.error("Invalid careerPathwayData format. Actual data:", careerPathwayData);
             return;
         }
 
         // Set margins and size for the SVG container
-        var margin = {top: 20, right: 90, bottom: 30, left: 150},  // Increased left margin for text
-            width = document.getElementById('art').offsetWidth - margin.left - margin.right,  // Make dynamic width
-            height = 1200 - margin.top - margin.bottom;  // Increased height for better vertical spacing
+        var margin = {top: 20, right: 90, bottom: 30, left: 150},
+            width = document.getElementById('tree-diagram-container').offsetWidth - margin.left - margin.right,
+            height = 1200 - margin.top - margin.bottom;
 
         // Create the SVG container and set its dimensions
-        var svg = d3.select("#art").append("svg")
+        var svg = d3.select("#tree-diagram-container").append("svg")
             .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
             .attr("preserveAspectRatio", "xMidYMid meet")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // Create a tree layout with the desired size
-        var treeLayout = d3.tree().size([height, width]);  // Adjust size to be vertical
+        var treeLayout = d3.tree().size([height, width]);
 
         // Create a hierarchy from the data
         var root = d3.hierarchy(careerPathwayData.response.career_tree.entry_level, function(d) {
@@ -196,16 +163,15 @@
             return null;
         });
 
-        update(root);  // Call the update function to draw the tree
+        update(root);
 
         function update(source) {
             var treeData = treeLayout(root);
-            var nodes = treeData.descendants();  // Get nodes from the tree
-            var links = treeData.links();  // Get links between nodes
+            var nodes = treeData.descendants();
+            var links = treeData.links();
 
-            // Adjust the position of the nodes for a vertical layout
             nodes.forEach(function(d) {
-                d.y = d.depth * 200;  // Increase vertical space between nodes
+                d.y = d.depth * 200;
             });
 
             // Select all nodes and bind data to them
@@ -216,58 +182,60 @@
             var nodeEnter = node.enter().append("g")
                 .attr("class", "node")
                 .attr("transform", function(d) {
-                    return "translate(" + d.x + "," + d.y + ")";  // Use x for horizontal position and y for vertical
+                    return "translate(" + d.x + "," + d.y + ")";
                 });
 
-            // Append circles to the nodes and make them clickable
+            // Append circles to the nodes
             nodeEnter.append("circle")
-                .attr("r", 10)
+                .attr("r", 15)
                 .style("fill", "#fff")
-                .style("cursor", "pointer")  // Make the circle a clickable pointer
+                .style("cursor", "pointer")
                 .on("click", function(event, d) {
-                    showDetails(event, d.data);  // Show job details on the right side of the circle
+                    // Reset the fill color of the previously selected node, if any
+                    if (selectedNode) {
+                        selectedNode.style.fill = "#fff";
+                    }
+
+                    // Highlight the clicked circle and store reference to the selected node
+                    d3.select(this).style("fill", "gray");
+                    selectedNode = this;  // Store reference to the clicked circle
+
+                    showDetails(event, d.data);
                 });
 
             // Append text to the nodes (job titles)
             nodeEnter.append("text")
                 .attr("dy", ".35em")
-                .attr("x", -15)  // Position text 15px to the left of the circle
-                .attr("text-anchor", "end")  // Ensure all text appears to the left
+                .attr("x", -25)  // Increased x-offset to move text further from the circle
+                .attr("text-anchor", "end")
                 .text(function(d) {
-                    return d.data.job_title;  // Display the job title text
+                    return d.data.job_title;
                 })
-                .call(wrapText, 150);  // Call the wrapText function to handle long titles and restrict width to 150px
+                .call(wrapText, 150);
 
             // Create links between the nodes
             var link = svg.selectAll(".link")
                 .data(links, function(d) { return d.target.id; });
 
-            // Draw links (lines) between nodes
             link.enter().insert("path", "g")
                 .attr("class", "link")
-                .attr("d", d3.linkVertical()  // Use a vertical link (y and x are swapped to make it top to bottom)
+                .attr("d", d3.linkVertical()
                     .x(function(d) { return d.x; })
                     .y(function(d) { return d.y; }));
         }
 
-        // Function to show job details when a circle is clicked
         function showDetails(event, data) {
-            // Update the job details in the panel
             document.getElementById('job-title').textContent = data.job_title;
             document.getElementById('job-description').textContent = data.description;
             document.getElementById('years-of-commitment').textContent = data.years_of_commitment;
             document.getElementById('skills').textContent = data.skills.join(", ");
 
-            // Position the details panel dynamically next to the clicked node based on event coordinates
             var panel = document.getElementById('details-panel');
             panel.style.display = 'block';
-
-            // Use event.pageX and event.pageY for positioning
-            panel.style.left = (event.pageX + 20) + 'px';  // 20px to the right of the click
-            panel.style.top = (event.pageY - 20) + 'px';   // 20px above the click
+            panel.style.left = (event.pageX + 20) + 'px';
+            panel.style.top = (event.pageY - 20) + 'px';
         }
 
-        // Function to wrap long text labels
         function wrapText(text, width) {
             text.each(function() {
                 var text = d3.select(this),
@@ -278,7 +246,7 @@
                     lineHeight = 1.1, // ems
                     y = text.attr("y"),
                     dy = parseFloat(text.attr("dy")),
-                    tspan = text.text(null).append("tspan").attr("x", -15).attr("y", y).attr("dy", dy + "em");  // Adjust position for wrapped text
+                    tspan = text.text(null).append("tspan").attr("x", -25).attr("y", y).attr("dy", dy + "em");
 
                 while (word = words.pop()) {
                     line.push(word);
@@ -287,7 +255,7 @@
                         line.pop();
                         tspan.text(line.join(" "));
                         line = [word];
-                        tspan = text.append("tspan").attr("x", -15).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);  // Ensure all wrapped text is left-aligned
+                        tspan = text.append("tspan").attr("x", -135).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
                     }
                 }
             });
@@ -297,18 +265,18 @@
     // Function to close the details panel
     document.getElementById('close-panel-btn').addEventListener('click', function() {
         document.getElementById('details-panel').style.display = 'none';
+
+        // Reset the fill color of the selected circle to white when the panel is closed
+        if (selectedNode) {
+            d3.select(selectedNode).style("fill", "#fff");
+            selectedNode = null;  // Reset the reference
+        }
     });
 
-    // Function to toggle the expansion panel and render the tree diagram
-    function toggleExpansion(id) {
-        const panel = document.getElementById(id);
-        if (panel.style.height) {
-            panel.style.height = null;
-        } else {
-            panel.style.height = panel.scrollHeight + 'px';
-            createTreeDiagram();
-        }
-    }
+    // Ensure the tree diagram is loaded as soon as the page is loaded
+    window.onload = function() {
+        createTreeDiagram();  // Load the tree diagram
+    };
 </script>
 
 {% endblock %}
