@@ -23,7 +23,7 @@ body {
 .image-box {
     width: 50%;
     display: flex;
-    justify-content: flex-end; /* 确保图片在右侧 */
+    justify-content: flex-end; /* Make sure the picture is on the right */
 }
 
 .image-box img {
@@ -33,9 +33,9 @@ body {
 
 /*learn button*/
 .btn {
-    font-size: 20px; /* 增大字体 */
-    padding: 15px 30px; /* 增大内边距，按钮变大 */
-    border-radius: 20px; /* 让按钮的圆角更明显 */
+    font-size: 20px; /* Enlarge font */
+    padding: 15px 30px; /* The button gets bigger by increasing the margin */
+    border-radius: 20px; /* Make the rounded corners of the buttons more noticeable */
 }
 
 h2 {
@@ -49,10 +49,10 @@ h3 {
 /*recommend page*/
 .recommend_button_container {
     display: flex;
-    justify-content: center; /* 水平居中 */
-    gap: 20px; /* 按钮之间的间距 */
-    position: fixed; /* 固定在底部 */
-    bottom: 20px; /* 距离页面底部 */
+    justify-content: center; /* Horizontal centering */
+    gap: 20px; /* Spacing between buttons */
+    position: fixed; /* Anchor to the bottom */
+    bottom: 20px; /* Distance from bottom of page */
     left: 0;
     right: 0;
 }
@@ -323,18 +323,18 @@ button:hover:not(:disabled) {
 
 /*resume refinement page button*/
 .custom-pink-button {
-    background: linear-gradient(45deg, #ff66b2, #ff99cc); /* 从粉色到浅粉色的渐变 */
-    border: none; /* 移除边框 */
-    color: white; /* 文字颜色为白色 */
-    padding: 10px 20px; /* 按钮内边距 */
-    border-radius: 5px; /* 圆角按钮 */
-    font-size: 16px; /* 字体大小 */
-    cursor: pointer; /* 鼠标样式为手指 */
-    transition: background 0.3s ease; /* 增加过渡效果 */
+    background: linear-gradient(45deg, #ff66b2, #ff99cc); /* Gradation from pink to light pink */
+    border: none; /* Remove border */
+    color: white; /* The text color is white */
+    padding: 10px 20px; /* Inside margin of the button*/
+    border-radius: 5px; /* Rounded button */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Mouse style is finger */
+    transition: background 0.3s ease; /* Increase transition effect */
 }
 
 .custom-pink-button:hover {
-    background: linear-gradient(45deg, #ff3399, #ff6699); /* 悬停时的渐变粉色 */
+    background: linear-gradient(45deg, #ff3399, #ff6699); /* Gradient pink when hovering */
     border: none;
 }
 
@@ -343,7 +343,7 @@ button:hover:not(:disabled) {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* 确保按钮容器占满宽度 */
+    width: 100%; /* Make sure the button container occupies the full width */
     padding: 10px 0;
     z-index: 10;
 }
@@ -353,7 +353,7 @@ button:hover:not(:disabled) {
     max-width: 300px;
     text-align: center;
     padding: 10px 20px;
-    font-size: 1.2rem; /* 确保在较小屏幕上字体大小适中 */
+    font-size: 1.2rem; /* Make sure the font size is appropriate on a smaller screen */
 }
 
 /* Resume Page*/
@@ -453,25 +453,25 @@ p1 {
 /* Starting of media query*/
 @media (min-width: 576px) and (max-width: 768px) {
     .centered-button .btn {
-        max-width: 80%; /* 在较小屏幕上调整按钮最大宽度 */
-        font-size: 1rem; /* 调整字体大小以适应小屏幕 */
+        max-width: 80%; /*  Adjust the maximum width of the button */
+        font-size: 1rem; /* Adjust font size to fit small screen */
     }
 }
 
 /*skill page text css*/
 .section-title {
-    font-size: 3rem; /* 调整标题的字体大小 */
-    font-weight: bold; /* 如果需要，可以加粗 */
+    font-size: 3rem; /* Adjust the font size of the title */
+    font-weight: bold;
     margin-top: 150px;
     margin-left: 80px;
-    margin-bottom: 30px; /* 增加标题下方的间距 */
+    margin-bottom: 30px; /* Increase the space below the title */
     font-family: 'noto-sans-gujarati', sans-serif;
 }
 
 .section-text {
-    font-size: 1.5rem; /* 调整段落文本的字体大小 */
-    line-height: 1.8; /* 调整行高以提高可读性 */
-    margin-bottom: 20px; /* 增加段落下方的间距 */
+    font-size: 1.5rem; /* Adjust the font size of the paragraph text */
+    line-height: 1.8; /* Adjust line height to improve readability */
+    margin-bottom: 20px; /* Increase the spacing below the paragraph */
     margin-left: 80px;
     font-family: 'noto-sans-gujarati', sans-serif;
 }

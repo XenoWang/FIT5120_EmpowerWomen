@@ -1,4 +1,4 @@
-/* 设置基础样式 */
+/* Set base style */
 body {
     font-family: 'Arial', sans-serif;
     background-color: white;
@@ -118,7 +118,7 @@ h2 {
 }
 
 
-/*渐变色button模板*/
+/*Gradient button template*/
 .container-center {
     text-align: center;
     margin-top: 50px;
