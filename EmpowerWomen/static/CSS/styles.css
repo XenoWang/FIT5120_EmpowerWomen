@@ -830,13 +830,13 @@ p1 {
 /*resume button*/
 
 /* Back to Top Button */
-/* 容器的布局样式 */
+/* The layout style of the container */
 .button-container {
     display: flex;
-    justify-content: center; /* 水平居中 */
-    align-items: flex-end; /* 垂直底部对齐 */
-    height: 100vh; /* 设置容器高度，确保占据页面全部高度 */
-    padding-bottom: 20px; /* 可选，留一点空白在底部 */
+    justify-content: center; /* Horizontal centering */
+    align-items: flex-end; /* Vertical bottom alignment */
+    height: 100vh; /* Set the height of the container to ensure that it occupies the full height of the page */
+    padding-bottom: 20px; /* Optional, leave a bit of blank space at the bottom */
 }
 /*companydata*/
 .companydata-title {
@@ -932,7 +932,7 @@ p1 {
 .company-description ul {
     margin: 10px 0;
 }
-/* 按钮样式保持不变 */
+/* The button style remains the same */
 .resume-button {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: white;

@@ -28,7 +28,7 @@
         <button type="submit" class="btn-submit">Analyze Skill Gap</button>
     </form>
 
-    <!-- 显示比较结果 -->
+    <!-- Show comparison results -->
     {% if competency_results %}
     <h2>Results for {{ selected_occupation }}</h2>
     <table class="styled-table">
@@ -49,7 +49,7 @@
     </table>
     {% endif %}
 
-    <!-- 显示Word Cloud-->
+    <!-- Show Word Cloud-->
     {% if wordcloud_path %}
     <h2>Specialist Task Word Cloud</h2>
     <div class="wordcloud-container">

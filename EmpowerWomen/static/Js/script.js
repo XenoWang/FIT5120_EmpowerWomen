@@ -1,4 +1,4 @@
-// 显示/隐藏“Back to Top”按钮
+// Show/hide the Back to Top button
 window.onscroll = function() {
     const backToTop = document.getElementById("backToTop");
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -8,7 +8,7 @@ window.onscroll = function() {
     }
 };
 
-// 点击“Back to Top”按钮后平滑滚动到顶部
+// Click the "Back to Top" button and scroll smoothly to the top
 document.getElementById("backToTop").addEventListener("click", function(event) {
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });

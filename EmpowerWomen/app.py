@@ -16,7 +16,7 @@ from flask import Flask, jsonify
 from flask_session import Session
 
 from EmpowerWomen.plugins import db
-from EmpowerWomen.blueprint import (home, skills, trends, tests, privacy,terms,elevator,skillass,skillmatching,quiz,
+from EmpowerWomen.blueprint import (home, skills, trends, privacy,terms,elevator,skillass,skillmatching,quiz,
                                     recommendations,skillgap,loading,errorpage,careerpathway,companydata,searchdata)
 from EmpowerWomen.config import Config
 from sqlalchemy import text
@@ -49,7 +49,7 @@ migrate = Migrate(app,db)
 app.register_blueprint(home)
 app.register_blueprint(skills)
 app.register_blueprint(trends)
-app.register_blueprint(tests)
+
 app.register_blueprint(terms)
 app.register_blueprint(skillass)
 app.register_blueprint(privacy)

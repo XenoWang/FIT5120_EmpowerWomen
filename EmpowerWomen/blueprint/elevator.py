@@ -31,33 +31,33 @@ def resume_page():
 
 def load_templates_from_file(file_path):
     """
-    从文件中读取简历模板，将每个模板用 '---' 分隔，并返回模板列表。
+    Read the resume templates from the file, separate each template with '-- ', and return the list of templates.
 
-    :param file_path: 模板文件路径
-    :return: 模板列表
+    param file_path: indicates the path of the template file
+    :return: list of templates
     """
     templates = []
     with open(file_path, 'r', encoding='utf-8') as file:
-        # 读取整个文件，并用 '---' 作为模板分隔符
+        # Read the entire file and use '-- 'as the template separator
         templates = file.read().split('---')
 
-    # 去除每个模板前后的空白字符，并返回模板列表
+    # Remove the whitespace before and after each template and return a list of templates
     return [template.strip() for template in templates]
-# 模板读取函数不变
+# The template read function is unchanged
 templates = load_templates_from_file('EmpowerWomen/documents/templates.txt')
 
 
 @elevator.route('/resumeresult', methods=['POST'])
 def generate_resume():
-    # 从表单获取用户输入
-    years = request.form['experience']  # 获取用户工作年限
-    hobbies = request.form['hobbies']  # 获取用户输入的爱好
-    personality = request.form['personality']  # 获取性格
-    industry = request.form['industry']  # 获取工作行业
-    position = request.form['position']  # 获取职位
-    diploma = request.form['diploma']  # 获取文凭
-    school = request.form['school']
-    skills = request.form['skills']  # 获取用户输入的技能
+    # Get user input from the form
+    years = request.form['experience']  # Get user years of service
+    hobbies = request.form['hobbies']  # Get user input for hobbies
+    personality = request.form['personality']  # Acquire character
+    industry = request.form['industry']  # Get a job industry
+    position = request.form['position']  # Get a job
+    diploma = request.form['diploma']  # Obtain a diploma
+    school = request.form['school'] #Get user input schools
+    skills = request.form['skills']  # Get user input skills
 
 
 
@@ -65,10 +65,10 @@ def generate_resume():
 
 
 
-    # 随机选择一个模板
+    # Select a template at random
     template = choice(templates)
 
-    # 生成简历，替换模板中的占位符
+    # Generate a resume and replace placeholders in the template
     generated_resume = template.format(
         years=years,
         hobbies=hobbies,

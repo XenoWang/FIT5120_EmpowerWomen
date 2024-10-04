@@ -6,7 +6,7 @@ recommendations = Blueprint('recommendations', __name__)
 def match_industry_occupations(user_results):
     section_scores = {}
 
-    # 存储每个 section 下的 occupations
+    # Stores occupations under each section
     section_occupations = {}
 
     sections = db.session.query(ANZSCO1).all()
@@ -46,7 +46,7 @@ def match_industry_occupations(user_results):
     sorted_sections = sorted(section_scores.items(), key=lambda x: x[1])
     top_sections = [section_name for section_name, _ in sorted_sections[:3]]
 
-    # 保存每个 section 下的 top occupations
+    # Save top occupations under each section
     for section_name in top_sections:
         section = db.session.query(ANZSCO1).filter_by(SECTION=section_name).first()
         anzsco4s = db.session.query(ANZSCO4).filter_by(ANZSCO1_CODE=section.ANZSCO1_CODE).all()
@@ -77,7 +77,7 @@ def match_industry_occupations(user_results):
 
         top_occupations_for_section = sorted(occupation_scores, key=lambda x: x['score_difference'])[:5]
 
-        # 将 occupation 列表存储在字典中，按 section 分组
+        # Stores the occupation list in a dictionary, grouped by section
         section_occupations[section_name] = [occ['occupation_title'] for occ in top_occupations_for_section]
 
     return {

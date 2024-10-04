@@ -20,7 +20,6 @@ from flask import blueprints
 from .skills import skills
 from .trends import trends
 from .home import home
-from .tests import tests
 from .privacy import privacy
 from .terms import terms
 from .elevator import elevator
@@ -35,7 +34,7 @@ from .careerpathway import careerpathway
 from .companydata import companydata, searchdata
 
 # Initializing Variables
-imports = [skills, trends, home, tests, privacy, terms, elevator, skillass,
+imports = [skills, trends, home, privacy, terms, elevator, skillass,
            skillmatching, quiz, recommendations,skillgap,loading,errorpage,careerpathway,companydata,searchdata]
 
 def register_blueprints(app):

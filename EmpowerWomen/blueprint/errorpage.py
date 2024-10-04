@@ -17,10 +17,10 @@ Python Script for rendering the Privacy Policy
 
 from flask import Blueprint, render_template
 
-# 定义一个 Blueprint
+# Define a Blueprint
 errorpage = Blueprint('errorpage', __name__)
 
-# 错误处理函数，注意需要接收错误参数 e
+# Error handler, note that you need to receive the error parameter e
 @errorpage.app_errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
