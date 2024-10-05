@@ -21,7 +21,7 @@
 <div class="container">
     <!-- Explore Companies Title and Subtitle -->
     <div class="explore-title">
-        Explore Companies for {{sector_name}} sector: <span id="user-input"></span> <!-- Placeholder for user input -->
+        Explore Companies for {{ sector_name }} sector: <span id="user-input"></span> <!-- Placeholder for user input -->
     </div>
     <div class="explore-subtitle">
         Use our powerful search tool to explore company metrics, family-friendly policies, and long-term growth opportunities.
@@ -46,6 +46,8 @@
 </div>
 
 <script>
+    var selectedCompany = null; // Store the selected company name
+
     // Function to display companies in the search-results container
     function displayCompanies(data) {
         const resultsContainer = document.getElementById('search-results');
@@ -67,13 +69,35 @@
 
                 // Add an event listener for each company
                 companyDiv.addEventListener('click', function() {
+                    selectedCompany = company; // Store the selected company name
                     displayCompanyDetails(data[company]);  // Show company details when clicked
+                    storeCompanyInSession(company); // Store company in session
                 });
 
                 // Append the company container to the results container
                 resultsContainer.appendChild(companyDiv);
             }
         }
+    }
+
+    // Function to store the selected company name in the session
+    function storeCompanyInSession(companyName) {
+        fetch('/store_company', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ company_name: companyName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Company stored in session:", companyName);
+            }
+        })
+        .catch(error => {
+            console.error('Error storing company in session:', error);
+        });
     }
 
     // Function to display company details in the company-info section
@@ -125,7 +149,17 @@
                     <li>Casual: ${companyData.employment_status_count.Casual}</li>
                 </ul>
             </div>
+
+            <!-- Add Pitch me for my role button -->
+            <button id="pitch-me-btn" style="margin-top: 20px; background-color: #4facfe; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 20px;">
+                Pitch me for my role
+            </button>
         `;
+
+        // Add click event listener for "Pitch me for my role" button to redirect to /elevator
+        document.getElementById('pitch-me-btn').addEventListener('click', function() {
+            window.location.href = '/elevator';
+        });
     }
 
     // Fetch top 15 companies when the page is loaded

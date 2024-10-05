@@ -168,3 +168,22 @@ def get_top_15_companies():
     # Return the top 15 companies in JSON format
     return jsonify(top_data), 200
 
+@companydata.route('/store_company', methods=['POST'])
+def store_company():
+    """
+    This route stores the selected company name in the session.
+    It is triggered when the user clicks on a company in the frontend.
+    """
+    data = request.json
+    company_name = data.get('company_name')
+
+    # Log the selected company name for debugging
+    print(f"Selected Company: {company_name}")
+
+    if company_name:
+        # Store the selected company name in the session
+        session['selected_company'] = company_name
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'message': 'No company name provided.'}), 400
+

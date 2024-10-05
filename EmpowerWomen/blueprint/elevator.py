@@ -11,7 +11,7 @@ __email3__ = "jsoo0027@student.monash.edu"
 # < ------------------------------ 80 Char Limit ------------------------------ >
 
 # Imports
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 import io
 import base64
 
@@ -22,12 +22,10 @@ elevator = Blueprint('elevator', __name__)
 
 @elevator.route('/elevator')
 def resume_page():
-    return render_template("ElevatorPitch.html")
-
-
-
-
-
+    # Retrieve the selected company name from the session
+    company_name = session.get('selected_company', None)
+    company_name = company_name.lower()
+    return render_template("ElevatorPitch.html", company_name=company_name)
 
 def load_templates_from_file(file_path):
     """
@@ -58,12 +56,6 @@ def generate_resume():
     diploma = request.form['diploma']  # Obtain a diploma
     school = request.form['school'] #Get user input schools
     skills = request.form['skills']  # Get user input skills
-
-
-
-
-
-
 
     # Select a template at random
     template = choice(templates)
