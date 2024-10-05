@@ -631,15 +631,16 @@ p1 {
     height: auto; /* Keeps the image's aspect ratio */
     object-fit: contain; /* Ensures image fits within its container */
 }
+
 .heading {
-    font-size: 48px; /* Larger heading size */
+    font-size: 30px; /* Larger heading size */
     color: #d9534f; /* Red color */
     font-weight: bold;
     margin-bottom: 15px; /* Adds space below the heading */
 }
 
 .paragraphs {
-    font-size: 31px; /* Increased font size for better readability */
+    font-size: 20px; /* Increased font size for better readability */
     color: #333;
     line-height: 1.8; /* Increased line height for better readability */
     margin-top: 15px;
@@ -697,7 +698,7 @@ p1 {
 
 .container_background_6 {
     width: 100vw;
-    height: 80vh;
+    height: 76vh;
     background-size: cover;
     background-position: center top;
     margin-left: calc(-50vw + 50%);
@@ -902,6 +903,7 @@ p1 {
     border-bottom: 1px solid #ccc;
     cursor: pointer;
     text-align: center;
+    font-size: 1.3vw;
 }
 
 .company-result:hover {

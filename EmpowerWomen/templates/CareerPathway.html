@@ -5,9 +5,9 @@
 {% block content %}
 
 <div class="container-career">
-    <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
+    <div class="row">
         <div class="col">
-            <img src="{{ url_for('static', filename='Image/career.jpg') }}" class="career-image">
+            <img src="{{ url_for('static', filename='Image/career.jpg') }}" class="career-image" style="width: 35%; height: auto">
         </div>
         <div class="col col-text">
             <div class="heading">
@@ -15,50 +15,54 @@
             </div>
             <br>
             <div class="paragraphs">
-                Realise your career ambitions with Equalwomen
+                Realize your career ambitions with EmpowerWomen.
             </div>
         </div>
     </div>
 
-    <div class="row" style="margin-top: 10vh; margin-bottom: 10vh;">
+    <div class="row">
         <div class="col col-text">
             <div class="heading">About Career Pathways</div>
             <br>
             <div class="paragraphs">
-                Below is a selection of common career pathways to explore<br>
-                Realise your career ambitions with Equalwomen
+                Below is a selection of common career pathways to explore. Realize your career ambitions with EmpowerWomen.
             </div>
         </div>
 
         <div class="col">
-            <img src="{{ url_for('static', filename='Image/career2.jpg') }}" class="career-image">
+            <img src="{{ url_for('static', filename='Image/career2.jpg') }}" class="career-image" style="width: 35%; height: auto">
         </div>
     </div>
 </div>
 
 <div class="category-container">
-    <!-- Retained this part with the occupation image and description -->
+    <!-- Occupation image and description -->
     <div class="category">
-        <img src="{{ url_for('static', filename='images/art_image.jpg') }}" alt="Art">
+        <img src="{{ section_image_path }}" alt="{{ sector_name }}">
         <div>
             <h2>{{ occupation }}</h2>
-            <p style="font-size: 1.7vw;">Find out what career pathways are related to {{ occupation }}</p>
+            <p style="font-size: 1.4vw;">Find out what career pathways are related to {{ occupation }}</p>
         </div>
     </div>
 
-    <!-- Container for the tree diagram, loaded directly -->
+    <!-- Container for the tree diagram -->
     <div id="tree-diagram-container">
         <!-- Tree Diagram Will Be Inserted Here -->
     </div>
 
     <!-- Sidebar for displaying clicked node details -->
     <div id="details-panel" style="display:none; position:absolute; background-color:#f9f9f9; padding:20px; border:1px solid #ddd; border-radius:8px;">
-    <button id="close-panel-btn" style="float:right; background-image: linear-gradient(to right, #4facfe, cornflowerblue); color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 20px;">👋</button>
-    <h3 id="job-title"></h3>
-    <p id="job-description"></p>
-    <p><strong>Years of Commitment:</strong> <span id="years-of-commitment"></span></p>
-    <p><strong>Skills:</strong> <span id="skills"></span></p>
-</div>
+        <button id="close-panel-btn" style="float:right; background-image: linear-gradient(to right, #4facfe, cornflowerblue); color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 20px;">👋</button>
+        <h3 id="job-title"></h3>
+        <p id="job-description"></p>
+        <p><strong>Years of Commitment:</strong> <span id="years-of-commitment"></span></p>
+        <p><strong>Skills:</strong> <span id="skills"></span></p>
+
+        <!-- Discover Your Company Button -->
+        <button id="discover-company-btn" style="margin-top: 20px; background-image: linear-gradient(to right, #4facfe, cornflowerblue); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 20px;">
+            Discover Your Company
+        </button>
+    </div>
 
 </div>
 
@@ -75,13 +79,15 @@
     .category {
         display: flex;
         align-items: center;
-        cursor: default; /* Removed the pointer cursor */
+        cursor: default;
     }
 
     .category img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+        width: 170px;
+        height: auto;
+        border-radius: 0px;
+        margin-right: 30px;
+        margin-left: 30px;
     }
 
     .node circle {
@@ -233,6 +239,11 @@
             panel.style.display = 'block';
             panel.style.left = (event.pageX + 20) + 'px';
             panel.style.top = (event.pageY - 20) + 'px';
+
+            // Add event listener for the "Discover Your Company" button to redirect to companydata page
+            document.getElementById('discover-company-btn').onclick = function() {
+                window.location.href = "{{ url_for('companydata.company_page') }}";
+            };
         }
     }
 

@@ -80,4 +80,4 @@ def generate_resume():
         school=school
     )
 
-    return render_template('ResumeResult.html', resume=generated_resume)
+    return render_template('PitchResult.html', resume=generated_resume)

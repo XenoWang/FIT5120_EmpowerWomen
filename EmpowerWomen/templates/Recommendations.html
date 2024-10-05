@@ -15,7 +15,10 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 10px;
-            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            background: linear-gradient(to bottom, white, #d3e8f5 50%, lightblue 100%); /* Gradient transition from top to bottom */
+            background-size: 100% 200%; /* Double the background height for smoother animation */
+            background-position: top; /* Start the background at the top */
+            animation: backgroundShift 10s ease-in-out infinite; /* Animation to shift background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,28 +28,22 @@
 
         /* Fade-in animation for the heading */
         h1 {
-            color: #f0f0f0;
             text-align: center;
             font-size: 3rem;
             margin-bottom: 40px;
             letter-spacing: 1px;
-            background: -webkit-linear-gradient(#f0f0f0, #cccccc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             opacity: 0; /* Start transparent */
+            color: transparent; /* Initially transparent */
             animation: fadeIn 3s ease forwards; /* Fade-in animation */
             animation-delay: 0.5s; /* Optional delay */
         }
 
         h2 .emoji {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        h2:hover .emoji {
-            opacity: 1;
-            visibility: visible;
+            opacity: 0; /* Start transparent */
+            visibility: visible; /* Set visibility to visible */
+            transition: none; /* Remove hover transition */
+            animation: fadeInEmoji 3s ease forwards; /* Fade-in animation for the emojis */
+            animation-delay: 1s; /* Optional delay for emoji fade-in */
         }
 
         h2 {
@@ -64,14 +61,14 @@
         .card {
             width: 160px;
             height: 220px;
-            background: linear-gradient(135deg, #34495e, #2c3e50);
+            background: cornflowerblue;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            color: #f0f0f0;
+            color: whitesmoke;
             cursor: pointer;
             position: relative;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -97,7 +94,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            background-color: #34495e;
+            background-color: cornflowerblue;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
             width: 400px;
             padding: 40px;
@@ -122,7 +119,7 @@
         .popup h2 {
             margin-bottom: 20px;
             font-size: 1.8rem;
-            color: #f0f0f0;
+            color: white;
         }
 
         .popup ul {
@@ -130,12 +127,12 @@
             padding: 0;
             font-size: 1rem;
             font-weight: 300;
-            color: #f0f0f0;
+            color: cornflowerblue;
         }
 
         .popup ul li {
             padding: 8px 0;
-            color: #e0e0e0;
+            color: cornflowerblue;
         }
 
         /* Close Button */
@@ -182,6 +179,44 @@
             animation: float 4s ease-in-out infinite;
         }
 
+        /* Keyframes for fade-in and color change */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                color: transparent; /* Initially transparent */
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+                color: cornflowerblue; /* End with cornflowerblue */
+            }
+        }
+
+        /* Fade-in animation for emojis */
+        @keyframes fadeInEmoji {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Animation for smooth background transition */
+        @keyframes backgroundShift {
+            0% {
+                background-position: top; /* Start at the top */
+            }
+            50% {
+                background-position: center; /* Move to the center */
+            }
+            100% {
+                background-position: bottom; /* End at the bottom */
+            }
+        }
+
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -201,16 +236,6 @@
             }
             50% {
                 opacity: 0.5;
-            }
-        }
-
-        /* Keyframe for fade-in effect */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
             }
         }
 
@@ -252,78 +277,74 @@
 </head>
 <body>
 
-    <h1>Industry and Occupation Recommendations</h1>
+<h1>Top 3 Industry and Occupation Recommendations</h1>
 
-    <h2>
-        <span class="emoji">👮‍♀️ 👩‍🍳 👩‍🔧 👩‍🏭 👩‍💼 👩‍🔬 👩‍💻 👩‍🎤 👩‍🎨 👩‍✈️ 👩‍🚀 👩‍🚒 👷‍♀️</span>
-    </h2>
+<h2>
+    <span class="emoji">👮‍♀️ 👩‍🍳 👩‍🔧 👩‍🏭 👩‍💼 👩‍🔬 👩‍💻 👩‍🎤 👩‍🎨 👩‍✈️ 👩‍🚀 👩‍🚒 👷‍♀️</span>
+</h2>
 
-    <div class="card-container">
-        {% for section_name in industry_recommendations.top_sections %}
-        <!-- Dynamic Card -->
-        <div class="card" onclick="showPopup('{{ section_name }}')">
-            <div class="star">⭐</div>
-            {{ section_name }}
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Pop-up Modals for each section -->
-    {% for section_name, occupations in industry_recommendations.section_occupations.items() %}
-    <div id="popup_{{ section_name }}" class="popup">
-        <button class="close-btn" onclick="closePopup()">X</button>
-        <h2>Top 5 Occupations in {{ section_name }}😉</h2>
-        <ul>
-            {% for occupation in occupations %}
-            <!-- Make each occupation a clickable link -->
-            <li>
-                <a href="{{ url_for('recommendations.set_occupation', section_name=section_name, occupation=occupation) }}"
-                   class="occupation-link"
-                   title="Click to explore career pathways for {{ occupation }}">
-                    {{ occupation }}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        <div class="container-center">
-            <!-- Link to a new route to store the section name in the session -->
-            <a href="{{ url_for('recommendations.set_section', section_name=section_name) }}" class="btn btn-primary mt-3 custom-button">Discover Your Company 🏢</a>
-        </div>
+<div class="card-container">
+    {% for section_name in industry_recommendations.top_sections %}
+    <!-- Dynamic Card -->
+    <div class="card" onclick="showPopup('{{ section_name }}')">
+        <div class="star">⭐</div>
+        {{ section_name }}
     </div>
     {% endfor %}
+</div>
 
-    <div class="container-center">
-        <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>
-    </div>
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
 
-    <script>
-        function showPopup(sectionId) {
-            // Hide any open popups
-            const popups = document.querySelectorAll('.popup');
-            popups.forEach(popup => popup.classList.remove('active'));
+<!-- Pop-up Modals for each section -->
+{% for section_name, occupations in industry_recommendations.section_occupations.items() %}
+<div id="popup_{{ section_name }}" class="popup">
+    <button class="close-btn" onclick="closePopup()">X</button>
+    <h2>Top 5 Occupations in {{ section_name }}😉</h2>
+    <ul>
+        {% for occupation in occupations %}
+        <!-- Make each occupation a clickable link -->
+        <li>
+            <a href="{{ url_for('recommendations.set_occupation', section_name=section_name, occupation=occupation) }}"
+               class="occupation-link"
+               title="Click to explore career pathways for {{ occupation }}">
+                {{ occupation }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
 
-            // Show the selected popup
-            const popup = document.getElementById('popup_' + sectionId);
-            popup.classList.add('active');
+<div class="container-center">
+    <a href="/skillassessment" class="btn btn-primary mt-3 custom-button">Back To Assessment Page🚀</a>
+</div>
 
-            // Show the overlay
-            const overlay = document.getElementById('overlay');
-            overlay.classList.add('active');
-        }
+<script>
+    function showPopup(sectionId) {
+        // Hide any open popups
+        const popups = document.querySelectorAll('.popup');
+        popups.forEach(popup => popup.classList.remove('active'));
 
-        function closePopup() {
-            // Close the open popup
-            const popups = document.querySelectorAll('.popup');
-            popups.forEach(popup => popup.classList.remove('active'));
+        // Show the selected popup
+        const popup = document.getElementById('popup_' + sectionId);
+        popup.classList.add('active');
 
-            // Hide the overlay
-            const overlay = document.getElementById('overlay');
-            overlay.classList.remove('active');
-        }
-    </script>
+        // Show the overlay
+        const overlay = document.getElementById('overlay');
+        overlay.classList.add('active');
+    }
+
+    function closePopup() {
+        // Close the open popup
+        const popups = document.querySelectorAll('.popup');
+        popups.forEach(popup => popup.classList.remove('active'));
+
+        // Hide the overlay
+        const overlay = document.getElementById('overlay');
+        overlay.classList.remove('active');
+    }
+</script>
 
 </body>
 </html>

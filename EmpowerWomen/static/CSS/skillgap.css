@@ -1,11 +1,4 @@
 /* Set base style */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: white;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
 
 .container {
     max-width: 1200px;

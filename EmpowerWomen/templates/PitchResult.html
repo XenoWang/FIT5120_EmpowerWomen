@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Result - EmpowerWomen{% endblock %}
+
+{% block content %}
+<div class="container_background_5"></div>
+<div class="resume-result-container">
+    <h1>Your Generated Elevator Pitch 📋</h1>
+    <div>
+        <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 2.5vh;font-family: 'Noto Sans Gujarati UI', sans-serif;">{{ resume }}</pre>
+    </div>
+
+</div>
+<div class="container-center">
+    <a href="/elevator">
+        <button class="resume-button">
+            Go Back 🚀
+        </button>
+    </a>
+</div>
+
+
+{% endblock %}

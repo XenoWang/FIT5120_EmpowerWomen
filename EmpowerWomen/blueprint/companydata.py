@@ -87,13 +87,15 @@ def define_top_15_companies():
 def company_page():
     # Get the occupation name from the session
     occupation = session.get('selected_occupation', 'No Occupation Selected')
+    sector_name = session.get('sector_name', 'No Sector Selected')
     # Print the occupation to the console for debugging
     print(f"Selected Occupation: {occupation}")
     # Render the CompanyData.html template with the occupation name
-    return render_template("CompanyData.html", Occupation=occupation)
+    return render_template("CompanyData.html", Occupation=occupation, sector_name=sector_name)
 
 @searchdata.route('/searchdata', methods=['POST'])
 def search():
+
     search_query = request.form.get('search_query')
 
     # Log the search input in the console for debugging (optional)

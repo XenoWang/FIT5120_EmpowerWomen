@@ -50,7 +50,7 @@
 </div>
 
 
-<!-- JavaScript for pagination, progress bar, and form validation -->
+<!-- JavaScript for pagination, progress bar, form validation, and scroll to top -->
 <script>
     let currentSection = 1;
     const totalSections = {{ quiz_data|length }};
@@ -62,6 +62,12 @@
     }
 
     function changeSection(step) {
+        // Check if all questions in the current section are answered before proceeding
+        if (!validateSection()) {
+            alert("Please answer all questions in this section before proceeding.");
+            return;
+        }
+
         const currentElement = document.getElementById(`competency-section-${currentSection}`);
         const nextSection = currentSection + step;
 
@@ -85,9 +91,32 @@
         const progressPercentage = (currentSection / totalSections) * 100;
         document.getElementById('progressFill').style.width = `${progressPercentage}%`;
         document.getElementById('progressText').textContent = `Step ${currentSection} of ${totalSections}`;
+
+        // Scroll back to top after changing section
+        window.scrollTo(0, 0);
     }
 
-    // Function to validate if all questions are answered
+    // Function to validate if all questions in the current section are answered
+    function validateSection() {
+        const currentSectionElement = document.getElementById(`competency-section-${currentSection}`);
+        const questions = currentSectionElement.querySelectorAll('.question-block');
+        let allAnswered = true;
+
+        questions.forEach(questionBlock => {
+            const options = questionBlock.querySelectorAll('input[type="radio"]');
+            const name = options[0]?.name;  // Get the name attribute of the first option
+            if (name) {
+                const checked = currentSectionElement.querySelector(`input[name="${name}"]:checked`);
+                if (!checked) {
+                    allAnswered = false;
+                }
+            }
+        });
+
+        return allAnswered;
+    }
+
+    // Function to validate all sections before submission
     function validateForm() {
         const sections = document.querySelectorAll('.competency-section');
         let allAnswered = true;
@@ -106,7 +135,7 @@
         });
 
         if (!allAnswered) {
-            alert("You must answer all questions!!");
+            alert("You must answer all questions before submitting!");
             return false; // Prevent form submission
         }
 

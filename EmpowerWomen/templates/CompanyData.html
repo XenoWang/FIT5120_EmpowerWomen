@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container_background_6">
-    <div class="companydata-title">Help you find the company that best<br> matches your career goals</div>
+    <div class="companydata-title"><b>Help you find the company that best<br> matches your career goals</b></div>
 
     <!-- Search bar container -->
     <div class="search-container">
@@ -21,7 +21,7 @@
 <div class="container">
     <!-- Explore Companies Title and Subtitle -->
     <div class="explore-title">
-        Explore Companies for <span id="user-input"></span> <!-- Placeholder for user input -->
+        Explore Companies for {{sector_name}} sector: <span id="user-input"></span> <!-- Placeholder for user input -->
     </div>
     <div class="explore-subtitle">
         Use our powerful search tool to explore company metrics, family-friendly policies, and long-term growth opportunities.
@@ -63,7 +63,7 @@
                 // Create a container for each company
                 const companyDiv = document.createElement('div');
                 companyDiv.classList.add('company-result');
-                companyDiv.innerHTML = `<h3>${company}</h3>`;
+                companyDiv.innerHTML = `${company}`;
 
                 // Add an event listener for each company
                 companyDiv.addEventListener('click', function() {

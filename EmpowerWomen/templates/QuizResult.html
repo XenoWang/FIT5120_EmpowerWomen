@@ -21,57 +21,92 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <!-- Card for Industry & Occupation Recommendations -->
-        <div class="col-md-6 " id="card1">
-            <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
-                <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Industry & Occupation Recommendations</h5>
-                        <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to view your recommended industries and occupations.</p>
-                    </div>
+<!-- Simplified layout to center cards -->
+<div class="cards-container">
+    <!-- Card for Industry & Occupation Recommendations -->
+    <div class="card-item" id="card1">
+        <form action="{{ url_for('recommendations.view_recommendations') }}" method="POST">
+            <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Industry & Occupation Recommendations</h5>
+                    <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to view your recommended industries and occupations.</p>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
 
-        <!-- Card for Compare Career Skills -->
-        <div class="col-md-6" id="card2">
-            <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
-                <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Compare Career Skills</h5>
-                        <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to compare skills needed for your career.</p>
-                    </div>
+    <!-- Card for Compare Career Skills -->
+    <div class="card-item" id="card2">
+        <form action="{{ url_for('skillgap.skill_gap_page') }}" method="GET">
+            <div class="card text-center" style="cursor: pointer;" onclick="this.closest('form').submit();">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Compare Career Skills</h5>
+                    <p class="card-text" style="font-family: 'Noto Sans Gujarati UI', sans-serif">Click to compare skills needed for your career.</p>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
+
 <style>
-    /* Default card style*/
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Flexbox layout for centering cards */
+    .cards-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px; /* Creates space between the cards */
+        margin-top: 50px;
     }
 
-    /* The effect when the mouse hovers over card1 */
-    #card1 .card:hover {
+    .card-item {
+        width: 350px; /* Fixed card width */
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 15px;
+    }
+
+    /* Hover effect for the cards */
+    #card1 .card:hover, #card2 .card:hover {
         transform: translateY(-10px); /* Shift up effect */
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
+    }
+
+    #card1 .card:hover {
         background-color: #f0f8ff; /* Change background color */
     }
 
-    /* Effect when the mouse hovers over card2 */
     #card2 .card:hover {
-        transform: translateY(-10px); /* Shift up effect */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
         background-color: #f5f5f5; /* Change background color */
     }
 
+    .results-section {
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .cards-container {
+            flex-direction: column; /* Stack the cards vertically on small screens */
+        }
+
+        .card-item {
+            width: 90%; /* Cards take more space on small screens */
+        }
+    }
 </style>
-<div class="container-center">
-    <a href="/skillassessment" class="btn btn-primary mt-3 quizresult-button">Back To Assessment Page🚀</a>
+
+<div class="container-center text-center mt-3">
+    <a href="/skillassessment" class="btn btn-primary quizresult-button">Back To Assessment Page🚀</a>
 </div>
-<!-- New button for skill comparison -->
 
 {% endblock %}
