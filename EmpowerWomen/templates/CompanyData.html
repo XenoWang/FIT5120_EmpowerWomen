@@ -30,7 +30,7 @@
     <!-- Main content section for search results -->
     <div class="content-section">
         <!-- Left column: List of companies -->
-        <div id="search-results" class="company-list"></div> <!-- This div will display the search results -->
+        <div id="search-results" class="company-list" style="max-height: 660px; overflow-y: auto;"></div> <!-- 660px height for 11 companies -->
 
         <!-- Right column: Company information -->
         <div class="company-info" id="company-info-container">
@@ -47,6 +47,7 @@
 
 <script>
     var selectedCompany = null; // Store the selected company name
+    var previousSelectedCompanyDiv = null; // Store the previously selected company div
 
     // Function to display companies in the search-results container
     function displayCompanies(data) {
@@ -66,12 +67,22 @@
                 const companyDiv = document.createElement('div');
                 companyDiv.classList.add('company-result');
                 companyDiv.innerHTML = `${company}`;
+                companyDiv.style.cursor = "pointer"; // Change the cursor to pointer
 
                 // Add an event listener for each company
                 companyDiv.addEventListener('click', function() {
                     selectedCompany = company; // Store the selected company name
                     displayCompanyDetails(data[company]);  // Show company details when clicked
                     storeCompanyInSession(company); // Store company in session
+
+                    // Reset background color of previously selected company
+                    if (previousSelectedCompanyDiv) {
+                        previousSelectedCompanyDiv.style.backgroundColor = ""; // Reset previous selection
+                    }
+
+                    // Change the background color of the clicked company
+                    companyDiv.style.backgroundColor = "#b0b0b0"; // New background color
+                    previousSelectedCompanyDiv = companyDiv; // Update the previously selected company div
                 });
 
                 // Append the company container to the results container
