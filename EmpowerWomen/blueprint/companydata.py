@@ -26,35 +26,37 @@ searchdata = Blueprint('searchdata', __name__)
 
 from decimal import Decimal
 
+
 def define_top_15_companies():
     """
     Function to fetch the top 15 companies based on the average final score
-    across the four categories, only for companies where the employees' occupation
-    includes the selected sector.
+    across the four categories and include additional employee details.
     """
-
-    # Get the sector name from the session
     sector_name = session.get('sector_name', 'No Sector Selected')
 
-    # Step 1: Find all companies where employees have the given sector name as their occupation
+    # First, get the distinct ABNs for companies within the specified sector
     companies_with_sector_query = db.session.query(Employee.ABN).filter(Employee.OCCUPATION == sector_name).distinct()
     companies_with_sector = [result[0] for result in companies_with_sector_query.all()]
 
-    # Step 2: Fetch the top 15 companies based on the average final score from the filtered companies
+    # Then modify the top_companies_query to filter based on ABNs in companies_with_sector
     top_companies_query = db.session.query(
         CompanyCategoryFinalScores.COMPANY_NAME,
         Company.ABN,
         Company.GROUP_SIZE,
         func.avg(CompanyCategoryFinalScores.FINAL_SCORE).label('avg_final_score')
-    ).join(Company).filter(Company.ABN.in_(companies_with_sector)).group_by(
-        CompanyCategoryFinalScores.COMPANY_NAME, Company.ABN, Company.GROUP_SIZE
-    ).order_by(desc('avg_final_score')).limit(15)
+    ).join(Company) \
+        .filter(Company.ABN.in_(companies_with_sector)) \
+        .group_by(CompanyCategoryFinalScores.COMPANY_NAME, Company.ABN, Company.GROUP_SIZE) \
+        .order_by(desc('avg_final_score')) \
+        .limit(15)
 
+    # Fetch the results
     top_companies = top_companies_query.all()
 
-    # Step 3: Prepare the result data
     top_data = {}
     for company_name, abn, group_size, avg_final_score in top_companies:
+        categories = CompanyCategoryFinalScores.query.filter_by(COMPANY_NAME=company_name).all()
+
         employees = Employee.query.filter_by(ABN=abn).all()
 
         occupations = {}
@@ -72,14 +74,23 @@ def define_top_15_companies():
             if employee.EMPLOYMENT_STATUS in employment_status_count:
                 employment_status_count[employee.EMPLOYMENT_STATUS] += employee.EMPLOYEE_NUMBER
 
-        # Convert Decimal to float if necessary
+        # Convert Decimal to float or str
         top_data[company_name] = {
             "group_size": group_size,
             "average_final_score": float(avg_final_score) if isinstance(avg_final_score, Decimal) else avg_final_score,
+            "categories": [
+                {
+                    "category": category_info.CATEGORY,
+                    "final_score": category_info.FINAL_SCORE
+                }
+                for category_info in categories
+            ],
             "occupations": occupations,
             "gender_count": gender_count,
             "employment_status_count": employment_status_count
         }
+
+    #print(top_data)
     return top_data
 
 
