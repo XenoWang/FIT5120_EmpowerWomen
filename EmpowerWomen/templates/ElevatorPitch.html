@@ -8,16 +8,16 @@
 
 <div class="container_custom" id="custom" style="width: 60%; margin-bottom: 50px;margin-top: 50px">
     <form action="/resumeresult" method="POST">
-        <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Generate Your Resume Introduction</h1>
+        <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Generate Your Elevator Pitch</h1>
 
         <div class="form-group">
-            <input type="number" id="experienceInput" name="experience" min="1" max="70" required/>
+            <input type="number" id="experienceInput" name="experience" min="1" max="70" step="1" required pattern="\d*"/>
             <label for="experienceInput">Years of Experience</label>
             <div id="experienceHelp" class="form-text">Enter the number of years you have worked in your field.</div>
         </div>
 
         <div class="form-group">
-            <input type="text" id="hobbiesInput" name="hobbies" required/>
+            <input type="text" id="hobbiesInput" name="hobbies" required pattern="^[a-zA-Z]+(,\s*[a-zA-Z]+)*$"/>
             <label for="hobbiesInput">Hobbies (comma separated)</label>
             <div id="hobbiesHelp" class="form-text">List your hobbies separated by commas.</div>
         </div>
@@ -60,7 +60,7 @@
             <div id="skillsHelp" class="form-text">List your skills separated by commas.</div>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Generate Resume"
+        <input type="submit" class="btn btn-primary" value="Generate Pitch!"
                style="margin-left: 30%; width: 40%; font-size: 1.5vw; display: flex; justify-content: center; align-items: center;">
     </form>
 </div>
