@@ -100,7 +100,7 @@ def company_page():
     occupation = session.get('selected_occupation', 'No Occupation Selected')
     sector_name = session.get('sector_name', 'No Sector Selected')
     # Print the occupation to the console for debugging
-    print(f"Selected Occupation: {occupation}")
+    # print(f"Selected Occupation: {occupation}")
     # Render the CompanyData.html template with the occupation name
     return render_template("CompanyData.html", Occupation=occupation, sector_name=sector_name)
 
@@ -110,7 +110,7 @@ def search():
     search_query = request.form.get('search_query')
 
     # Log the search input in the console for debugging (optional)
-    print(f"Search Query: {search_query}")
+    # print(f"Search Query: {search_query}")
 
     # Perform a fuzzy search using the SQL LIKE operator for partial matches
     search_results = db.session.query(
@@ -189,7 +189,7 @@ def store_company():
     company_name = data.get('company_name')
 
     # Log the selected company name for debugging
-    print(f"Selected Company: {company_name}")
+    # print(f"Selected Company: {company_name}")
 
     if company_name:
         # Store the selected company name in the session

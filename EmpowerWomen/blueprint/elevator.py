@@ -24,8 +24,15 @@ elevator = Blueprint('elevator', __name__)
 def resume_page():
     # Retrieve the selected company name from the session
     company_name = session.get('selected_company', None)
-    company_name = company_name.lower()
+
+    # Check if company_name is None, and only call .lower() if it's not None
+    if company_name is not None:
+        company_name = company_name.lower()
+    else:
+        company_name = ""  # Set a default value like an empty string or any other value
+
     return render_template("ElevatorPitch.html", company_name=company_name)
+
 
 def load_templates_from_file(file_path):
     """
